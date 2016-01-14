@@ -10,7 +10,6 @@ import java.text.DecimalFormat;
  * @param listStudents(),sortStudents(),createStudent(),createNullStudent(),removeStudent,readStudentList(),writeStudentList
  */
 
-
 public class Report
 {
     public ArrayList<Student> students = new ArrayList<>();
@@ -24,7 +23,7 @@ public class Report
         {
             System.out.println(" - " + s.name + ", " + s.gender + ", age " + s.getAge());
         }
-    }
+    } 
     
     public void sortStudents()
     {
