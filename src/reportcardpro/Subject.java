@@ -1,7 +1,9 @@
 package reportcardpro;
 
 import java.util.*;
-
+/**
+ * The class finds the subjects of the student, finds the marks of the students for each subject and finds the median for each subject.
+ */
 public class Subject
 {
     public String subjectName;
