@@ -132,6 +132,11 @@ public class Student
             System.out.println(" - " + s.subjectName);
             for (Mark m: s.marks)
             {
+                String mark = Double.toString(m.mark);
+                if (m.mark == 0.0)
+                {
+                    mark = "Zero!";
+                }
                 System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + "), ");
             }
             System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
