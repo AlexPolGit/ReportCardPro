@@ -3,6 +3,13 @@ package reportcardpro;
 import java.io.*;
 import java.util.*;
 import java.text.DecimalFormat;
+/**
+ * The main class for Report Card Pro that organizes the data collected from: Student and Subject class.
+ * @see Student 
+ * @see Subject
+ * @param listStudents(),sortStudents(),createStudent(),createNullStudent(),removeStudent,readStudentList(),writeStudentList
+ */
+
 
 public class Report
 {
