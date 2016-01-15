@@ -1,5 +1,8 @@
 package reportcardpro;
-
+/**
+ * The class finds the mark of the student and the weight factor of each evaluation.
+ * The class also has a custom feature in case the mark weight/assessment is not one of the options in the program.
+ */
 public class Mark
 {
     public Double mark;
