@@ -5,18 +5,58 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
 
+/**
+ *
+ * @author websj1127
+ */
 public class Student
 {
+    /**
+     *
+     */
     public String name;
+    /**
+     *
+     */
     public String gender;
+    /**
+     *
+     */
     public Calendar birthDate;
+    /**
+     *
+     */
     public Calendar today = new GregorianCalendar();
+    /**
+     *
+     */
     public ArrayList<Subject> subjects = new ArrayList<>();
+    /**
+     *
+     */
     public DecimalFormat df = new DecimalFormat("#.##");
+    /**
+     *
+     */
     public File studentPicture;
+    /**
+     *
+     */
     public BufferedImage pic;
+    /**
+     *
+     */
     public UUID id;
     
+    /**
+     *
+     * @param sID
+     * @param sName
+     * @param sGender
+     * @param sYear
+     * @param sMonth
+     * @param sDay
+     */
     public Student(String sID, String sName, String sGender, int sYear, int sMonth, int sDay)
     {
         this.id = UUID.fromString(sID);
@@ -26,6 +66,15 @@ public class Student
         this.studentPicture = new File("pictures//" + sID + ".png");
     }
     
+    /**
+     *
+     * @param sID
+     * @param sName
+     * @param sGender
+     * @param sYear
+     * @param sMonth
+     * @param sDay
+     */
     public Student(UUID sID, String sName, String sGender, int sYear, int sMonth, int sDay)
     {
         this.id = sID;
@@ -35,69 +84,123 @@ public class Student
         this.studentPicture = new File("pictures//" + sID + ".png");
     }
     
+    /**
+     *
+     * @param toID
+     */
     public void setID(UUID toID)
     {
         this.id = toID;
     }
     
+    /**
+     *
+     * @param toID
+     */
     public void setID(String toID)
     {
         this.id = UUID.fromString(toID);
     }
     
+    /**
+     *
+     */
     public void newRandomID()
     {
         this.id = UUID.randomUUID();
     }
 
+    /**
+     *
+     * @param toName
+     */
     public void setName(String toName)
     {
         this.name = toName;
     }
     
+    /**
+     *
+     * @param toGender
+     */
     public void setGender(String toGender)
     {
         this.gender = toGender;
     }
     
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     */
     public void setBirthday(int year, int month, int day)
     {
         this.birthDate = new GregorianCalendar(year, month++, day);
     }
 
+    /**
+     *
+     * @param toSubjects
+     */
     public void setSubjects(ArrayList<Subject> toSubjects)
     {
         this.subjects = toSubjects;
     }
     
+    /**
+     *
+     * @param picName
+     */
     public void setPictureFile(String picName)
     {
         this.studentPicture = new File(picName + ".png");
     }
     
+    /**
+     *
+     * @param toPicture
+     */
     public void setPicture(BufferedImage toPicture)
     {
         this.pic = new BufferedImage(0, 0, 0);
     }
    
+    /**
+     *
+     * @param toAdd
+     */
     public void addSubject(Subject toAdd)
     {
         this.subjects.add(toAdd);
         sortSubjects();
     }
     
+    /**
+     *
+     * @param name
+     * @param desc
+     */
     public void addSubject(String name, String desc)
     {
         this.subjects.add(new Subject(name, desc));
         sortSubjects();
     }
     
+    /**
+     *
+     * @param toRemove
+     */
     public void removeSubject(Subject toRemove)
     {
         this.subjects.remove(toRemove);
         sortSubjects();
     }
     
+    /**
+     *
+     * @return
+     */
     public int getAge()
     {
         int age = (today.getTime().getYear() - birthDate.getTime().getYear());
@@ -119,11 +222,17 @@ public class Student
         return age;
     }
     
+    /**
+     *
+     */
     public void sortSubjects()
     {
         Collections.sort(subjects, new SubjectComparator());
     }
     
+    /**
+     *
+     */
     public void listSubjects()
     {
         System.out.println(this.name + "'s Subjects:");
@@ -146,6 +255,10 @@ public class Student
         System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
     }
     
+    /**
+     *
+     * @return
+     */
     public Double getOverallMeanAverage()
     {
         int numOfSubs = subjects.size();
@@ -157,6 +270,10 @@ public class Student
         return (sum / numOfSubs);
     }
     
+    /**
+     *
+     * @return
+     */
     public Double getOverallMedianAverage()
     {
         int numOfSubs = subjects.size();

@@ -7,15 +7,26 @@ import java.text.DecimalFormat;
  * The main class for Report Card Pro that organizes the data collected from: Student and Subject class.
  * @see Student 
  * @see Subject
- * @param listStudents(),sortStudents(),createStudent(),createNullStudent(),removeStudent,readStudentList(),writeStudentList
  */
 
 public class Report
 {
+    /**
+     *
+     */
     public ArrayList<Student> students = new ArrayList<>();
+    /**
+     *
+     */
     public DecimalFormat df = new DecimalFormat("#.##");
+    /**
+     *
+     */
     public int classSize = students.size();
     
+    /**
+     *
+     */
     public void listStudents()
     {
         System.out.println("Student List:");
@@ -25,23 +36,46 @@ public class Report
         }
     } 
     
+    /**
+     *
+     */
     public void sortStudents()
     {
         Collections.sort(students, new StudentComparator());
     }
     
+    /**
+     *
+     * @param name
+     * @param gender
+     * @param year
+     * @param month
+     * @param day
+     */
     public void createStudent(String name, String gender, int year, int month, int day)
     {
         students.add(new Student(UUID.randomUUID(), name, gender, year, month, day));
         sortStudents();
     }
     
+    /**
+     *
+     */
     public void createNullStudent()
     {
         students.add(new Student(UUID.randomUUID(), "", "", 0, 0 ,0));
         sortStudents();
     }
     
+    /**
+     *
+     * @param id
+     * @param name
+     * @param gender
+     * @param year
+     * @param month
+     * @param day
+     */
     public void removeStudent(String id, String name, String gender, int year, int month, int day)
     {
         Student student = new Student(id, name, gender, year, month, day);
@@ -49,6 +83,9 @@ public class Report
         sortStudents();
     }
 
+    /**
+     *
+     */
     public void readStudentList()
     {
         if (new ArrayList<>(Arrays.asList(new File("students\\").listFiles())).isEmpty())
@@ -111,6 +148,12 @@ public class Report
         sortStudents();
     }
 
+    /**
+     *
+     * @param input
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void writeStudentList(ArrayList<Student> input) throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
@@ -159,6 +202,10 @@ public class Report
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public Double getClassMeanAverage()
     {
         int numOfStudents = 0;
@@ -171,6 +218,10 @@ public class Report
         return (sum / numOfStudents);
     }
     
+    /**
+     *
+     * @return
+     */
     public Double getClassMedianAverage()
     {
         int numOfStudents = students.size();
@@ -186,6 +237,11 @@ public class Report
         return median;
     }
 
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException
     {
         Report r = new Report();
