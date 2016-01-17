@@ -123,9 +123,12 @@ public class Teacher
                 {
                     String name = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[0];
                     String desc = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
+                    String comm = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
                     String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
 
                     Subject tempSub = new Subject(name, desc);
+                    
+                    tempSub.setComment(comm);
                     
                     for (String m : marksList)
                     {
@@ -189,7 +192,7 @@ public class Teacher
                         subjectsString += "-";
                     }
                 }
-                subjectsString += "])";
+                subjectsString += "]" + sub.comment + ")";
                 if (n != s.subjects.size())
                 {
                     subjectsString += "&";

@@ -7,7 +7,7 @@ import java.util.*;
 public class Subject
 {
     /**
-     *The subject(s) the student is being evaluated in.
+     *The subject the student is being evaluated in.
      */
     public String subjectName;
     /**
@@ -15,22 +15,15 @@ public class Subject
      */
     public String subjectDescription;
     /**
-     *The average of the subject the student is in.
-     */
-    public double subjectAverage = 0.0;
-    /**
      *The marks that the student received from assessments in a subject
      */
     public ArrayList<Mark> marks = new ArrayList<>();
-    /**
-     *
-     */
-    public ArrayList<String> comments = new ArrayList<>();
+    public String comment;
     
     /**
      *The comments for the teacher to add input about the student.
-     * @param sName - name of the student
-     * @param sDesc - description of who they are and how they are doing in the subject.
+     * @param sName - Name of the subject.
+     * @param sDesc - Description for the subject.
      */
     public Subject(String sName, String sDesc)
     {
@@ -107,8 +100,13 @@ public class Subject
     
     /**
      *
-     * @return
+     * @param toComment
      */
+    public void setComment(String toComment)
+    {
+        this.comment = toComment;
+    }
+    
     public Double getMeanAverage()
     {
         double numOfMarks = 0.0;

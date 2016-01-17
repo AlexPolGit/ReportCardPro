@@ -250,6 +250,7 @@ public class Student
             }
             System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
             System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
+            System.out.println("Comment: " + s.comment);
         }
         System.out.println("Overall Mean Average: " + df.format(this.getOverallMeanAverage()));
         System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
