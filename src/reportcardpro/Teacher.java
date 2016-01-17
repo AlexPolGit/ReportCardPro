@@ -1,17 +1,8 @@
 package reportcardpro;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 public class Teacher
 {
@@ -112,9 +103,9 @@ public class Teacher
                 tempStu.setID(UUID.fromString(prop.getProperty("id")));
                 tempStu.setName(prop.getProperty("name"));
                 tempStu.setGender(prop.getProperty("gender"));
-                tempStu.setBirthday(   Integer.parseInt(prop.getProperty("birthYear")),
-                                    Integer.parseInt(prop.getProperty("birthMonth")) - 1,
-                                    Integer.parseInt(prop.getProperty("birthDate")));
+                tempStu.setBirthday(    Integer.parseInt(prop.getProperty("birthYear")),
+                                        Integer.parseInt(prop.getProperty("birthMonth")) - 1,
+                                        Integer.parseInt(prop.getProperty("birthDate")));
                 String subjectString = prop.getProperty("subjects");
                 String[] toParse = subjectString.split("&");
                 int n = 0;

@@ -2,6 +2,7 @@ package reportcardpro;
 
 import java.io.*;
 import java.util.*;
+
 /**
  * The main class for Report Card Pro that organizes the data collected from: Student and Subject class.
  * @see Student 
@@ -12,7 +13,7 @@ import java.util.*;
 public class Report
 {
     public ArrayList<Teacher> teachers = new ArrayList<>();
-
+    
     public void createTeacher(String name, String user, String pass)
     {
         Teacher temp = new Teacher(UUID.randomUUID(), name, user, pass);
