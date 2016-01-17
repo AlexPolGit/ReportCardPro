@@ -2,6 +2,15 @@ package reportcardpro;
 
 import java.util.Comparator;
 
+class TeacherComparator implements Comparator<Teacher>
+{
+    @Override
+    public int compare(Teacher t1, Teacher t2)
+    {
+        return t1.name.compareToIgnoreCase(t2.name);
+    }
+}
+
 class StudentComparator implements Comparator<Student>
 {
     @Override
