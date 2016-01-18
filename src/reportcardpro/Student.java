@@ -290,4 +290,19 @@ public class Student
         return median;
     }
     
+    public Subject getSubjectByName(String name)
+    {
+        for (Subject s: subjects)
+        {
+            if (name.equalsIgnoreCase(s.subjectName))
+            {
+                return s;
+            }
+            else
+            {
+                System.err.println("Subject (" + name + ") not found!");
+            }
+        }
+        return null;
+    }
 }

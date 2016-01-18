@@ -90,7 +90,7 @@ public class Report
             prop.setProperty("user", t.username);
             prop.setProperty("pass", t.password);
             
-            prop.store(fileOS, t.name + "'s Saved Properties File");
+            prop.store(fileOS, t.name + "'s (Teacher) Saved Properties File");
             fileOS.close();
         }
     }
@@ -108,6 +108,7 @@ public class Report
             for (Student s: t.students)
             {
                 s.listSubjects();
+                System.out.println();
             }
             
             System.out.println("\n\n\n");

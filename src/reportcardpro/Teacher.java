@@ -231,28 +231,55 @@ public class Teacher
         {
             System.out.println(" - " + s.name + ", " + s.gender + ", age " + s.getAge());
         }
+        System.out.println();
     } 
-    /*
-    public static void main(String[] args) throws IOException
+    
+    public Student getStudentByName(String name)
     {
-        Teacher t = new Teacher("", "", "", "");
-        
-        t.readStudentList(); //get a saved student list
-
-        for (Student s : t.students)
+        for (Student s: students)
         {
-            ArrayList<Subject> sub = s.subjects;
-
-            System.out.println(s.name + "'s Age: " + s.getAge());
-            System.out.println(s.name + "'s Unique ID: " + s.id);
-            s.listSubjects();
-
-            System.out.println();
+            if (name.equalsIgnoreCase(s.name))
+            {
+                return s;
+            }
+            else
+            {
+                System.err.println("Student (" + name + ") not found!");
+            }
         }
-        t.listStudents();
-        t.writeStudentList(t.students); //propgram finished, write saved student list
-        
-        System.out.println("Class median: " + t.df.format(t.getClassMedianAverage()));
+        return null;
     }
-    */
+    
+    public Student getStudentByID(String id)
+    {
+        UUID sID = UUID.fromString(id);
+        for (Student s: students)
+        {
+            if (sID.equals(s.id))
+            {
+                return s;
+            }
+            else
+            {
+                System.err.println("Student (" + id + ") not found!");
+            }
+        }
+        return null;
+    }
+    
+    public Student getStudentByID(UUID id)
+    {
+        for (Student s: students)
+        {
+            if (id.equals(s.id))
+            {
+                return s;
+            }
+            else
+            {
+                System.err.println("Student (" + id + ") not found!");
+            }
+        }
+        return null;
+    }
 }
