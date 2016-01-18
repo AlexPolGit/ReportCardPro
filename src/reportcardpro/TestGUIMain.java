@@ -7,6 +7,7 @@ package reportcardpro;
 
 import java.util.ArrayList;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 /**
  *
@@ -32,8 +33,7 @@ public class TestGUIMain extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -49,8 +49,7 @@ public class TestGUIMain extends javax.swing.JFrame
 
         jSeparator2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jList1.setModel(new javax.swing.AbstractListModel()
-        {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -100,6 +99,7 @@ public class TestGUIMain extends javax.swing.JFrame
         a.add("Histry");
         a.add("Science");
         subs = new JList(a.toArray());
+        //ListModel lm = new ListModel();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
