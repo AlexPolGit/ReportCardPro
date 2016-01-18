@@ -18,6 +18,7 @@ public class Mark
      *The mark from an assessment and the impact it has on the final mark.
      */
     public Double markWeight;
+    public String markDescription;
     
     /**
      *Quiz assessment with a mark weight of 
@@ -51,10 +52,11 @@ public class Mark
      * @param weight
      * finds the weight of that mark for s subject.
      */
-    public Mark(Double mark, Double weight)
+    public Mark(Double mark, Double weight, String markDesc)
     {
         this.mark = mark;
         this.markWeight = weight;
+        this.markDescription = markDesc;
     }
     
     /**

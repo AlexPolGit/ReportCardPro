@@ -64,9 +64,9 @@ public class Subject
      * @param markToAdd
      * @param weightToAdd
      */
-    public void addMark(Double markToAdd, Double weightToAdd)
+    public void addMark(Double markToAdd, Double weightToAdd, String descToAdd)
     {
-        marks.add(new Mark(markToAdd, weightToAdd));
+        marks.add(new Mark(markToAdd, weightToAdd, descToAdd));
         this.sortMarks();
     }
     
@@ -105,6 +105,19 @@ public class Subject
     public void setComment(String toComment)
     {
         this.comment = toComment;
+    }
+    
+    public Mark getMarkByDescription(String desc)
+    {
+        for (Mark m: marks)
+        {
+            if (m.markDescription.equalsIgnoreCase(desc))
+            {
+                return m;
+            }
+        }
+        System.err.println("Mark (" + desc + ") not found!");
+        return null;
     }
     
     public Double getMeanAverage()

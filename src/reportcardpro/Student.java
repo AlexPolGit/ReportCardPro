@@ -242,11 +242,11 @@ public class Student
             for (Mark m: s.marks)
             {
                 String mark = Double.toString(m.mark);
-                if (m.mark == 0.0)
+                if (m.mark <= 0.0)
                 {
                     mark = "Zero!";
                 }
-                System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + "), ");
+                System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + ", " + m.markDescription + "), ");
             }
             System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
             System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
@@ -298,11 +298,8 @@ public class Student
             {
                 return s;
             }
-            else
-            {
-                System.err.println("Subject (" + name + ") not found!");
-            }
         }
+        System.err.println("Subject (" + name + ") not found!");
         return null;
     }
 }

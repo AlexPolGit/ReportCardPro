@@ -39,6 +39,16 @@ public class Report
         Collections.sort(teachers, new TeacherComparator());
     }
     
+    public void listTeachers()
+    {
+        System.out.println("Teachers List:");
+        for (Teacher t: teachers)
+        {
+            System.out.println(" - " + t.name + ", " + t.username);
+        }
+        System.out.println();
+    }
+    
     public void readTeacherList()
     {
         if (new ArrayList<>(Arrays.asList(new File("teachers\\").listFiles())).isEmpty())
@@ -93,6 +103,19 @@ public class Report
             prop.store(fileOS, t.name + "'s (Teacher) Saved Properties File");
             fileOS.close();
         }
+    }
+    
+    public Teacher getTeacherByID(UUID id)
+    {
+        for (Teacher t: teachers)
+        {
+            if (t.id.equals(id))
+            {
+                return t;
+            }
+        }
+        System.err.println("Teacher (" + id + ") not found!");
+        return null;
     }
     
     public static void main(String[] args)

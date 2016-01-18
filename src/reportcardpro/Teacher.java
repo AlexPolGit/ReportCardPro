@@ -125,7 +125,8 @@ public class Teacher
                     {
                         Double value = Double.parseDouble(m.split(":")[0]);
                         Double weight = Double.parseDouble(m.split(":")[1]);
-                        tempSub.addMark(new Mark(value, weight));
+                        String mdesc = m.split(":")[2];
+                        tempSub.addMark(new Mark(value, weight, mdesc));
                     }
                     
                     tempStu.addSubject(tempSub);
@@ -177,7 +178,7 @@ public class Teacher
                 for (Mark mar : sub.marks)
                 {
                     m++;
-                    subjectsString += mar.mark + ":" + mar.markWeight;
+                    subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
                     if (m != sub.marks.size())
                     {
                         subjectsString += "-";
@@ -242,11 +243,8 @@ public class Teacher
             {
                 return s;
             }
-            else
-            {
-                System.err.println("Student (" + name + ") not found!");
-            }
         }
+        System.err.println("Student (" + name + ") not found!");
         return null;
     }
     
@@ -259,11 +257,8 @@ public class Teacher
             {
                 return s;
             }
-            else
-            {
-                System.err.println("Student (" + id + ") not found!");
-            }
         }
+        System.err.println("Student (" + id + ") not found!");
         return null;
     }
     
@@ -275,11 +270,8 @@ public class Teacher
             {
                 return s;
             }
-            else
-            {
-                System.err.println("Student (" + id + ") not found!");
-            }
         }
+        System.err.println("Student (" + id + ") not found!");
         return null;
     }
 }
