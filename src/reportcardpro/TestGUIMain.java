@@ -15,7 +15,9 @@ public class TestGUIMain extends javax.swing.JFrame
 {
 
     public ArrayList<String> testAL = new ArrayList<>();
-    public DefaultListModel<String> dStudentsList = new DefaultListModel<>();
+    public DefaultListModel dmStudentsList = new DefaultListModel();
+    public DefaultListModel dmTempSubjectList = new DefaultListModel();
+    public DefaultListModel dmTempMarksList = new DefaultListModel();
     public Report rep = new Report();
     
     /**
@@ -38,7 +40,11 @@ public class TestGUIMain extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        studentList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        markList = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        subjectList = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -49,9 +55,32 @@ public class TestGUIMain extends javax.swing.JFrame
 
         jSeparator2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jList1.setModel(this.dStudentsList);
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        studentList.setModel(this.dmStudentsList);
+        studentList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        studentList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(studentList);
+
+        markList.setModel(this.dmTempMarksList);
+        markList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        markList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                markListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(markList);
+
+        subjectList.setModel(this.dmTempSubjectList);
+        subjectList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        subjectList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subjectListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(subjectList);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -68,7 +97,10 @@ public class TestGUIMain extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -76,34 +108,75 @@ public class TestGUIMain extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void makeDefListForStudents(Teacher t)
+    private void studentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListMouseClicked
+        System.out.println(studentList.getSelectedValue().toString());
+        String temp = studentList.getSelectedValue().toString().split(" ")[2];
+        System.out.println(temp);
+        Teacher t = rep.teachers.get(0);
+        makeDefListOfSubjects(t.getStudentByName(temp));
+    }//GEN-LAST:event_studentListMouseClicked
+
+    private void subjectListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectListMouseClicked
+        System.out.println(subjectList.getSelectedValue().toString());
+        makeDefListOfSubjects(null);
+    }//GEN-LAST:event_subjectListMouseClicked
+
+    private void markListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_markListMouseClicked
+        System.out.println(markList.getSelectedValue().toString());
+        markList.setToolTipText(null);
+    }//GEN-LAST:event_markListMouseClicked
+  
+    public void makeDefListOfStudents(Teacher teacher)
     {
-        for (Student s: t.students)
+        for (Student s: teacher.students)
         {
-            System.out.println(s.name);
-            dStudentsList.addElement("ABC");
+            dmStudentsList.addElement(" • " + s.name + " (" + s.gender + "), Age " + s.getAge());
+        }
+    }
+    
+    public void makeDefListOfSubjects(Student student)
+    {
+        dmTempSubjectList.clear();
+        for (Subject s: student.subjects)
+        {
+            dmTempSubjectList.addElement(" • " + s.subjectName + ": " + s.subjectDescription);
+        }
+    }
+    
+    public void makeDefListOfMarks(Subject subject)
+    {
+        dmTempMarksList.clear();
+        for (Mark m: subject.marks)
+        {
+            dmTempMarksList.addElement(" • " + m.getMarkType() + ": " + m.mark + "%");
         }
     }
     
     public static void main(String args[])
     {
-        TestGUIMain mainGUI = new TestGUIMain();
+        final TestGUIMain mainGUI = new TestGUIMain();
         
         mainGUI.rep.readTeacherList();
         
         Teacher temp = mainGUI.rep.teachers.get(0);
         temp.listStudents();
         
-        mainGUI.makeDefListForStudents(temp);
+        mainGUI.makeDefListOfStudents(temp);
+        //mainGUI.makeDefListOfSubjects(temp.students.get(0));
+        //mainGUI.makeDefListOfMarks(temp.students.get(0).subjects.get(0));
 
         //ListModel lm = new ListModel();
         /* Set the Nimbus look and feel */
@@ -141,19 +214,23 @@ public class TestGUIMain extends javax.swing.JFrame
         {
             public void run()
             {
-                new TestGUIMain().setVisible(true);
+                mainGUI.setVisible(true);
             }
         });
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JList markList;
+    private javax.swing.JList studentList;
+    private javax.swing.JList subjectList;
     // End of variables declaration//GEN-END:variables
 }
