@@ -3,17 +3,55 @@ package reportcardpro;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
-
+/**
+ *The class finds information about the teacher in order to work with the program.
+ * @param id
+ * <br>
+ * @param name
+ * <br>
+ * @param username
+ * <br>
+ * @param password
+ */
 public class Teacher
-{
+{    /**
+     *Id number of the teacher.
+     */
     public UUID id;
+    /**
+     *The first and last name of the teacher
+     */
     public String name;
+    /**
+     *The username the teacher uses to login into the program.
+     */
     public String username;
+    /**
+     *The password the teacher uses to login into the program.
+     */
     public String password;
+    /**
+     *The list of students that the teacher has in their class or classes.
+     */
     public ArrayList<Student> students = new ArrayList<>();
+    /**
+     *converts numbered values to have additional decimal numbers for more accurate marking.
+     */
     public DecimalFormat df = new DecimalFormat("#.##");
+     /**
+     *size of the class the teacher has.
+     */
     public int classSize = students.size();
-    
+    /**
+     * gives the final value of each param:
+     * @param sID
+     * <br>
+     * @param sName
+     * <br>
+     * @param sUser
+     * <br>
+     * @param sPass
+     */
     public Teacher(String sID, String sName, String sUser, String sPass)
     {
         this.id = UUID.fromString(sID);
@@ -21,6 +59,16 @@ public class Teacher
         this.username = sUser;
         this.password = sPass;
     }
+     /**
+     *
+     * @param sID
+     * <br>
+     * @param sName
+     * <br>
+     * @param sUser
+     * <br>
+     * @param sPass
+     */
     
     public Teacher(UUID sID, String sName, String sUser, String sPass)
     {
@@ -29,61 +77,113 @@ public class Teacher
         this.username = sUser;
         this.password = sPass;
     }
+     /**
+     *
+     * @param toName
+     */
 
     public void setName(String toName)
     {
         this.name = toName;
     }
+    /**
+     * 
+     * @param toID 
+     */
     
     public void setID(UUID toID)
     {
         this.id = toID;
     }
-    
+    /**
+     * 
+     * @param toID 
+     */
+   
     public void setID(String toID)
     {
         this.id = UUID.fromString(toID);
     }
-    
+    /**
+     * 
+     */
     public void newRandomID()
     {
         this.id = UUID.randomUUID();
     }
-    
+     /**
+     *collects the students names and sorts them alphabetically by last name.
+     */
     public void sortStudents()
     {
         Collections.sort(students, new StudentComparator());
     }
-    
+     /**
+     *creates a random student given the following params.
+     * @param name
+     * <br>
+     * @param gender
+     * <br>
+     * @param year
+     * <br>
+     * @param month
+     * <br>
+     * @param day
+     */
     public void createStudent(String name, String gender, int year, int month, int day)
     {
         students.add(new Student(UUID.randomUUID(), name, gender, year, month, day));
         sortStudents();
     }
-    
+    /**
+     *Allows for the teacher to add a new student to their class
+     */
     public void createNullStudent()
     {
         students.add(new Student(UUID.randomUUID(), "", "", 0, 0 ,0));
         sortStudents();
     }
-    
+    /**
+     *Allows for the teacher to remove a student from their class and the information of that student
+     * @param id
+     * <br>
+     * @param name
+     * <br>
+     * @param gender
+     * <br>
+     * @param year
+     * <br>
+     * @param month
+     * <br>
+     * @param day
+     */
     public void removeStudent(String id, String name, String gender, int year, int month, int day)
     {
         Student student = new Student(id, name, gender, year, month, day);
         students.remove(student);
         sortStudents();
     }
+    /**
+     * 
+     * @param toUser 
+     */
     
     public void setUsername(String toUser)
     {
         this.username = toUser;
     }
+    /**
+     * 
+     * @param toPass 
+     */
     
     public void setPassword(String toPass)
     {
         this.password = toPass;
     }
-    
+    /**
+     * 
+     */
     public void readStudentList()
     {
         if (new ArrayList<>(Arrays.asList(new File("teachers\\" + id.toString() + "\\students\\").listFiles())).isEmpty())
@@ -149,7 +249,13 @@ public class Teacher
         }
         sortStudents();
     }
-
+     /**
+     *Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
+     * @param input
+     * @throws FileNotFoundException
+     * <br>
+     * @throws IOException
+     */
     public void writeStudentList(ArrayList<Student> input) throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
@@ -197,7 +303,10 @@ public class Teacher
             fileOS.close();
         }
     }
-    
+    /**
+     *Finds the mean average for a class.
+     *@return
+     */
     public Double getClassMeanAverage()
     {
         int numOfStudents = 0;
@@ -209,7 +318,10 @@ public class Teacher
         }
         return (sum / numOfStudents);
     }
-    
+    /**
+     *finds the median average for a class.
+     *@return
+     */
     public Double getClassMedianAverage()
     {
         int numOfStudents = students.size();
@@ -224,7 +336,9 @@ public class Teacher
         }
         return median;
     }
-    
+    /**
+     *The list of students in the teacher's class or classes.
+     */
     public void listStudents()
     {
         System.out.println("Student List:");
@@ -234,7 +348,12 @@ public class Teacher
         }
         System.out.println();
     } 
-    
+     /**
+     *finds the name of the student by first name.
+     * @param name
+     * <br>
+     * @return
+     */
     public Student getStudentByName(String name)
     {
         for (Student s: students)
@@ -247,7 +366,12 @@ public class Teacher
         System.err.println("Student (" + name + ") not found!");
         return null;
     }
-    
+    /**
+     *finds the id number of a student.
+     * @param id
+     * <br>
+     * @return
+     */
     public Student getStudentByID(String id)
     {
         UUID sID = UUID.fromString(id);
@@ -261,7 +385,12 @@ public class Teacher
         System.err.println("Student (" + id + ") not found!");
         return null;
     }
-    
+    /**
+     *finds the student by searching using their id number.
+     * @param id
+     * <br>
+     * @return
+     */
     public Student getStudentByID(UUID id)
     {
         for (Student s: students)
