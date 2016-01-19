@@ -24,109 +24,132 @@ public class Login extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        frmLogin = new javax.swing.JDesktopPane();
+        fldPassword = new javax.swing.JPasswordField();
+        lblUsername = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        fldUsername = new javax.swing.JTextField();
+        lblTempTitle = new javax.swing.JLabel();
+        btnRegister = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Report Card Pro: Login");
 
-        jPasswordField1.setBounds(360, 220, 140, 30);
-        jDesktopPane1.add(jPasswordField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        frmLogin.add(fldPassword);
+        fldPassword.setBounds(210, 230, 330, 30);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Username:");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+        lblUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsername.setText("Username:");
+        lblUsername.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                lblUsernameMouseClicked(evt);
             }
         });
-        jLabel1.setBounds(240, 150, 110, 40);
-        jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        frmLogin.add(lblUsername);
+        lblUsername.setBounds(80, 170, 110, 20);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Password:");
-        jLabel2.setBounds(240, 220, 110, 20);
-        jDesktopPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPassword.setText("Password:");
+        frmLogin.add(lblPassword);
+        lblPassword.setBounds(80, 230, 110, 20);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        fldUsername.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                fldUsernameActionPerformed(evt);
             }
         });
-        jTextField1.setBounds(360, 160, 140, 30);
-        jDesktopPane1.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        frmLogin.add(fldUsername);
+        fldUsername.setBounds(210, 170, 330, 30);
 
-        jLabel3.setFont(new java.awt.Font("Imprint MT Shadow", 0, 48)); // NOI18N
-        jLabel3.setText("Report Card Pro");
-        jLabel3.setBounds(200, 20, 460, 80);
-        jDesktopPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lblTempTitle.setFont(new java.awt.Font("Imprint MT Shadow", 0, 48)); // NOI18N
+        lblTempTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTempTitle.setText("Report Card Pro");
+        frmLogin.add(lblTempTitle);
+        lblTempTitle.setBounds(130, 40, 370, 80);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton2.setText("Register");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        btnRegister.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRegisterActionPerformed(evt);
             }
         });
-        jButton2.setBounds(390, 340, 140, 80);
-        jDesktopPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        frmLogin.add(btnRegister);
+        btnRegister.setBounds(350, 310, 190, 80);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton3.setText("Login");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+        btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                btnLoginMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        btnLogin.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnLoginActionPerformed(evt);
             }
         });
-        jButton3.setBounds(210, 340, 140, 80);
-        jDesktopPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        frmLogin.add(btnLogin);
+        btnLogin.setBounds(100, 310, 190, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(frmLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(frmLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         new Registry().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void fldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_fldUsernameActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lblUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUsernameMouseClicked
        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_lblUsernameMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
     new MainFrame().setVisible(true);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btnLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,13 +186,16 @@ public class Login extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JPasswordField fldPassword;
+    private javax.swing.JTextField fldUsername;
+    private javax.swing.JDesktopPane frmLogin;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblTempTitle;
+    private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }

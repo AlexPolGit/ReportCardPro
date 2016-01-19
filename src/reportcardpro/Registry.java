@@ -24,7 +24,8 @@ public class Registry extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jTextField1 = new javax.swing.JTextField();
@@ -34,18 +35,26 @@ public class Registry extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registry");
 
-        jTextField1.setBounds(120, 120, 140, 30);
-        jDesktopPane2.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.add(jTextField1);
+        jTextField1.setBounds(40, 120, 280, 30);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton3.setText("Create");
-        jButton3.setBounds(120, 210, 140, 80);
-        jDesktopPane2.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton3.setText("Create Account");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jDesktopPane2.add(jButton3);
+        jButton3.setBounds(80, 190, 200, 80);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Name:");
-        jLabel1.setBounds(50, 120, 110, 30);
-        jDesktopPane2.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Your Name:");
+        jDesktopPane2.add(jLabel1);
+        jLabel1.setBounds(120, 50, 110, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,11 +64,16 @@ public class Registry extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
