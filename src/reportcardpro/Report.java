@@ -89,11 +89,14 @@ public class Report
         
         for (Teacher t: input)
         {
-            File sFolder = new File("teachers\\" + t.id + "\\students");
-            sFolder.mkdir();
+            File tFolder = new File("teachers\\" + t.id);
+            tFolder.mkdirs();
             
-            File outFile = new File("teachers\\" + t.id + "\\credentials.properties");
-            FileOutputStream fileOS = new FileOutputStream(outFile);
+            File sFolder = new File("teachers\\" + t.id + "\\students");
+            sFolder.mkdirs();
+            
+            File propFile = new File("teachers\\" + t.id + "\\credentials.properties");
+            FileOutputStream fileOS = new FileOutputStream(propFile);
 
             prop.setProperty("name", t.name);
             prop.setProperty("id", t.id.toString());

@@ -1,12 +1,9 @@
 package reportcardpro;
 
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 public class TestGUIMain extends javax.swing.JFrame
 {
-
-    public ArrayList<String> testAL = new ArrayList<>();
     public DefaultListModel dmTempStudentsList = new DefaultListModel();
     public DefaultListModel dmTempSubjectList = new DefaultListModel();
     public DefaultListModel dmTempMarksList = new DefaultListModel();
