@@ -6,29 +6,45 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 /**
- *
- * @author websj1127
+ *The class finds the information of a student.
+ * @param name
+ * <br>
+ * @param gender
+ * <br>
+ * @param birthdate
+ * <br>
+ * @param today
+ * <br>
+ * @param subjects
+ * <br>
+ * @param df
+ * <br>
+ * @param studentPicture
+ * <br>
+ * @param pic
+ * <br>
+ * @param id
  */
 public class Student
 {
     /**
-     *
+     *The name of the student.
      */
     public String name;
     /**
-     *
+     *The gender of the student.
      */
     public String gender;
     /**
-     *
+     *The birth date of the student (year, month, day)
      */
     public Calendar birthDate;
     /**
-     *
+     *The school calendar of the student (the subjects and at what time they have the subjects)
      */
     public Calendar today = new GregorianCalendar();
     /**
-     *
+     *The subjects/classes the student is in.
      */
     public ArrayList<Subject> subjects = new ArrayList<>();
     /**
@@ -36,25 +52,30 @@ public class Student
      */
     public DecimalFormat df = new DecimalFormat("#.##");
     /**
-     *
+     *The picture of the student.
      */
     public File studentPicture;
     /**
-     *
+     *The rendered picture of the student
      */
     public BufferedImage pic;
-    /**
-     *
+   /**
+     *The student's id number.
      */
     public UUID id;
     
-    /**
-     *
+   /**
+     * The information that is found in the id of the student.
      * @param sID
+     * <br>
      * @param sName
+     * <br>
      * @param sGender
+     * <br>
      * @param sYear
+     * <br>
      * @param sMonth
+     * <br>
      * @param sDay
      */
     public Student(String sID, String sName, String sGender, int sYear, int sMonth, int sDay)
@@ -66,13 +87,18 @@ public class Student
         this.studentPicture = new File("pictures//" + sID + ".png");
     }
     
-    /**
+     /**
      *
      * @param sID
+     * <br>
      * @param sName
+     * <br>
      * @param sGender
+     * <br>
      * @param sYear
+     * <br>
      * @param sMonth
+     * <br>
      * @param sDay
      */
     public Student(UUID sID, String sName, String sGender, int sYear, int sMonth, int sDay)
@@ -101,9 +127,8 @@ public class Student
     {
         this.id = UUID.fromString(toID);
     }
-    
-    /**
-     *
+   /**
+     *Generates a random ID number for the student.
      */
     public void newRandomID()
     {
@@ -128,10 +153,12 @@ public class Student
         this.gender = toGender;
     }
     
-    /**
+   /**
      *
      * @param year
+     * <br>
      * @param month
+     * <br>
      * @param day
      */
     public void setBirthday(int year, int month, int day)
@@ -179,6 +206,7 @@ public class Student
     /**
      *
      * @param name
+     * <br>
      * @param desc
      */
     public void addSubject(String name, String desc)
@@ -222,8 +250,8 @@ public class Student
         return age;
     }
     
-    /**
-     *
+   /**
+     *Sorts the subjects of a student alphabetically.
      */
     public void sortSubjects()
     {
@@ -231,7 +259,7 @@ public class Student
     }
     
     /**
-     *
+     *Puts the list of subjects in alphabetical order and the marks from lowest to highest for each subject.
      */
     public void listSubjects()
     {
@@ -257,7 +285,7 @@ public class Student
     }
     
     /**
-     *
+     *Finds the overall mean average for a subject.
      * @return
      */
     public Double getOverallMeanAverage()
@@ -272,7 +300,7 @@ public class Student
     }
     
     /**
-     *
+     *Finds the overall median average for a subject.
      * @return
      */
     public Double getOverallMedianAverage()
@@ -289,7 +317,12 @@ public class Student
         }
         return median;
     }
-    
+      /**
+     * Finds the name of each subject.
+     * @param name
+     * <br>
+     * @return 
+     */
     public Subject getSubjectByName(String name)
     {
         for (Subject s: subjects)

@@ -2,6 +2,10 @@ package reportcardpro;
 
 import java.util.Comparator;
 
+/**
+ * compares two students name and sorts them alphabetically.
+ */
+
 class TeacherComparator implements Comparator<Teacher>
 {
     @Override
@@ -10,7 +14,9 @@ class TeacherComparator implements Comparator<Teacher>
         return t1.name.compareToIgnoreCase(t2.name);
     }
 }
-
+/**
+ * 
+ */
 class StudentComparator implements Comparator<Student>
 {
     @Override
@@ -20,6 +26,9 @@ class StudentComparator implements Comparator<Student>
     }
 }
 
+/**
+ * compares the subject of the students 
+ */
 class SubjectComparator implements Comparator<Subject>
 {
     @Override
@@ -28,6 +37,9 @@ class SubjectComparator implements Comparator<Subject>
         return s1.subjectName.compareToIgnoreCase(s2.subjectName);
     }
 }
+/**
+ * compares the marks of two students and sorts them from lowest to highest.
+ */
 
 class MarkComparator implements Comparator<Mark>
 {
@@ -39,8 +51,7 @@ class MarkComparator implements Comparator<Mark>
 }
 
 /**
- *
- * @author websj1127
+ *The class that compares two students information.
  */
 public class Comparators
 {}
