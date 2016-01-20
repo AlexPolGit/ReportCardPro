@@ -27,11 +27,11 @@ public class Subject
        /**
      *The comments for the teacher to add input about the student and their progress in their class.
 <<<<<<< HEAD
-     * @param sName  name of the student
-     * @param sDesc  description of who they are and how they are doing in the subject.
+     * @param sName  Name of the student
+     * @param sDesc  Description of who they are and how they are doing in the subject.
 =======
      * @param sName - Name of the subject.
-     * @param sDesc - Description for the subject.
+     * @param sDesc -  A brief description for the subject.
 >>>>>>> origin/master
      */
     public Subject(String sName, String sDesc)
@@ -77,7 +77,7 @@ public class Subject
     }
     
     /**
-     * @param toAdd an assessed mark that needs to be added and then sorted with the other assessed marks.
+     * @param toAdd An assessed mark that needs to be added and then sorted with the other assessed marks.
      */
     public void addMark(Mark toAdd)
     {
@@ -86,7 +86,7 @@ public class Subject
     }
     
     /**
-     * @param toRemove removes an assessed mark from the sorted list and then updates the list without that mark.
+     * Removes an assessed mark from the sorted list and then updates the list without that mark.
      */
     public void removeMark(Mark toRemove)
     {
@@ -115,7 +115,7 @@ public class Subject
         this.comment = toComment;
     }
     /**
-     * @param desc description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
+     * @param desc Description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
      */
     public Mark getMarkByDescription(String desc)
     {

@@ -258,6 +258,12 @@ public class Student
         Collections.sort(subjects, new SubjectComparator());
     }
     
+    public void sortSubjectsByAverages()
+    {
+        Collections.sort(subjects, new SubjectComparatorByMark());
+    }
+
+    
     /**
      *Puts the list of subjects in alphabetical order and the marks from lowest to highest for each subject.
      */
@@ -303,6 +309,7 @@ public class Student
      */
     public Double getOverallMedianAverage()
     {
+        sortSubjectsByAverages();
         int numOfSubs = subjects.size();
         Double median = 0.0;
         if (numOfSubs%2 == 1)
@@ -313,6 +320,7 @@ public class Student
         {
             median = ((subjects.get(numOfSubs / 2).getMeanAverage()) + (subjects.get((numOfSubs / 2) - 1).getMeanAverage())) / 2;
         }
+        sortSubjects();
         return median;
     }
       /**

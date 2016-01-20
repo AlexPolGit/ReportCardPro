@@ -5,13 +5,14 @@ import java.text.DecimalFormat;
 import java.util.*;
 /**
  *The class finds information about the teacher in order to work with the program.
- * @param id
  * <br>
- * @param name
+ * @param id The id number of the teacher.
  * <br>
- * @param username
+ * @param name The first and last name of the teacher. (last name is optional)
  * <br>
- * @param password
+ * @param username The username the teacher uses to login into the program.
+ * <br>
+ * @param password The password the teacher uses to login into the program.
  */
 public class Teacher
 {    /**
@@ -19,7 +20,7 @@ public class Teacher
      */
     public UUID id;
     /**
-     *The first and last name of the teacher
+     *The first and last name of the teacher (last name is optional)
      */
     public String name;
     /**
@@ -35,15 +36,15 @@ public class Teacher
      */
     public ArrayList<Student> students = new ArrayList<>();
     /**
-     *converts numbered values to have additional decimal numbers for more accurate marking.
+     *Converts numbered values to have additional decimal numbers for more accurate marking.
      */
     public DecimalFormat df = new DecimalFormat("#.##");
      /**
-     *size of the class the teacher has.
+     *Size of the class the teacher has.
      */
     public int classSize = students.size();
     /**
-     * gives the final value of each param:
+     * Gives the final value of each param:
      * @param sID
      * <br>
      * @param sName
@@ -78,7 +79,7 @@ public class Teacher
         this.password = sPass;
     }
      /**
-     * @param toName
+     * Teacher sets the name of the student.
      */
 
     public void setName(String toName)
@@ -86,7 +87,7 @@ public class Teacher
         this.name = toName;
     }
     /**
-     * @param toID 
+     * Teacher sets the id number of the student.
      */
     
     public void setID(UUID toID)
@@ -94,7 +95,7 @@ public class Teacher
         this.id = toID;
     }
     /**
-     * @param toID 
+     * 
      */
    
     public void setID(String toID)
@@ -116,7 +117,8 @@ public class Teacher
         Collections.sort(students, new StudentComparator());
     }
      /**
-     *creates a random student given the following params.
+     *creates a random student given the following params:
+     * <br>
      * @param name The first and last name of the student
      * <br>
      * @param gender The gender of the student
@@ -141,7 +143,8 @@ public class Teacher
         sortStudents();
     }
     /**
-     *Allows for the teacher to remove a student from their class and the information of that student
+     *Allows for the teacher to remove a student from their class and the information of that student.
+     * <br>
      * @param id the id number of the student.
      * <br>
      * @param name the first and last name of the student.
@@ -162,7 +165,6 @@ public class Teacher
     }
     /**
      * The teacher sets username they want to use for the program.
-     * @param toUser 
      */
     
     public void setUsername(String toUser)
@@ -171,7 +173,6 @@ public class Teacher
     }
     /**
      * The teacher sets the password for the username in order to login to the program.
-     * @param toPass 
      */
     
     public void setPassword(String toPass)
@@ -179,7 +180,7 @@ public class Teacher
         this.password = toPass;
     }
     /**
-     * reads the list of students in the teacher's class from a file. (file io)
+     * Reads the list of students in the teacher's class from a file. (file io)
      */
     public void readStudentList()
     {
@@ -247,8 +248,10 @@ public class Teacher
         sortStudents();
     }
      /**
-     *Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
-     * @param input the input file the teacher has selected.
+     * Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
+     * <br>
+     * @param input The input file the teacher has selected.
+     * <br>
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
@@ -301,7 +304,7 @@ public class Teacher
         }
     }
     /**
-     *Finds the mean average for the class the teacher logged in has.
+     * Finds the mean average for the class the teacher logged in has.
      */
     public Double getClassMeanAverage()
     {
@@ -315,7 +318,7 @@ public class Teacher
         return (sum / numOfStudents);
     }
     /**
-     *finds the median average for the class the teacher logged in has.
+     * Finds the median average for the class the teacher logged in has.
      */
     public Double getClassMedianAverage()
     {
@@ -332,7 +335,7 @@ public class Teacher
         return median;
     }
     /**
-     *The list of students in the teacher's class/classes.
+     * The list of students in the teacher's class/classes.
      */
     public void listStudents()
     {
@@ -344,7 +347,7 @@ public class Teacher
         System.out.println();
     } 
      /**
-     *finds the name of the student by first name.
+     * Finds the name of the student by first name.
      * @param name first name of student.
      */
     public Student getStudentByName(String name)
@@ -360,8 +363,8 @@ public class Teacher
         return null;
     }
     /**
-     *finds the id number of a student.
-     * @param id id number of a student.
+     * Finds the id number of a student.
+     * @param id The id number of a student.
      */
     public Student getStudentByID(String id)
     {
@@ -377,8 +380,8 @@ public class Teacher
         return null;
     }
     /**
-     *finds the student by searching using their id number.
-     * @param id id number of a student.
+     * Finds the student by searching using their id number.
+     * @param id The id number of a student.
      */
     public Student getStudentByID(UUID id)
     {

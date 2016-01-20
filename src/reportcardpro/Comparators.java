@@ -41,6 +41,15 @@ class SubjectComparator implements Comparator<Subject>
  * Compares the marks of two students and sorts them from lowest to highest.
  */
 
+class SubjectComparatorByMark implements Comparator<Subject>
+{
+    @Override
+    public int compare(Subject s1, Subject s2)
+    {
+        return s1.getMeanAverage().compareTo(s2.getMeanAverage());
+    }
+}
+
 class MarkComparator implements Comparator<Mark>
 {
     @Override

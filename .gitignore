@@ -14,8 +14,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-*.class
-
 # Windows shortcuts
 *.lnk
 
@@ -49,3 +47,9 @@ Temporary Items
 .apdisk
 /dist/
 /build/
+nbproject/private/private.properties
+nbproject/private/private.xml
+*.class
+*.xml
+nbproject/private/private.properties
+*.class

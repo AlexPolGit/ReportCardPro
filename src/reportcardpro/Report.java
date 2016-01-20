@@ -4,7 +4,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The main class for Report Card Pro that organizes the data collected from: Student and Subject class.
+ * The main class for Report Card Pro that organizes the data collected from: 
+ * @param Student The class that finds the information of a student.
+ * @param Subject The class finds the subjects of the student.
  */
 
 public class Report
@@ -15,26 +17,29 @@ public class Report
     public ArrayList<Teacher> teachers = new ArrayList<>();
     /**
      *Creates a new teacher with the following information:
+     * <br>
      * @param name The first name of the teacher (can also add last name, but not required) 
      * <br>
      * @param user The user name of the teacher.
      * <br>
      * @param pass The password of the user name.
-     */
-    public void createTeacher(String name, String user, String pass)
+     */     
+    public void createTeacher(String name, String user, String pass) throws IOException
     {
         Teacher temp = new Teacher(UUID.randomUUID(), name, user, pass);
         teachers.add(temp);
         sortTeachers();
+        writeTeachersList();
     }
     /**
      *Adds a teacher to a list where they will be sorted by subject they teach and then their name in that subject is sorted by last name alphabetically.
-     * @param toTeach
-     */
-    public void addTeacher(Teacher toTeach)
+     */      
+    public void addTeacher(Teacher toTeach) throws IOException
+
     {
         teachers.add(toTeach);
         sortTeachers();
+        writeTeachersList();
     }
     /**
      *Removes a teacher from the list of teachers and the list from the subject list they were in.
@@ -46,11 +51,13 @@ public class Report
      * <br>
      * @param pass the password of the user name.
      */
-    public void removeTeacher(String id, String name, String user, String pass)
+    public void removeTeacher(String id, String name, String user, String pass) throws IOException
+
     {
         Teacher temp = new Teacher(UUID.fromString(id), name, user, pass);
         teachers.remove(temp);
         sortTeachers();
+        writeTeachersList();
     }
     /**
      *Sorts the teacher list by last name alphabetically.
@@ -60,7 +67,7 @@ public class Report
         Collections.sort(teachers, new TeacherComparator());
     }
     /**
-     *reads the list of teachers on the screen from a file on your computer.
+     *Reads the list of teachers on the screen from a file on your computer.
      */
     public void listTeachers()
     {
@@ -72,7 +79,7 @@ public class Report
         System.out.println();
     }
     /**
-     *reads the list of teachers on the screen from a file on your computer.
+     *Reads the list of teachers on the screen from a file on your computer.
      */
     public void readTeacherList()
     {
@@ -108,24 +115,27 @@ public class Report
         sortTeachers();
     }
     /**
-     *writes the list of teacher names from a file on your computer.
-     * @param input
+     * Writes the list of teacher names from a file on your computer.
      * <br>
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
      */
-    public void writeTeachersList(ArrayList<Teacher> input) throws FileNotFoundException, IOException
+
+    public void writeTeachersList() throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
         
-        for (Teacher t: input)
+        for (Teacher t: teachers)
         {
-            File sFolder = new File("teachers\\" + t.id + "\\students");
-            sFolder.mkdir();
+            File tFolder = new File("teachers\\" + t.id);
+            tFolder.mkdirs();
             
-            File outFile = new File("teachers\\" + t.id + "\\credentials.properties");
-            FileOutputStream fileOS = new FileOutputStream(outFile);
+            File sFolder = new File("teachers\\" + t.id + "\\students");
+            sFolder.mkdirs();
+            
+            File propFile = new File("teachers\\" + t.id + "\\credentials.properties");
+            FileOutputStream fileOS = new FileOutputStream(propFile);
 
             prop.setProperty("name", t.name);
             prop.setProperty("id", t.id.toString());
@@ -138,8 +148,7 @@ public class Report
     }
     /**
      * Finds the teacher by id number.
-     * @param id the id number of the teacher.
-     * @return 
+     * @param id The id number of the teacher.
      */
    
     public Teacher getTeacherByID(UUID id)
@@ -155,6 +164,10 @@ public class Report
         return null;
     }
    
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args)
     {
         Report r = new Report();
