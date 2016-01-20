@@ -29,6 +29,15 @@ class SubjectComparator implements Comparator<Subject>
     }
 }
 
+class SubjectComparatorByMark implements Comparator<Subject>
+{
+    @Override
+    public int compare(Subject s1, Subject s2)
+    {
+        return s1.getMeanAverage().compareTo(s2.getMeanAverage());
+    }
+}
+
 class MarkComparator implements Comparator<Mark>
 {
     @Override

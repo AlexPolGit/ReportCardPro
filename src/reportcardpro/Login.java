@@ -1,10 +1,11 @@
 package reportcardpro;
 
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
 public class Login extends javax.swing.JFrame
 {
@@ -17,15 +18,13 @@ public class Login extends javax.swing.JFrame
         initComponents();
         rep.readTeacherList();
         rep.listTeachers();
+        //setIconImage(new ImageIcon("src\\reportcardpro\\img\\bgPaper.png").getImage());
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         frmLogin = new javax.swing.JDesktopPane();
         fldPassword = new javax.swing.JPasswordField();
         lblUsername = new javax.swing.JLabel();
@@ -38,12 +37,6 @@ public class Login extends javax.swing.JFrame
         lblErrorMsgLogin = new javax.swing.JLabel();
         lblErrorLogin = new javax.swing.JLabel();
         lblErrorReg = new javax.swing.JLabel();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Report Card Pro: Login");
@@ -212,7 +205,43 @@ public class Login extends javax.swing.JFrame
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void lblTempTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTempTitleMouseClicked
-        lblErrorLogin.setText("TEST");
+        Student testStu = new Student(UUID.randomUUID(), "Jimbo", "Male", 2003, 7, 19);
+        
+        Subject temp1 = new Subject("Art", "Arts and crafts.");
+        Subject temp2 = new Subject("Business", "$$$.");
+        Subject temp3 = new Subject("Geology", "Rocks and minerals.");
+        
+        temp1.addMark(new Mark(100.0, 1.0, ""));
+        temp1.addMark(new Mark(90.0, 1.0, ""));
+        temp1.addMark(new Mark(90.0, 1.0, ""));
+        
+        temp2.addMark(new Mark(75.0, 1.0, ""));
+        temp2.addMark(new Mark(90.0, 1.0, ""));
+        temp2.addMark(new Mark(60.0, 1.0, ""));
+        
+        temp3.addMark(new Mark(80.0, 1.0, ""));
+        temp3.addMark(new Mark(95.0, 1.0, ""));
+        temp3.addMark(new Mark(70.0, 1.0, ""));
+        
+        testStu.addSubject(temp1);
+        testStu.addSubject(temp2);
+        testStu.addSubject(temp3);
+        
+        System.out.println(testStu.name + ": " + testStu.subjects.get(0).subjectName + ", " + testStu.subjects.get(1).subjectName + ", " + testStu.subjects.get(2).subjectName);
+        testStu.listSubjects();
+        
+        PrintableReport pr = new PrintableReport(testStu);
+        
+        try
+        {
+            pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
+        pr.setVisible(true);
     }//GEN-LAST:event_lblTempTitleMouseClicked
 
     public void tryLogin(String u, String p) throws IOException
@@ -261,9 +290,6 @@ public class Login extends javax.swing.JFrame
     private javax.swing.JPasswordField fldPassword;
     private javax.swing.JTextField fldUsername;
     private javax.swing.JDesktopPane frmLogin;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblErrorLogin;
     private javax.swing.JLabel lblErrorMsgLogin;
     private javax.swing.JLabel lblErrorMsgReg;
