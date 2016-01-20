@@ -1,6 +1,7 @@
 package reportcardpro;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -76,43 +77,45 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setValueAt (df.format(toCopy.getOverallMedianAverage()), 0, 4);
 
         String[] subStrings = new String[toCopy.subjects.size()];
-        String[][] markStrings = new String[toCopy.subjects.size()][10];
+        String[][] markStrings = new String[toCopy.subjects.size()][15];
 
         int n = 0;
 
-        //System.out.println("Sub Size: " + toCopy.subjects.size());
-
         for (Subject sub: toCopy.subjects)
         {
-            //System.out.println("n: " + n + " (" + sub.subjectName + ")");
             subStrings[n] = sub.subjectName;
 
-            //System.out.println("Mar Siz: " + toCopy.subjects.get(0).marks.size());
+            System.out.println("Added subject: " + subStrings[n]);
+
+            int m = 0;
+            for (Mark mar: sub.marks)
+            {
+                markStrings[n][m] = df.format(mar.mark);
+
+                System.out.println("Added mark: " + markStrings[n][m]);
+
+                if (m != (sub.marks.size() - 1))
+                {
+                    m++;
+                }
+                else if (m == (sub.marks.size() - 1) || m == 14)
+                {
+                    break;
+                }
+            }
 
             if (n != (toCopy.subjects.size() - 1))
             {
                 n++;
             }
-            else if(n == (toCopy.subjects.size() - 1) || n == 9)
+            else if(n == (toCopy.subjects.size() - 1) || n == 14)
             {
                 break;
             }
 
-            int m = 0;
-            for (Mark mar: sub.marks)
-            {
-                //System.out.println("m: " + m + " (" + mar.markDescription + ")");
-                markStrings[n][m] = df.format(mar.mark);
-                if (m != (sub.marks.size() - 1))
-                {
-                    m++;
-                }
-                else if (m == (sub.marks.size() - 1) || m == 9)
-                {
-                    break;
-                }
-            }
         }
+
+        System.out.println("Total subjects: " + subStrings.length);
         tblMarkTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -135,12 +138,28 @@ public class PrintableReport extends javax.swing.JFrame
 
         for (int x = 0; x < subStrings.length; x++)
         {
-            //System.out.println("MarSize: " + markStrings.length);
-            for (int y = 0; y < 10; y++)
+            System.out.println("x: " + x);
+            System.out.println(Arrays.toString(markStrings[x]));
+            for (int y = 0; y < 15; y++)
             {
-                tblMarkTable.setValueAt(markStrings[y], x, y);
+
+                System.out.println(markStrings[x][y]);
+
+                if (markStrings[x][y] != null)
+                {
+                    tblMarkTable.setValueAt(markStrings[x][y], x, y);
+                }
+                else //INVERT ORDER, DATA IS IN WRONG COLUMNS
+                {
+                    break;
+                }
             }
-        } //MAKE THE MAX THE SIZE OF EACH MARK ARRAY
+
+            if (x >= subStrings.length)
+            {
+                break;
+            }
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

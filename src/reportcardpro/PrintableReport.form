@@ -128,41 +128,15 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null}&#xa;    },&#xa;    subStrings&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="System.out.println(&quot;Sub Size: &quot; + subStrings.length);&#xa;&#xa;for (int x = 0; x &lt; subStrings.length; x++)&#xa;{&#xa;//System.out.println(&quot;MarSize: &quot; + markStrings.length);&#xa;    for (int y = 0; y &lt; 10; y++)&#xa;    {&#xa;        tblMarkTable.setValueAt(markStrings[y], x, y);&#xa;    }&#xa;} //MAKE THE MAX THE SIZE OF EACH MARK ARRAY">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="System.out.println(&quot;Sub Size: &quot; + subStrings.length);&#xa;&#xa;for (int x = 0; x &lt; subStrings.length; x++)&#xa;{&#xa;System.out.println(&quot;x: &quot; + x);&#xa;System.out.println(Arrays.toString(markStrings[x]));&#xa;    for (int y = 0; y &lt; 15; y++)&#xa;    {&#xa;&#xa;System.out.println(markStrings[x][y]);&#xa;&#xa;        if (markStrings[x][y] != null)&#xa;        {&#xa;            tblMarkTable.setValueAt(markStrings[x][y], x, y);&#xa;        }&#xa;else //INVERT ORDER, DATA IS IN WRONG COLUMNS&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (x &gt;= subStrings.length)&#xa;    {&#xa;        break;&#xa;    }&#xa;}">
+              <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] subStrings = new String[toCopy.subjects.size()];&#xa;String[][] markStrings = new String[toCopy.subjects.size()][10];&#xa;&#xa;int n = 0;&#xa;&#xa;//System.out.println(&quot;Sub Size: &quot; + toCopy.subjects.size());&#xa;&#xa;for (Subject sub: toCopy.subjects)&#xa;{&#xa;//System.out.println(&quot;n: &quot; + n + &quot; (&quot; + sub.subjectName + &quot;)&quot;);&#xa;    subStrings[n] = sub.subjectName;&#xa;    &#xa;//System.out.println(&quot;Mar Siz: &quot; + toCopy.subjects.get(0).marks.size());&#xa;    &#xa;    if (n != (toCopy.subjects.size() - 1))&#xa;    {&#xa;        n++;&#xa;    }&#xa;    else if(n == (toCopy.subjects.size() - 1) || n == 9)&#xa;    {&#xa;        break;&#xa;    }&#xa;&#xa;    int m = 0;&#xa;    for (Mark mar: sub.marks)&#xa;    {   &#xa;//System.out.println(&quot;m: &quot; + m + &quot; (&quot; + mar.markDescription + &quot;)&quot;);&#xa;        markStrings[n][m] = df.format(mar.mark);&#xa;        if (m != (sub.marks.size() - 1))&#xa;        {&#xa;            m++;&#xa;        }&#xa;        else if (m == (sub.marks.size() - 1) || m == 9)&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] subStrings = new String[toCopy.subjects.size()];&#xa;String[][] markStrings = new String[toCopy.subjects.size()][15];&#xa;&#xa;int n = 0;&#xa;&#xa;for (Subject sub: toCopy.subjects)&#xa;{&#xa;    subStrings[n] = sub.subjectName;&#xa;    &#xa;System.out.println(&quot;Added subject: &quot; + subStrings[n]);&#xa;    &#xa;    int m = 0;&#xa;    for (Mark mar: sub.marks)&#xa;    {   &#xa;        markStrings[n][m] = df.format(mar.mark);&#xa;&#xa;System.out.println(&quot;Added mark: &quot; + markStrings[n][m]);&#xa;&#xa;        if (m != (sub.marks.size() - 1))&#xa;        {&#xa;            m++;&#xa;        }&#xa;        else if (m == (sub.marks.size() - 1) || m == 14)&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (n != (toCopy.subjects.size() - 1))&#xa;    {&#xa;        n++;&#xa;    }&#xa;    else if(n == (toCopy.subjects.size() - 1) || n == 14)&#xa;    {&#xa;        break;&#xa;    }&#xa;&#xa;}&#xa;&#xa;System.out.println(&quot;Total subjects: &quot; + subStrings.length);"/>
           </AuxValues>
         </Component>
       </SubComponents>

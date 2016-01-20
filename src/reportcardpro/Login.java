@@ -231,19 +231,38 @@ public class Login extends javax.swing.JFrame
         Subject temp1 = new Subject("Art", "Arts and crafts.");
         Subject temp2 = new Subject("Business", "$$$.");
         Subject temp3 = new Subject("Geology", "Rocks and minerals.");
+        Subject temp4 = new Subject("Philosophy", "But why.");
 
         temp1.addMark(new Mark(100.0, 1.0, "A"));
         temp1.addMark(new Mark(90.0, 1.0, "B"));
         
-        temp2.addMark(new Mark(75.0, 1.0, "C"));
-        temp2.addMark(new Mark(90.0, 1.0, "D"));
-        temp2.addMark(new Mark(60.0, 1.0, "E"));
+        temp2.addMark(new Mark(75.0, 1.0, "A"));
+        temp2.addMark(new Mark(90.0, 1.0, "B"));
+        temp2.addMark(new Mark(60.0, 1.0, "C"));/*
+        temp2.addMark(new Mark(75.0, 1.0, "D"));
+        temp2.addMark(new Mark(90.0, 1.0, "E"));
+        temp2.addMark(new Mark(60.0, 1.0, "F"));
+        temp2.addMark(new Mark(75.0, 1.0, "G"));
+        temp2.addMark(new Mark(90.0, 1.0, "H"));
+        temp2.addMark(new Mark(60.0, 1.0, "I"));
+        temp2.addMark(new Mark(75.0, 1.0, "J"));
+        temp2.addMark(new Mark(90.0, 1.0, "K"));
+        temp2.addMark(new Mark(60.0, 1.0, "L"));
+        temp2.addMark(new Mark(75.0, 1.0, "M"));
+        temp2.addMark(new Mark(90.0, 1.0, "N"));
+        temp2.addMark(new Mark(60.0, 1.0, "O"));*/
 
-        temp3.addMark(new Mark(80.0, 1.0, "F"));
+        temp3.addMark(new Mark(80.0, 1.0, "A"));
+        
+        temp4.addMark(new Mark(80.0, 1.0, "A"));
+        temp4.addMark(new Mark(65.0, 1.0, "A"));
+        temp4.addMark(new Mark(70.0, 1.0, "A"));
+        temp4.addMark(new Mark(90.0, 1.0, "A"));
 
         testStu.addSubject(temp1);
         testStu.addSubject(temp2);
         testStu.addSubject(temp3);
+        testStu.addSubject(temp4);
 
         System.out.println(testStu.name + ": " + testStu.subjects.get(0).subjectName + ", " + testStu.subjects.get(1).subjectName + ", " + testStu.subjects.get(2).subjectName);
         testStu.listSubjects();
