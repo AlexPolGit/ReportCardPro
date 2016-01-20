@@ -1,10 +1,16 @@
 package reportcardpro;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 public class Login extends javax.swing.JFrame
@@ -37,6 +43,7 @@ public class Login extends javax.swing.JFrame
         lblErrorMsgLogin = new javax.swing.JLabel();
         lblErrorLogin = new javax.swing.JLabel();
         lblErrorReg = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Report Card Pro: Login");
@@ -80,7 +87,7 @@ public class Login extends javax.swing.JFrame
             }
         });
         frmLogin.add(btnRegister);
-        btnRegister.setBounds(330, 320, 190, 80);
+        btnRegister.setBounds(360, 320, 190, 80);
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setText("Login");
@@ -119,7 +126,21 @@ public class Login extends javax.swing.JFrame
         lblErrorReg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblErrorReg.setText(" ");
         frmLogin.add(lblErrorReg);
-        lblErrorReg.setBounds(310, 420, 230, 30);
+        lblErrorReg.setBounds(340, 420, 230, 30);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        frmLogin.add(jPanel1);
+        jPanel1.setBounds(0, 0, 100, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,46 +156,6 @@ public class Login extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        boolean isUsed = false;
-        for (Teacher t: rep.teachers)
-        {
-            if (t.username.equals(fldUsername.getText()))
-            {
-                isUsed = true;
-                break;
-            }
-        }
-        
-        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
-        {
-            fldUsername.setText("");
-            fldPassword.setText("");
-            lblErrorReg.setText("Fields cannot be blank.");
-        }
-        else if (isUsed)
-        {
-            lblErrorReg.setText(fldUsername.getText() + " already exists.");
-            fldUsername.setText("");
-            fldPassword.setText("");
-        }
-        else
-        {
-            lblErrorReg.setText("");
-            Registry reg = new Registry();
-            reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-            reg.setUsername(fldUsername.getText());
-            reg.setPassword(fldPassword.getText());
-
-            fldUsername.setText("");
-            fldPassword.setText("");
-
-            reg.setVisible(true);
-            this.setVisible(false);
-        }       
-    }//GEN-LAST:event_btnRegisterActionPerformed
-
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
         {
@@ -185,7 +166,7 @@ public class Login extends javax.swing.JFrame
         else
         {
             lblErrorLogin.setText("");
-            
+
             String eUser = fldUsername.getText();
             String ePass = fldPassword.getText();
 
@@ -204,34 +185,71 @@ public class Login extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        boolean isUsed = false;
+        for (Teacher t: rep.teachers)
+        {
+            if (t.username.equals(fldUsername.getText()))
+            {
+                isUsed = true;
+                break;
+            }
+        }
+
+        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
+        {
+            fldUsername.setText("");
+            fldPassword.setText("");
+            lblErrorReg.setText("Fields cannot be blank.");
+        }
+        else if (isUsed)
+        {
+            lblErrorReg.setText(fldUsername.getText() + " already exists.");
+            fldUsername.setText("");
+            fldPassword.setText("");
+        }
+        else
+        {
+            lblErrorReg.setText("");
+            Registry reg = new Registry();
+            reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            reg.setUsername(fldUsername.getText());
+            reg.setPassword(fldPassword.getText());
+
+            fldUsername.setText("");
+            fldPassword.setText("");
+
+            reg.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
     private void lblTempTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTempTitleMouseClicked
         Student testStu = new Student(UUID.randomUUID(), "Jimbo", "Male", 2003, 7, 19);
-        
+
         Subject temp1 = new Subject("Art", "Arts and crafts.");
         Subject temp2 = new Subject("Business", "$$$.");
         Subject temp3 = new Subject("Geology", "Rocks and minerals.");
+
+        temp1.addMark(new Mark(100.0, 1.0, "A"));
+        temp1.addMark(new Mark(90.0, 1.0, "B"));
         
-        temp1.addMark(new Mark(100.0, 1.0, ""));
-        temp1.addMark(new Mark(90.0, 1.0, ""));
-        temp1.addMark(new Mark(90.0, 1.0, ""));
-        
-        temp2.addMark(new Mark(75.0, 1.0, ""));
-        temp2.addMark(new Mark(90.0, 1.0, ""));
-        temp2.addMark(new Mark(60.0, 1.0, ""));
-        
-        temp3.addMark(new Mark(80.0, 1.0, ""));
-        temp3.addMark(new Mark(95.0, 1.0, ""));
-        temp3.addMark(new Mark(70.0, 1.0, ""));
-        
+        temp2.addMark(new Mark(75.0, 1.0, "C"));
+        temp2.addMark(new Mark(90.0, 1.0, "D"));
+        temp2.addMark(new Mark(60.0, 1.0, "E"));
+
+        temp3.addMark(new Mark(80.0, 1.0, "F"));
+
         testStu.addSubject(temp1);
         testStu.addSubject(temp2);
         testStu.addSubject(temp3);
-        
+
         System.out.println(testStu.name + ": " + testStu.subjects.get(0).subjectName + ", " + testStu.subjects.get(1).subjectName + ", " + testStu.subjects.get(2).subjectName);
         testStu.listSubjects();
-        
+
         PrintableReport pr = new PrintableReport(testStu);
-        
+
         try
         {
             pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
@@ -240,7 +258,7 @@ public class Login extends javax.swing.JFrame
         {
             System.err.println(ex.toString());
         }
-        
+
         pr.setVisible(true);
     }//GEN-LAST:event_lblTempTitleMouseClicked
 
@@ -290,6 +308,7 @@ public class Login extends javax.swing.JFrame
     private javax.swing.JPasswordField fldPassword;
     private javax.swing.JTextField fldUsername;
     private javax.swing.JDesktopPane frmLogin;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblErrorLogin;
     private javax.swing.JLabel lblErrorMsgLogin;
     private javax.swing.JLabel lblErrorMsgReg;
