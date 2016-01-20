@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 /**
- *The class that finds the information of a student.
+ * The class that finds the information of a student.
  * <br>
  * @param name The first and last name of the student.
  * <br>
@@ -29,39 +29,39 @@ import java.util.*;
 public class Student
 {
     /**
-     *The first and last name of the student.
+     * The first and last name of the student.
      */
     public String name;
     /**
-     *The gender of the student.
+     * The gender of the student.
      */
     public String gender;
     /**
-     *The birth date of the student (year, month, day)
+     * The birth date of the student (year, month, day)
      */
     public Calendar birthDate;
     /**
-     *The school calendar of the student (the subjects and at what time they have the subjects)
+     * The school calendar of the student (the subjects and at what time they have the subjects)
      */
     public Calendar today = new GregorianCalendar();
     /**
-     *The subjects/classes the student is in.
+     * The subjects/classes the student is in.
      */
     public ArrayList<Subject> subjects = new ArrayList<>();
     /**
-     *
+     * 
      */
     public DecimalFormat df = new DecimalFormat("#.##");
     /**
-     *The picture of the student.
+     * The picture of the student.
      */
     public File studentPicture;
     /**
-     *The rendered picture of the student
+     * The rendered picture of the student
      */
     public BufferedImage pic;
-   /**
-     *The student's id number.
+    /**
+     * The student's id number.
      */
     public UUID id;
     
@@ -112,7 +112,7 @@ public class Student
     }
     
     /**
-     *
+     * 
      * @param toID
      */
     public void setID(UUID toID)
@@ -121,7 +121,7 @@ public class Student
     }
     
     /**
-     *
+     * 
      * @param toID
      */
     public void setID(String toID)
@@ -137,7 +137,7 @@ public class Student
     }
 
     /**
-     *
+     * Sets a name of the student.
      * @param toName
      */
     public void setName(String toName)
@@ -146,7 +146,7 @@ public class Student
     }
     
     /**
-     *
+     * Sets the gender of the student.
      * @param toGender
      */
     public void setGender(String toGender)
@@ -155,7 +155,7 @@ public class Student
     }
     
    /**
-     * sets the birth date of a student.
+     * Sets the birth date of a student.
      * @param year The year the student was born in,
      * <br>
      * @param month The month the student was born in.
@@ -168,8 +168,7 @@ public class Student
     }
 
     /**
-     *
-     * @param toSubjects
+     * Sets the subjects that the student currently attends.
      */
     public void setSubjects(ArrayList<Subject> toSubjects)
     {
@@ -177,8 +176,7 @@ public class Student
     }
     
     /**
-     *
-     * @param picName
+     * Sets the file that will have the picture of the student.
      */
     public void setPictureFile(String picName)
     {
@@ -186,8 +184,7 @@ public class Student
     }
     
     /**
-     *
-     * @param toPicture
+     * Sets the picture of the student once it has been rendered.
      */
     public void setPicture(BufferedImage toPicture)
     {
@@ -195,8 +192,7 @@ public class Student
     }
    
     /**
-     *
-     * @param toAdd
+     * Adds a subject to the student's time table.
      */
     public void addSubject(Subject toAdd)
     {
@@ -227,7 +223,6 @@ public class Student
     
     /**
      *
-     * @return
      */
     public int getAge()
     {
@@ -250,8 +245,8 @@ public class Student
         return age;
     }
     
-   /**
-     *Sorts the subjects of a student alphabetically.
+    /**
+     * Sorts the subjects of a student alphabetically.
      */
     public void sortSubjects()
     {
@@ -265,7 +260,7 @@ public class Student
 
     
     /**
-     *Puts the list of subjects in alphabetical order and the marks from lowest to highest for each subject.
+     * Puts the list of subjects in alphabetical order and the marks from lowest to highest for each subject.
      */
     public void listSubjects()
     {
@@ -291,7 +286,7 @@ public class Student
     }
     
     /**
-     *Finds the overall mean average for a subject.
+     * Finds the overall mean average for a subject.
      */
     public Double getOverallMeanAverage()
     {
@@ -305,7 +300,7 @@ public class Student
     }
     
     /**
-     *Finds the overall median average for a subject.
+     * Finds the overall median average for a subject.
      */
     public Double getOverallMedianAverage()
     {

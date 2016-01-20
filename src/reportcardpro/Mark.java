@@ -12,37 +12,37 @@ public class Mark
      */
     public Double mark;
     /**
-     *The type of assessment and the mark the student received on the assessment.
+     * The type of assessment and the mark the student received on the assessment.
      */
     public String markType;
     /**
-     *The mark from an assessment and the impact it has on the final mark.
+     * The mark from an assessment and the impact it has on the final mark.
      */
     public Double markWeight;
     
     public String markDescription; 
     /**
-     *Quiz assessment with a mark weight of 
+     * Quiz assessment with a mark weight of 
      */
     public final String QUIZ = "Quiz";
     /**
-     *Test assessment with a mark weight of 1.0% of the final mark for each subject.
+     * Test assessment with a mark weight of 1.0% of the final mark for each subject.
      */
     public final String TEST = "Test";
     /**
-     *Quest assessment with a mark weight of 2.0% of the final mark for each subject.
+     * Quest assessment with a mark weight of 2.0% of the final mark for each subject.
      */
     public final String QUEST = "Quest";
     /**
-     *Project assessment with s mark weight of 1.5% of the final mark for each subject.
+     * Project assessment with s mark weight of 1.5% of the final mark for each subject.
      */
     public final String PROJECT = "Project";
     /**
-     *Assignment assessment with a mark weight of 3.0% of the final mark for each subject.
+     * Assignment assessment with a mark weight of 3.0% of the final mark for each subject.
      */
     public final String ASSIGNMENT = "Assignment";
     /**
-     *Exam assessment with a mark weight of 10.0% of the final mark for each subject.
+     * Exam assessment with a mark weight of 10.0% of the final mark for each subject.
      */
     public final String EXAM = "Exam";
     /**
@@ -82,7 +82,7 @@ public class Mark
     }
     
     /**
-     *finds the mark type: can be a quiz, test, quest, project, assignment, exam, or other (custom).
+     * Finds the mark type: can be a quiz, test, quest, project, assignment, exam, or other (custom).
      */
     public String getMarkType()
     {

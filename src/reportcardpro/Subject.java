@@ -11,28 +11,26 @@ import java.util.*;
 public class Subject
 {
     /**
-     *The subject the student is being evaluated in.
+     * The subject the student is being evaluated in.
      */
     public String subjectName;
     /**
-     *A specific description of a subject the student is in.
+     * A specific description of a subject the student is in.
      */
     public String subjectDescription;
     /**
-     *The marks that the student received from assessments in a subject
+     * The marks that the student received from assessments in a subject
      */
     public ArrayList<Mark> marks = new ArrayList<>();
     public String comment;
     
        /**
-     *The comments for the teacher to add input about the student and their progress in their class.
-<<<<<<< HEAD
-     * @param sName  Name of the student
-     * @param sDesc  Description of who they are and how they are doing in the subject.
-=======
-     * @param sName - Name of the subject.
-     * @param sDesc -  A brief description for the subject.
->>>>>>> origin/master
+     * The comments for the teacher to add input about the student and their progress in their class.
+     * @param sName Name of the student
+     * @param sDesc Description of who they are and how they are doing in the subject.
+     * @param sName Name of the subject.
+     * @param sDesc A brief description for the subject.
+r
      */
     public Subject(String sName, String sDesc)
     {
@@ -41,7 +39,7 @@ public class Subject
     }
     
    /**
-     * @param name name of the subject the student is in.
+     * @param name The name of the subject the student is in.
      */
     public void setSubjectName(String name)
     {
@@ -49,7 +47,7 @@ public class Subject
     }
     
      /**
-     * @param description description of the subject the student is in.
+     * @param description A description of the subject the student is in.
      */
     public void setubjectDescription(String description)
     {
@@ -57,7 +55,7 @@ public class Subject
     }
     
      /**
-     * @param marksToSet the assessment marks put into a sorted list from highest mark to lowest.
+     * @param marksToSet The assessment marks put into a sorted list from highest mark to lowest.
      */
     public void setMarks(ArrayList<Mark> marksToSet)
     {
@@ -66,9 +64,9 @@ public class Subject
     }
     
     /**
-     * @param markToAdd a mark from an assessment that is added to the current final mark.
+     * @param markToAdd A mark from an assessment that is added to the current final mark.
      * <br>
-     * @param weightToAdd the weight of the assessed mark that needs to be added and calculated with the current final mark.
+     * @param weightToAdd The weight of the assessed mark that needs to be added and calculated with the current final mark.
      */
     public void addMark(Double markToAdd, Double weightToAdd, String descToAdd)
     {
@@ -95,27 +93,22 @@ public class Subject
     }
     
      /**
-     *Sorts all of the assessed marks put into the program from highest mark to lowest.
+     * Sorts all of the assessed marks put into the program from highest mark to lowest.
      */
     public void sortMarks()
     {
         Collections.sort(marks, new MarkComparator());
     }
     
-      /**
-<<<<<<< HEAD
-     * Finds the mean average of that student in a subject.
-=======
-     *
-     * @param toComment
->>>>>>> origin/master
+    /**
+     * .
      */
     public void setComment(String toComment)
     {
         this.comment = toComment;
     }
     /**
-     * @param desc Description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
+     * @param desc A brief description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
      */
     public Mark getMarkByDescription(String desc)
     {
@@ -131,7 +124,7 @@ public class Subject
     }
     
     /**
-     *Finds the mean average of that student in a subject.
+     * Finds the mean average of that student in a subject.
      */
     public Double getMeanAverage()
     {
@@ -146,7 +139,7 @@ public class Subject
     }
     
     /**
-     *Finds the median average of a class in a subject.
+     * Finds the median average of a class in a subject.
      */
     public Double getMedianAverage()
     {

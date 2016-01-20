@@ -16,36 +16,36 @@ import java.util.*;
  */
 public class Teacher
 {    /**
-     *Id number of the teacher.
+     * Id number of the teacher.
      */
     public UUID id;
     /**
-     *The first and last name of the teacher (last name is optional)
+     * The first and last name of the teacher (last name is optional)
      */
     public String name;
     /**
-     *The username the teacher uses to login into the program.
+     * The username the teacher uses to login into the program.
      */
     public String username;
     /**
-     *The password the teacher uses to login into the program.
+     * The password the teacher uses to login into the program.
      */
     public String password;
     /**
-     *The list of students that the teacher has in their class or classes.
+     * The list of students that the teacher has in their class or classes.
      */
     public ArrayList<Student> students = new ArrayList<>();
     /**
-     *Converts numbered values to have additional decimal numbers for more accurate marking.
+     * Converts numbered values to have additional decimal numbers for more accurate marking.
      */
     public DecimalFormat df = new DecimalFormat("#.##");
      /**
-     *Size of the class the teacher has.
+     * Size of the class the teacher has.
      */
     public int classSize = students.size();
     /**
      * Gives the final value of each param:
-     * @param sID
+     * @param sID 
      * <br>
      * @param sName
      * <br>
@@ -117,7 +117,7 @@ public class Teacher
         Collections.sort(students, new StudentComparator());
     }
      /**
-     *creates a random student given the following params:
+     * Creates a random student given the following params:
      * <br>
      * @param name The first and last name of the student
      * <br>
@@ -135,7 +135,7 @@ public class Teacher
         sortStudents();
     }
     /**
-     *Allows for the teacher to add a new student to their class
+     * Allows for the teacher to add a new student to their class
      */
     public void createNullStudent()
     {
@@ -143,7 +143,7 @@ public class Teacher
         sortStudents();
     }
     /**
-     *Allows for the teacher to remove a student from their class and the information of that student.
+     * Allows for the teacher to remove a student from their class and the information of that student.
      * <br>
      * @param id the id number of the student.
      * <br>
@@ -248,7 +248,7 @@ public class Teacher
         sortStudents();
     }
      /**
-     * Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
+     * Allows The teacher to write the throw a file with their list of students with the information of each student in their class.
      * <br>
      * @param input The input file the teacher has selected.
      * <br>

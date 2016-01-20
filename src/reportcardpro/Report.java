@@ -12,11 +12,11 @@ import java.util.*;
 public class Report
 {
     /**
-     *The list of teachers and the classes they currently have.
+     * The list of teachers and the classes they currently have.
      */
     public ArrayList<Teacher> teachers = new ArrayList<>();
     /**
-     *Creates a new teacher with the following information:
+     * Creates a new teacher with the following information:
      * <br>
      * @param name The first name of the teacher (can also add last name, but not required) 
      * <br>
@@ -32,7 +32,7 @@ public class Report
         writeTeachersList();
     }
     /**
-     *Adds a teacher to a list where they will be sorted by subject they teach and then their name in that subject is sorted by last name alphabetically.
+     * Adds a teacher to a list where they will be sorted by subject they teach and then their name in that subject is sorted by last name alphabetically.
      */      
     public void addTeacher(Teacher toTeach) throws IOException
 
@@ -42,7 +42,7 @@ public class Report
         writeTeachersList();
     }
     /**
-     *Removes a teacher from the list of teachers and the list from the subject list they were in.
+     * Removes a teacher from the list of teachers and the list from the subject list they were in.
      * @param id the id number of the teacher.
      * <br>
      * @param name the name of the teacher.
@@ -60,14 +60,14 @@ public class Report
         writeTeachersList();
     }
     /**
-     *Sorts the teacher list by last name alphabetically.
+     * Sorts the teacher list by last name alphabetically.
      */
     public void sortTeachers()
     {
         Collections.sort(teachers, new TeacherComparator());
     }
     /**
-     *Reads the list of teachers on the screen from a file on your computer.
+     * Reads the list of teachers on the screen from a file on your computer.
      */
     public void listTeachers()
     {
@@ -79,7 +79,7 @@ public class Report
         System.out.println();
     }
     /**
-     *Reads the list of teachers on the screen from a file on your computer.
+     * Reads the list of teachers on the screen from a file on your computer.
      */
     public void readTeacherList()
     {
@@ -164,10 +164,6 @@ public class Report
         return null;
     }
    
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args)
     {
         Report r = new Report();
