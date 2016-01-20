@@ -6,29 +6,30 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 /**
- *The class finds the information of a student.
- * @param name
+ *The class that finds the information of a student.
  * <br>
- * @param gender
+ * @param name The first and last name of the student.
  * <br>
- * @param birthdate
+ * @param gender The gender of the student   
  * <br>
- * @param today
+ * @param birthdate The birth date of the student (year, month, day)
  * <br>
- * @param subjects
+ * @param today The school schedule of the student for a specific day. (the subjects and at what time they have the subjects)
+ * <br>
+ * @param subjects The subjects/classes the student is in.
  * <br>
  * @param df
  * <br>
- * @param studentPicture
+ * @param studentPicture The picture of the student.
  * <br>
- * @param pic
+ * @param pic The rendered picture of the student
  * <br>
- * @param id
+ * @param id The student's id number.
  */
 public class Student
 {
     /**
-     *The name of the student.
+     *The first and last name of the student.
      */
     public String name;
     /**
@@ -65,7 +66,7 @@ public class Student
     public UUID id;
     
    /**
-     * The information that is found in the id of the student.
+     * The information that is found from the id of the student.
      * @param sID
      * <br>
      * @param sName
@@ -154,12 +155,12 @@ public class Student
     }
     
    /**
-     *
-     * @param year
+     * sets the birth date of a student.
+     * @param year The year the student was born in,
      * <br>
-     * @param month
+     * @param month The month the student was born in.
      * <br>
-     * @param day
+     * @param day The day the student was born in.
      */
     public void setBirthday(int year, int month, int day)
     {
@@ -204,10 +205,10 @@ public class Student
     }
     
     /**
-     *
-     * @param name
+     * Adds a subject to a student's time table.
+     * @param name The name of the subject the student is in.
      * <br>
-     * @param desc
+     * @param desc A brief description of the course and the course code.
      */
     public void addSubject(String name, String desc)
     {
@@ -216,8 +217,7 @@ public class Student
     }
     
     /**
-     *
-     * @param toRemove
+     *Removes a subject from a student's time table. 
      */
     public void removeSubject(Subject toRemove)
     {
@@ -286,7 +286,6 @@ public class Student
     
     /**
      *Finds the overall mean average for a subject.
-     * @return
      */
     public Double getOverallMeanAverage()
     {
@@ -301,7 +300,6 @@ public class Student
     
     /**
      *Finds the overall median average for a subject.
-     * @return
      */
     public Double getOverallMedianAverage()
     {
@@ -319,7 +317,7 @@ public class Student
     }
       /**
      * Finds the name of each subject.
-     * @param name
+     * @param name the name of the subject the user is trying to find.
      * <br>
      * @return 
      */

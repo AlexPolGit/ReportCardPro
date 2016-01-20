@@ -115,9 +115,7 @@ public class Subject
         this.comment = toComment;
     }
     /**
-     * 
-     * @param desc
-     * @return 
+     * @param desc description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
      */
     public Mark getMarkByDescription(String desc)
     {

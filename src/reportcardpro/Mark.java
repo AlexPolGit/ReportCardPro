@@ -1,6 +1,7 @@
 package reportcardpro;
 /**
  * The class finds the mark of the student and the weight factor of each evaluation.
+ * <br>
  * The class also has a custom feature in case the mark weight/assessment is not one of the options. in the program.
  */
 
@@ -18,8 +19,8 @@ public class Mark
      *The mark from an assessment and the impact it has on the final mark.
      */
     public Double markWeight;
-    public String markDescription;
     
+    public String markDescription; 
     /**
      *Quiz assessment with a mark weight of 
      */
@@ -44,13 +45,10 @@ public class Mark
      *Exam assessment with a mark weight of 10.0% of the final mark for each subject.
      */
     public final String EXAM = "Exam";
-    
     /**
-     *
-     * @param mark
-     * finds the mark of  an assessment for a subject. 
-     * @param weight
-     * finds the weight of that mark for s subject.
+     * The mark of an assessment with a description and how much % the assessment is worth in the student's final mark for that subject.
+     * @param mark  finds the mark of  an assessment for a subject. 
+     * @param weight finds the weight of that mark for s subject.
      */
     public Mark(Double mark, Double weight, String markDesc)
     {
@@ -60,9 +58,7 @@ public class Mark
     }
     
     /**
-     *
-     * @param toMark
-     * 
+     * Sets a mark for an assessment.
      */
     public void setMark(Double toMark)
     {
@@ -70,9 +66,7 @@ public class Mark
     }
     
     /**
-     *
-     * @param toWeight
-     * 
+     * Sets a mark weight for an assessment (how much % it is worth on the student's final mark for that subject).
      */
     public void setMarkWeight(Double toWeight)
     {
@@ -80,9 +74,7 @@ public class Mark
     }
     
     /**
-     *
-     * @param toType
-     * 
+     * Sets the type of assessment for the subject.
      */
     public void setMarkType(String toType)
     {
@@ -91,7 +83,6 @@ public class Mark
     
     /**
      *finds the mark type: can be a quiz, test, quest, project, assignment, exam, or other (custom).
-     * @return 
      */
     public String getMarkType()
     {

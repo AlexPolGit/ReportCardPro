@@ -78,7 +78,6 @@ public class Teacher
         this.password = sPass;
     }
      /**
-     *
      * @param toName
      */
 
@@ -87,7 +86,6 @@ public class Teacher
         this.name = toName;
     }
     /**
-     * 
      * @param toID 
      */
     
@@ -96,7 +94,6 @@ public class Teacher
         this.id = toID;
     }
     /**
-     * 
      * @param toID 
      */
    
@@ -105,7 +102,7 @@ public class Teacher
         this.id = UUID.fromString(toID);
     }
     /**
-     * 
+     * creates a new random ID number for a teacher.
      */
     public void newRandomID()
     {
@@ -120,15 +117,15 @@ public class Teacher
     }
      /**
      *creates a random student given the following params.
-     * @param name
+     * @param name The first and last name of the student
      * <br>
-     * @param gender
+     * @param gender The gender of the student
      * <br>
-     * @param year
+     * @param year The year the student was born in.
      * <br>
-     * @param month
+     * @param month The month the student was born in.
      * <br>
-     * @param day
+     * @param day The day the student was born in.
      */
     public void createStudent(String name, String gender, int year, int month, int day)
     {
@@ -145,17 +142,17 @@ public class Teacher
     }
     /**
      *Allows for the teacher to remove a student from their class and the information of that student
-     * @param id
+     * @param id the id number of the student.
      * <br>
-     * @param name
+     * @param name the first and last name of the student.
      * <br>
-     * @param gender
+     * @param gender the gender of the student.
      * <br>
-     * @param year
+     * @param year the year the student was born in.
      * <br>
-     * @param month
+     * @param month the month the student was born in.
      * <br>
-     * @param day
+     * @param day the day the student was born in.
      */
     public void removeStudent(String id, String name, String gender, int year, int month, int day)
     {
@@ -164,7 +161,7 @@ public class Teacher
         sortStudents();
     }
     /**
-     * 
+     * The teacher sets username they want to use for the program.
      * @param toUser 
      */
     
@@ -173,7 +170,7 @@ public class Teacher
         this.username = toUser;
     }
     /**
-     * 
+     * The teacher sets the password for the username in order to login to the program.
      * @param toPass 
      */
     
@@ -182,7 +179,7 @@ public class Teacher
         this.password = toPass;
     }
     /**
-     * 
+     * reads the list of students in the teacher's class from a file. (file io)
      */
     public void readStudentList()
     {
@@ -251,7 +248,7 @@ public class Teacher
     }
      /**
      *Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
-     * @param input
+     * @param input the input file the teacher has selected.
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
@@ -304,8 +301,7 @@ public class Teacher
         }
     }
     /**
-     *Finds the mean average for a class.
-     *@return
+     *Finds the mean average for the class the teacher logged in has.
      */
     public Double getClassMeanAverage()
     {
@@ -319,8 +315,7 @@ public class Teacher
         return (sum / numOfStudents);
     }
     /**
-     *finds the median average for a class.
-     *@return
+     *finds the median average for the class the teacher logged in has.
      */
     public Double getClassMedianAverage()
     {
@@ -337,7 +332,7 @@ public class Teacher
         return median;
     }
     /**
-     *The list of students in the teacher's class or classes.
+     *The list of students in the teacher's class/classes.
      */
     public void listStudents()
     {
@@ -350,9 +345,7 @@ public class Teacher
     } 
      /**
      *finds the name of the student by first name.
-     * @param name
-     * <br>
-     * @return
+     * @param name first name of student.
      */
     public Student getStudentByName(String name)
     {
@@ -368,9 +361,7 @@ public class Teacher
     }
     /**
      *finds the id number of a student.
-     * @param id
-     * <br>
-     * @return
+     * @param id id number of a student.
      */
     public Student getStudentByID(String id)
     {
@@ -387,9 +378,7 @@ public class Teacher
     }
     /**
      *finds the student by searching using their id number.
-     * @param id
-     * <br>
-     * @return
+     * @param id id number of a student.
      */
     public Student getStudentByID(UUID id)
     {

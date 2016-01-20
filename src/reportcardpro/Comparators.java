@@ -3,7 +3,7 @@ package reportcardpro;
 import java.util.Comparator;
 
 /**
- * compares two students name and sorts them alphabetically.
+ * Compares two students name and sorts them alphabetically.
  */
 
 class TeacherComparator implements Comparator<Teacher>
@@ -15,7 +15,7 @@ class TeacherComparator implements Comparator<Teacher>
     }
 }
 /**
- * 
+ * Compares the marks of a student to another's.
  */
 class StudentComparator implements Comparator<Student>
 {
@@ -27,7 +27,7 @@ class StudentComparator implements Comparator<Student>
 }
 
 /**
- * compares the subject of the students 
+ * Compares the subject of the students 
  */
 class SubjectComparator implements Comparator<Subject>
 {
@@ -38,7 +38,7 @@ class SubjectComparator implements Comparator<Subject>
     }
 }
 /**
- * compares the marks of two students and sorts them from lowest to highest.
+ * Compares the marks of two students and sorts them from lowest to highest.
  */
 
 class MarkComparator implements Comparator<Mark>
@@ -51,7 +51,7 @@ class MarkComparator implements Comparator<Mark>
 }
 
 /**
- *The class that compares two students information.
+ * The class that compares two students information.
  */
 public class Comparators
 {}

@@ -15,11 +15,11 @@ public class Report
     public ArrayList<Teacher> teachers = new ArrayList<>();
     /**
      *Creates a new teacher with the following information:
-     * @param name
+     * @param name The first name of the teacher (can also add last name, but not required) 
      * <br>
-     * @param user
+     * @param user The user name of the teacher.
      * <br>
-     * @param pass
+     * @param pass The password of the user name.
      */
     public void createTeacher(String name, String user, String pass)
     {
@@ -38,13 +38,13 @@ public class Report
     }
     /**
      *Removes a teacher from the list of teachers and the list from the subject list they were in.
-     * @param id
+     * @param id the id number of the teacher.
      * <br>
-     * @param name
+     * @param name the name of the teacher.
      * <br>
-     * @param user
+     * @param user the user name of the teacher.
      * <br>
-     * @param pass
+     * @param pass the password of the user name.
      */
     public void removeTeacher(String id, String name, String user, String pass)
     {
@@ -137,8 +137,8 @@ public class Report
         }
     }
     /**
-     * 
-     * @param id
+     * Finds the teacher by id number.
+     * @param id the id number of the teacher.
      * @return 
      */
    
@@ -154,7 +154,7 @@ public class Report
         System.err.println("Teacher (" + id + ") not found!");
         return null;
     }
-    
+   
     public static void main(String[] args)
     {
         Report r = new Report();
