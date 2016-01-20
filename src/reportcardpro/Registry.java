@@ -33,6 +33,7 @@ public class Registry extends javax.swing.JFrame
         fldName = new javax.swing.JTextField();
         btnCreateAcc = new javax.swing.JButton();
         lblYourName = new javax.swing.JLabel();
+        lblNameError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registry");
@@ -43,19 +44,27 @@ public class Registry extends javax.swing.JFrame
 
         btnCreateAcc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCreateAcc.setText("Create Account");
+        btnCreateAcc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateAcc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCreateAccMouseClicked(evt);
             }
         });
         jDesktopPane2.add(btnCreateAcc);
-        btnCreateAcc.setBounds(80, 190, 200, 80);
+        btnCreateAcc.setBounds(80, 170, 200, 80);
 
         lblYourName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblYourName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblYourName.setText("Your Name:");
+        lblYourName.setText("Register Name to this Account:");
         jDesktopPane2.add(lblYourName);
-        lblYourName.setBounds(120, 50, 110, 30);
+        lblYourName.setBounds(50, 50, 260, 30);
+
+        lblNameError.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNameError.setForeground(new java.awt.Color(255, 0, 0));
+        lblNameError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNameError.setText(" ");
+        jDesktopPane2.add(lblNameError);
+        lblNameError.setBounds(30, 270, 300, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +100,10 @@ public class Registry extends javax.swing.JFrame
             }
             this.setVisible(false);
         }
+        else
+        {
+            lblNameError.setText("Please choose a name.");
+        }
     }//GEN-LAST:event_btnCreateAccMouseClicked
 
     public static void main(String args[])
@@ -107,6 +120,7 @@ public class Registry extends javax.swing.JFrame
     private javax.swing.JButton btnCreateAcc;
     private javax.swing.JTextField fldName;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JLabel lblNameError;
     private javax.swing.JLabel lblYourName;
     // End of variables declaration//GEN-END:variables
 }

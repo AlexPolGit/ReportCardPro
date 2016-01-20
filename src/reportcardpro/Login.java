@@ -36,6 +36,8 @@ public class Login extends javax.swing.JFrame
         btnLogin = new javax.swing.JButton();
         lblErrorMsgReg = new javax.swing.JLabel();
         lblErrorMsgLogin = new javax.swing.JLabel();
+        lblErrorLogin = new javax.swing.JLabel();
+        lblErrorReg = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -50,17 +52,17 @@ public class Login extends javax.swing.JFrame
         frmLogin.add(fldPassword);
         fldPassword.setBounds(210, 270, 330, 30);
 
-        lblUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsername.setText("Username:");
         frmLogin.add(lblUsername);
-        lblUsername.setBounds(80, 210, 110, 20);
+        lblUsername.setBounds(60, 210, 140, 20);
 
-        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPassword.setText("Password:");
         frmLogin.add(lblPassword);
-        lblPassword.setBounds(80, 270, 110, 20);
+        lblPassword.setBounds(70, 270, 110, 20);
         frmLogin.add(fldUsername);
         fldUsername.setBounds(210, 210, 330, 30);
 
@@ -68,28 +70,35 @@ public class Login extends javax.swing.JFrame
         lblTempTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTempTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/RCP Logo.png"))); // NOI18N
         lblTempTitle.resize(200, 100);
+        lblTempTitle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTempTitleMouseClicked(evt);
+            }
+        });
         frmLogin.add(lblTempTitle);
         lblTempTitle.setBounds(40, 30, 560, 160);
 
         btnRegister.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnRegister.setText("Register");
+        btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
         frmLogin.add(btnRegister);
-        btnRegister.setBounds(350, 350, 190, 80);
+        btnRegister.setBounds(330, 320, 190, 80);
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
             }
         });
         frmLogin.add(btnLogin);
-        btnLogin.setBounds(100, 350, 190, 80);
+        btnLogin.setBounds(80, 320, 190, 80);
 
         lblErrorMsgReg.setBackground(new java.awt.Color(255, 255, 255));
         lblErrorMsgReg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -104,6 +113,20 @@ public class Login extends javax.swing.JFrame
         lblErrorMsgLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         frmLogin.add(lblErrorMsgLogin);
         lblErrorMsgLogin.setBounds(100, 410, 180, 0);
+
+        lblErrorLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblErrorLogin.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblErrorLogin.setText(" ");
+        frmLogin.add(lblErrorLogin);
+        lblErrorLogin.setBounds(60, 420, 230, 30);
+
+        lblErrorReg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblErrorReg.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorReg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblErrorReg.setText(" ");
+        frmLogin.add(lblErrorReg);
+        lblErrorReg.setBounds(310, 420, 230, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,14 +143,31 @@ public class Login extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        
-        if (fldUsername.getText().equals("") || fldPassword.getText().equals(""))
+        boolean isUsed = false;
+        for (Teacher t: rep.teachers)
         {
-            lblErrorMsgReg.setText("Fields cannot be blank.");
+            if (t.username.equals(fldUsername.getText()))
+            {
+                isUsed = true;
+                break;
+            }
+        }
+        
+        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
+        {
+            fldUsername.setText("");
+            fldPassword.setText("");
+            lblErrorReg.setText("Fields cannot be blank.");
+        }
+        else if (isUsed)
+        {
+            lblErrorReg.setText(fldUsername.getText() + " already exists.");
+            fldUsername.setText("");
+            fldPassword.setText("");
         }
         else
         {
-            lblErrorMsgReg.setText("");
+            lblErrorReg.setText("");
             Registry reg = new Registry();
             reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -143,25 +183,41 @@ public class Login extends javax.swing.JFrame
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        String eUser = fldUsername.getText();
-        String ePass = fldPassword.getText();
-        
-        fldUsername.setText("");
-        fldPassword.setText("");
-        
-        System.out.println("Trying login as: " + eUser + ", " + ePass);
-        try
-       {
-            this.tryLogin(eUser, ePass);
-        }
-        catch(IOException ex)
+        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
         {
-            System.err.println(ex.toString());
+            fldUsername.setText("");
+            fldPassword.setText("");
+            lblErrorLogin.setText("Fields cannot be blank.");
+        }
+        else
+        {
+            lblErrorLogin.setText("");
+            
+            String eUser = fldUsername.getText();
+            String ePass = fldPassword.getText();
+
+            fldUsername.setText("");
+            fldPassword.setText("");
+
+            System.out.println("Trying login as: " + eUser + ", " + ePass);
+            try
+            {
+                this.tryLogin(eUser, ePass);
+            }
+            catch(IOException ex)
+            {
+                System.err.println(ex.toString());
+            }
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
+    private void lblTempTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTempTitleMouseClicked
+        lblErrorLogin.setText("TEST");
+    }//GEN-LAST:event_lblTempTitleMouseClicked
+
     public void tryLogin(String u, String p) throws IOException
     {
+        boolean error = false;
         rep.readTeacherList();
         for (Teacher t: rep.teachers)
         {
@@ -169,6 +225,7 @@ public class Login extends javax.swing.JFrame
             
             if (t.username.equals(u) && t.password.equals(p))
             {
+                error = false;
                 btnLogin.setText("Login");
                 this.foundTeacher = t;
                 System.out.println("Logging in as " + this.foundTeacher.name);
@@ -180,9 +237,13 @@ public class Login extends javax.swing.JFrame
             }
             else
             {
-                btnLogin.setText("Login (Retry)");
+                error = true;
                 System.out.println("Credentials do not match those of: " + t.name);
             }
+        }
+        if (error)
+        {
+            lblErrorLogin.setText("Could not find user.");
         }
     }
     
@@ -203,8 +264,10 @@ public class Login extends javax.swing.JFrame
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblErrorLogin;
     private javax.swing.JLabel lblErrorMsgLogin;
     private javax.swing.JLabel lblErrorMsgReg;
+    private javax.swing.JLabel lblErrorReg;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTempTitle;
     private javax.swing.JLabel lblUsername;
