@@ -28,7 +28,28 @@ public class MainFrame extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
+        LblStudentNameText = new javax.swing.JLabel();
+        LblAgeText = new javax.swing.JLabel();
+        LblGenderText = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        LblSignedInAs = new javax.swing.JLabel();
+        LblSubjectText = new javax.swing.JLabel();
+        LblSubject = new javax.swing.JLabel();
+        LblOverallAverageText = new javax.swing.JLabel();
+        LblOverallAverage = new javax.swing.JLabel();
+        LblSubjectAverageText = new javax.swing.JLabel();
+        LblSubjectAverage = new javax.swing.JLabel();
+        LblSelectedMarkText = new javax.swing.JLabel();
+        LblSelectedMark = new javax.swing.JLabel();
+        LblAge = new javax.swing.JLabel();
+        LblStudentName = new javax.swing.JLabel();
+        LblGender = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -46,11 +67,111 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Signed in as");
-        jLabel1.setBounds(20, 20, 110, 40);
-        jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jScrollPane1.setBounds(10, 200, 120, 250);
-        jDesktopPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel1.setText("Signed in as:");
+        jDesktopPane1.add(jLabel1);
+        jLabel1.setBounds(40, 20, 110, 40);
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList1);
+
+        jDesktopPane1.add(jScrollPane3);
+        jScrollPane3.setBounds(540, 140, 160, 300);
+
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jList2);
+
+        jDesktopPane1.add(jScrollPane4);
+        jScrollPane4.setBounds(200, 280, 300, 160);
+
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jList3);
+
+        jDesktopPane1.add(jScrollPane5);
+        jScrollPane5.setBounds(30, 190, 130, 250);
+
+        LblStudentNameText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblStudentNameText.setText("Student Name:");
+        jDesktopPane1.add(LblStudentNameText);
+        LblStudentNameText.setBounds(320, 20, 120, 30);
+
+        LblAgeText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblAgeText.setText("Age:");
+        jDesktopPane1.add(LblAgeText);
+        LblAgeText.setBounds(320, 100, 40, 30);
+
+        LblGenderText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblGenderText.setText("Gender:");
+        jDesktopPane1.add(LblGenderText);
+        LblGenderText.setBounds(320, 60, 57, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Students");
+        jDesktopPane1.add(jLabel2);
+        jLabel2.setBounds(50, 160, 70, 30);
+
+        LblSignedInAs.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jDesktopPane1.add(LblSignedInAs);
+        LblSignedInAs.setBounds(50, 60, 80, 30);
+
+        LblSubjectText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblSubjectText.setText("Subject:");
+        jDesktopPane1.add(LblSubjectText);
+        LblSubjectText.setBounds(200, 260, 60, 20);
+
+        LblSubject.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblSubject);
+        LblSubject.setBounds(260, 260, 80, 20);
+
+        LblOverallAverageText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblOverallAverageText.setText("Overall Average:");
+        jDesktopPane1.add(LblOverallAverageText);
+        LblOverallAverageText.setBounds(340, 260, 120, 20);
+
+        LblOverallAverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblOverallAverage);
+        LblOverallAverage.setBounds(460, 260, 40, 20);
+
+        LblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblSubjectAverageText.setText("Subject Average:");
+        jDesktopPane1.add(LblSubjectAverageText);
+        LblSubjectAverageText.setBounds(550, 20, 130, 20);
+
+        LblSubjectAverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblSubjectAverage);
+        LblSubjectAverage.setBounds(590, 40, 60, 20);
+
+        LblSelectedMarkText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LblSelectedMarkText.setText("Selected mark:");
+        jDesktopPane1.add(LblSelectedMarkText);
+        LblSelectedMarkText.setBounds(560, 80, 110, 20);
+
+        LblSelectedMark.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblSelectedMark);
+        LblSelectedMark.setBounds(590, 100, 50, 0);
+
+        LblAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblAge);
+        LblAge.setBounds(360, 100, 100, 20);
+
+        LblStudentName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblStudentName);
+        LblStudentName.setBounds(430, 24, 100, 20);
+
+        LblGender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDesktopPane1.add(LblGender);
+        LblGender.setBounds(380, 60, 100, 20);
 
         jMenu1.setText("Settings");
 
@@ -192,8 +313,27 @@ new HelpMenu().setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LblAge;
+    private javax.swing.JLabel LblAgeText;
+    private javax.swing.JLabel LblGender;
+    private javax.swing.JLabel LblGenderText;
+    private javax.swing.JLabel LblOverallAverage;
+    private javax.swing.JLabel LblOverallAverageText;
+    private javax.swing.JLabel LblSelectedMark;
+    private javax.swing.JLabel LblSelectedMarkText;
+    private javax.swing.JLabel LblSignedInAs;
+    private javax.swing.JLabel LblStudentName;
+    private javax.swing.JLabel LblStudentNameText;
+    private javax.swing.JLabel LblSubject;
+    private javax.swing.JLabel LblSubjectAverage;
+    private javax.swing.JLabel LblSubjectAverageText;
+    private javax.swing.JLabel LblSubjectText;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
+    private javax.swing.JList jList3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -207,6 +347,8 @@ new HelpMenu().setVisible(true);
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }
