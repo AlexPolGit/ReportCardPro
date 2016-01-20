@@ -4,6 +4,11 @@
  */
 package reportcardpro;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author kiddj7454
@@ -16,6 +21,7 @@ public class HelpMenu extends javax.swing.JFrame {
     public HelpMenu() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,18 +33,9 @@ public class HelpMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Help Menu");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jScrollPane1.setBounds(40, 70, 640, 370);
-        jDesktopPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,11 +83,14 @@ public class HelpMenu extends javax.swing.JFrame {
             public void run() {
                 new HelpMenu().setVisible(true);
             }
+            
+            
         });
+        JTextArea help = new JTextArea(100,100);
+}
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

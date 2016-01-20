@@ -177,6 +177,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Change Username");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeUsernameMouse(evt);
+            }
+        });
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -186,9 +191,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Change Password");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangePasswordMouse(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Log Out");
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutMouse(evt);
+            }
+        });
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -202,14 +217,34 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Add Student");
+        jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddStudentMouse(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText("Remove Student");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveStudentMouse(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setText("Edit Student");
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditStudentMouse(evt);
+            }
+        });
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -217,9 +252,19 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu3.setText("Report");
 
         jMenuItem7.setText("View Report");
+        jMenuItem7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ViewReportMosue(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         jMenuItem8.setText("Print Report");
+        jMenuItem8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PrintReportMouse(evt);
+            }
+        });
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -277,6 +322,42 @@ public class MainFrame extends javax.swing.JFrame {
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
 new HelpMenu().setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void ChangeUsernameMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeUsernameMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangeUsernameMouse
+
+    private void ChangePasswordMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePasswordMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangePasswordMouse
+
+    private void LogOutMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LogOutMouse
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void RemoveStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveStudentMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemoveStudentMouse
+
+    private void EditStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditStudentMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditStudentMouse
+
+    private void AddStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddStudentMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddStudentMouse
+
+    private void ViewReportMosue(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewReportMosue
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewReportMosue
+
+    private void PrintReportMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrintReportMouse
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PrintReportMouse
 
     /**
      * @param args the command line arguments
