@@ -14,24 +14,27 @@ public class Report
 {
     public ArrayList<Teacher> teachers = new ArrayList<>();
     
-    public void createTeacher(String name, String user, String pass)
+    public void createTeacher(String name, String user, String pass) throws IOException
     {
         Teacher temp = new Teacher(UUID.randomUUID(), name, user, pass);
         teachers.add(temp);
         sortTeachers();
+        writeTeachersList();
     }
     
-    public void addTeacher(Teacher toTeach)
+    public void addTeacher(Teacher toTeach) throws IOException
     {
         teachers.add(toTeach);
         sortTeachers();
+        writeTeachersList();
     }
     
-    public void removeTeacher(String id, String name, String user, String pass)
+    public void removeTeacher(String id, String name, String user, String pass) throws IOException
     {
         Teacher temp = new Teacher(UUID.fromString(id), name, user, pass);
         teachers.remove(temp);
         sortTeachers();
+        writeTeachersList();
     }
     
     public void sortTeachers()
@@ -83,11 +86,11 @@ public class Report
         sortTeachers();
     }
     
-    public void writeTeachersList(ArrayList<Teacher> input) throws FileNotFoundException, IOException
+    public void writeTeachersList() throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
         
-        for (Teacher t: input)
+        for (Teacher t: teachers)
         {
             File tFolder = new File("teachers\\" + t.id);
             tFolder.mkdirs();

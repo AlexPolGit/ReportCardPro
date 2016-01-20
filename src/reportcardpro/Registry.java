@@ -2,8 +2,6 @@ package reportcardpro;
 
 import java.io.IOException;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Registry extends javax.swing.JFrame
 {
@@ -74,22 +72,25 @@ public class Registry extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateAccMouseClicked
-        toCreateName = fldName.getText();
-        Teacher t = new Teacher(UUID.randomUUID(), toCreateName, toCreateUser, toCreatePassword);
-        System.out.println("New Teacher Created:");
-        System.out.println("Name: " + t.name);
-        System.out.println("Username: " + t.username);
-        System.out.println("Password: " + t.password);
-        System.out.println("ID: " + t.id);
-        try
+        if (!fldName.getText().isEmpty())
         {
-            rcp.newTeacher(t);
+            toCreateName = fldName.getText();
+            Teacher t = new Teacher(UUID.randomUUID(), toCreateName, toCreateUser, toCreatePassword);
+            System.out.println("New Teacher Created:");
+            System.out.println("Name: " + t.name);
+            System.out.println("Username: " + t.username);
+            System.out.println("Password: " + t.password);
+            System.out.println("ID: " + t.id);
+            try
+            {
+                rcp.newTeacher(t);
+            }
+            catch (IOException ex)
+            {
+                System.err.println(ex.toString());
+            }
+            this.setVisible(false);
         }
-        catch (IOException ex)
-        {
-            System.err.println(ex.toString());
-        }
-        this.setVisible(false);
     }//GEN-LAST:event_btnCreateAccMouseClicked
 
     public static void main(String args[])

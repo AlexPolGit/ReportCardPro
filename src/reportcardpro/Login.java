@@ -1,12 +1,22 @@
 package reportcardpro;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 public class Login extends javax.swing.JFrame
 {
     public ReportCardPro rcp = new ReportCardPro();
+    public Report rep = new Report();
+    public Teacher foundTeacher;
     
     public Login()
     {
         initComponents();
+        rep.readTeacherList();
+        rep.listTeachers();
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +34,8 @@ public class Login extends javax.swing.JFrame
         lblTempTitle = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
+        lblErrorMsgReg = new javax.swing.JLabel();
+        lblErrorMsgLogin = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -34,29 +46,30 @@ public class Login extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Report Card Pro: Login");
 
-        frmLogin.setBackground(new java.awt.Color(255, 255, 255));
+        frmLogin.setBackground(new java.awt.Color(240, 240, 240));
         frmLogin.add(fldPassword);
-        fldPassword.setBounds(210, 230, 330, 30);
+        fldPassword.setBounds(210, 270, 330, 30);
 
         lblUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsername.setText("Username:");
         frmLogin.add(lblUsername);
-        lblUsername.setBounds(80, 170, 110, 20);
+        lblUsername.setBounds(80, 210, 110, 20);
 
         lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPassword.setText("Password:");
         frmLogin.add(lblPassword);
-        lblPassword.setBounds(80, 230, 110, 20);
+        lblPassword.setBounds(80, 270, 110, 20);
         frmLogin.add(fldUsername);
-        fldUsername.setBounds(210, 170, 330, 30);
+        fldUsername.setBounds(210, 210, 330, 30);
 
         lblTempTitle.setFont(new java.awt.Font("Imprint MT Shadow", 0, 48)); // NOI18N
         lblTempTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTempTitle.setText("Report Card Pro");
+        lblTempTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/RCP Logo.png"))); // NOI18N
+        lblTempTitle.resize(200, 100);
         frmLogin.add(lblTempTitle);
-        lblTempTitle.setBounds(130, 40, 370, 80);
+        lblTempTitle.setBounds(40, 30, 560, 160);
 
         btnRegister.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnRegister.setText("Register");
@@ -66,7 +79,7 @@ public class Login extends javax.swing.JFrame
             }
         });
         frmLogin.add(btnRegister);
-        btnRegister.setBounds(350, 310, 190, 80);
+        btnRegister.setBounds(350, 350, 190, 80);
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setText("Login");
@@ -75,13 +88,22 @@ public class Login extends javax.swing.JFrame
                 btnLoginMouseClicked(evt);
             }
         });
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
         frmLogin.add(btnLogin);
-        btnLogin.setBounds(100, 310, 190, 80);
+        btnLogin.setBounds(100, 350, 190, 80);
+
+        lblErrorMsgReg.setBackground(new java.awt.Color(255, 255, 255));
+        lblErrorMsgReg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblErrorMsgReg.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorMsgReg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        frmLogin.add(lblErrorMsgReg);
+        lblErrorMsgReg.setBounds(350, 410, 180, 0);
+
+        lblErrorMsgLogin.setBackground(new java.awt.Color(255, 255, 255));
+        lblErrorMsgLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblErrorMsgLogin.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorMsgLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        frmLogin.add(lblErrorMsgLogin);
+        lblErrorMsgLogin.setBounds(100, 410, 180, 0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,57 +120,69 @@ public class Login extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        Registry reg = new Registry();
-        reg.setUsername(fldUsername.getText());
-        reg.setPassword(fldPassword.getText());
-        fldUsername.setText("");
-        fldPassword.setText("");
-        reg.setVisible(true);
+        
+        if (fldUsername.getText().equals("") || fldPassword.getText().equals(""))
+        {
+            lblErrorMsgReg.setText("Fields cannot be blank.");
+        }
+        else
+        {
+            lblErrorMsgReg.setText("");
+            Registry reg = new Registry();
+            reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+            reg.setUsername(fldUsername.getText());
+            reg.setPassword(fldPassword.getText());
+
+            fldUsername.setText("");
+            fldPassword.setText("");
+
+            reg.setVisible(true);
+            this.setVisible(false);
+        }       
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
-
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        rcp.selectedTeacher = null;
-        rcp.dmTempStudentsList.clear();
-        rcp.dmTempSubjectList.clear();
-        rcp.dmTempMarksList.clear();
-        
         String eUser = fldUsername.getText();
         String ePass = fldPassword.getText();
+        
         fldUsername.setText("");
         fldPassword.setText("");
         
-        setCurrentTeacher(eUser, ePass);
+        System.out.println("Trying login as: " + eUser + ", " + ePass);
+        try
+       {
+            this.tryLogin(eUser, ePass);
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
-    public boolean credentialsAreCorrect(Teacher t, String u, String p)
+    public void tryLogin(String u, String p) throws IOException
     {
-        boolean ans = false;
-        if (t.username.equals(u) && t.password.equals(p))
+        rep.readTeacherList();
+        for (Teacher t: rep.teachers)
         {
-            ans = true;
-        }
-        return ans;
-    }
-    
-    public void setCurrentTeacher(String u, String p)
-    {
-        boolean found = false;
-        for (Teacher t: rcp.rep.teachers)
-        {
-            if (credentialsAreCorrect(t, u, p))
+            System.out.println("Current login candidate: " + t.name);
+            
+            if (t.username.equals(u) && t.password.equals(p))
             {
                 btnLogin.setText("Login");
-                rcp.setCurrentTeacher(t);
-                new MainFrame().setVisible(true);
+                this.foundTeacher = t;
+                System.out.println("Logging in as " + this.foundTeacher.name);
+                this.setVisible(false);
+                this.setEnabled(false);
+                
+                rep.writeTeachersList();
+                break;
             }
-        }
-        if (!found)
-        {
-            btnLogin.setText("Login (Error)");
+            else
+            {
+                btnLogin.setText("Login (Retry)");
+                System.out.println("Credentials do not match those of: " + t.name);
+            }
         }
     }
     
@@ -169,6 +203,8 @@ public class Login extends javax.swing.JFrame
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblErrorMsgLogin;
+    private javax.swing.JLabel lblErrorMsgReg;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTempTitle;
     private javax.swing.JLabel lblUsername;
