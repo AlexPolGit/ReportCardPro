@@ -15,7 +15,7 @@ import java.util.*;
  * @param password The password the teacher uses to login into the program.
  */
 public class Teacher
-{    /**
+{   /**
      * Id number of the teacher.
      */
     public UUID id;
@@ -39,7 +39,7 @@ public class Teacher
      * Converts numbered values to have additional decimal numbers for more accurate marking.
      */
     public DecimalFormat df = new DecimalFormat("#.##");
-     /**
+    /**
      * Size of the class the teacher has.
      */
     public int classSize = students.size();
@@ -60,7 +60,7 @@ public class Teacher
         this.username = sUser;
         this.password = sPass;
     }
-     /**
+    /**
      *
      * @param sID
      * <br>
@@ -78,7 +78,7 @@ public class Teacher
         this.username = sUser;
         this.password = sPass;
     }
-     /**
+    /**
      * Teacher sets the name of the student.
      */
 
@@ -109,14 +109,14 @@ public class Teacher
     {
         this.id = UUID.randomUUID();
     }
-     /**
+    /**
      *collects the students names and sorts them alphabetically by last name.
      */
     public void sortStudents()
     {
         Collections.sort(students, new StudentComparator());
     }
-     /**
+    /**
      * Creates a random student given the following params:
      * <br>
      * @param name The first and last name of the student
@@ -247,7 +247,7 @@ public class Teacher
         }
         sortStudents();
     }
-     /**
+    /**
      * Allows The teacher to write the throw a file with their list of students with the information of each student in their class.
      * <br>
      * @param input The input file the teacher has selected.
@@ -346,7 +346,7 @@ public class Teacher
         }
         System.out.println();
     } 
-     /**
+    /**
      * Finds the name of the student by first name.
      * @param name first name of student.
      */

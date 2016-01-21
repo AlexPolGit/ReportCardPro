@@ -18,8 +18,6 @@ import java.util.*;
  * <br>
  * @param subjects The subjects/classes the student is in.
  * <br>
- * @param df
- * <br>
  * @param studentPicture The picture of the student.
  * <br>
  * @param pic The rendered picture of the student
@@ -48,9 +46,7 @@ public class Student
      * The subjects/classes the student is in.
      */
     public ArrayList<Subject> subjects = new ArrayList<>();
-    /**
-     * 
-     */
+   
     public DecimalFormat df = new DecimalFormat("#.##");
     /**
      * The picture of the student.
@@ -112,7 +108,7 @@ public class Student
     }
     
     /**
-     * 
+     * Sets the Id number given to the student.
      * @param toID
      */
     public void setID(UUID toID)
@@ -121,7 +117,7 @@ public class Student
     }
     
     /**
-     * 
+     * Sets the Id number given to the student.
      * @param toID
      */
     public void setID(String toID)
@@ -129,7 +125,7 @@ public class Student
         this.id = UUID.fromString(toID);
     }
    /**
-     *Generates a random ID number for the student.
+     * Generates a random ID number for the student.
      */
     public void newRandomID()
     {
@@ -156,6 +152,7 @@ public class Student
     
    /**
      * Sets the birth date of a student.
+     * <br>
      * @param year The year the student was born in,
      * <br>
      * @param month The month the student was born in.
@@ -202,6 +199,7 @@ public class Student
     
     /**
      * Adds a subject to a student's time table.
+     * <br>
      * @param name The name of the subject the student is in.
      * <br>
      * @param desc A brief description of the course and the course code.
@@ -213,7 +211,7 @@ public class Student
     }
     
     /**
-     *Removes a subject from a student's time table. 
+     * Removes a subject from a student's time table. 
      */
     public void removeSubject(Subject toRemove)
     {
@@ -222,7 +220,7 @@ public class Student
     }
     
     /**
-     *
+     * Gets the age of the student based o the year, month and day the student was born.
      */
     public int getAge()
     {
@@ -252,7 +250,9 @@ public class Student
     {
         Collections.sort(subjects, new SubjectComparator());
     }
-    
+    /**
+     * Sorts the subjects by the averages in those subjects.
+     */
     public void sortSubjectsByAverages()
     {
         Collections.sort(subjects, new SubjectComparatorByMark());
@@ -318,11 +318,11 @@ public class Student
         sortSubjects();
         return median;
     }
-      /**
+    /**
      * Finds the name of each subject.
+     * <br>
      * @param name the name of the subject the user is trying to find.
      * <br>
-     * @return 
      */
     public Subject getSubjectByName(String name)
     {

@@ -24,7 +24,7 @@ public class Subject
     public ArrayList<Mark> marks = new ArrayList<>();
     public String comment;
     
-       /**
+    /**
      * The comments for the teacher to add input about the student and their progress in their class.
      * @param sName Name of the student
      * @param sDesc Description of who they are and how they are doing in the subject.
@@ -38,7 +38,7 @@ r
         this.subjectDescription = sDesc;
     }
     
-   /**
+    /**
      * @param name The name of the subject the student is in.
      */
     public void setSubjectName(String name)
@@ -46,7 +46,7 @@ r
         subjectName = name;
     }
     
-     /**
+    /**
      * @param description A description of the subject the student is in.
      */
     public void setubjectDescription(String description)
@@ -54,7 +54,7 @@ r
         subjectDescription = description;
     }
     
-     /**
+    /**
      * @param marksToSet The assessment marks put into a sorted list from highest mark to lowest.
      */
     public void setMarks(ArrayList<Mark> marksToSet)
@@ -92,7 +92,7 @@ r
         this.sortMarks();
     }
     
-     /**
+    /**
      * Sorts all of the assessed marks put into the program from highest mark to lowest.
      */
     public void sortMarks()

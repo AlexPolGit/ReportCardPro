@@ -19,7 +19,9 @@ public class Mark
      * The mark from an assessment and the impact it has on the final mark.
      */
     public Double markWeight;
-    
+    /**
+     * A description of the mark, this includes the weight, the type of assessment and the what the mark was based on. (rubric)
+     */
     public String markDescription; 
     /**
      * Quiz assessment with a mark weight of 
@@ -47,7 +49,9 @@ public class Mark
     public final String EXAM = "Exam";
     /**
      * The mark of an assessment with a description and how much % the assessment is worth in the student's final mark for that subject.
+     * <br>
      * @param mark  finds the mark of  an assessment for a subject. 
+     * <br>
      * @param weight finds the weight of that mark for s subject.
      */
     public Mark(Double mark, Double weight, String markDesc)
@@ -56,7 +60,7 @@ public class Mark
         this.markWeight = weight;
         this.markDescription = markDesc;
     }
-    
+          
     /**
      * Sets a mark for an assessment.
      */
