@@ -2,7 +2,11 @@ package reportcardpro;
 
 import java.util.*;
 /**
- * The class finds the subjects of the student, finds the marks of the students for each subject and finds the median for each subject.
+ * The class finds the subjects of the student. 
+ * <br>
+ * The class finds the marks of the students for each subject
+ * <br>
+ * The class finds the median for each subject.
  */
 public class Subject
 {
@@ -20,10 +24,15 @@ public class Subject
     public ArrayList<Mark> marks = new ArrayList<>();
     public String comment;
     
-    /**
-     *The comments for the teacher to add input about the student.
+       /**
+     *The comments for the teacher to add input about the student and their progress in their class.
+<<<<<<< HEAD
+     * @param sName  Name of the student
+     * @param sDesc  Description of who they are and how they are doing in the subject.
+=======
      * @param sName - Name of the subject.
-     * @param sDesc - Description for the subject.
+     * @param sDesc -  A brief description for the subject.
+>>>>>>> origin/master
      */
     public Subject(String sName, String sDesc)
     {
@@ -31,27 +40,24 @@ public class Subject
         this.subjectDescription = sDesc;
     }
     
-    /**
-     *
-     * @param name
+   /**
+     * @param name name of the subject the student is in.
      */
     public void setSubjectName(String name)
     {
         subjectName = name;
     }
     
-    /**
-     *
-     * @param description
+     /**
+     * @param description description of the subject the student is in.
      */
     public void setubjectDescription(String description)
     {
         subjectDescription = description;
     }
     
-    /**
-     *
-     * @param marksToSet
+     /**
+     * @param marksToSet the assessment marks put into a sorted list from highest mark to lowest.
      */
     public void setMarks(ArrayList<Mark> marksToSet)
     {
@@ -60,9 +66,9 @@ public class Subject
     }
     
     /**
-     *
-     * @param markToAdd
-     * @param weightToAdd
+     * @param markToAdd a mark from an assessment that is added to the current final mark.
+     * <br>
+     * @param weightToAdd the weight of the assessed mark that needs to be added and calculated with the current final mark.
      */
     public void addMark(Double markToAdd, Double weightToAdd, String descToAdd)
     {
@@ -71,8 +77,7 @@ public class Subject
     }
     
     /**
-     *
-     * @param toAdd
+     * @param toAdd An assessed mark that needs to be added and then sorted with the other assessed marks.
      */
     public void addMark(Mark toAdd)
     {
@@ -81,8 +86,7 @@ public class Subject
     }
     
     /**
-     *
-     * @param toRemove
+     * Removes an assessed mark from the sorted list and then updates the list without that mark.
      */
     public void removeMark(Mark toRemove)
     {
@@ -90,23 +94,29 @@ public class Subject
         this.sortMarks();
     }
     
-    /**
-     *
+     /**
+     *Sorts all of the assessed marks put into the program from highest mark to lowest.
      */
     public void sortMarks()
     {
         Collections.sort(marks, new MarkComparator());
     }
     
-    /**
+      /**
+<<<<<<< HEAD
+     * Finds the mean average of that student in a subject.
+=======
      *
      * @param toComment
+>>>>>>> origin/master
      */
     public void setComment(String toComment)
     {
         this.comment = toComment;
     }
-    
+    /**
+     * @param desc Description of the type of mark assessment and a brief explanation of the assessment (what the student had to do)
+     */
     public Mark getMarkByDescription(String desc)
     {
         for (Mark m: marks)
@@ -120,6 +130,9 @@ public class Subject
         return null;
     }
     
+    /**
+     *Finds the mean average of that student in a subject.
+     */
     public Double getMeanAverage()
     {
         double numOfMarks = 0.0;
@@ -133,8 +146,7 @@ public class Subject
     }
     
     /**
-     *
-     * @return
+     *Finds the median average of a class in a subject.
      */
     public Double getMedianAverage()
     {
