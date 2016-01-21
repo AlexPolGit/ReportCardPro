@@ -38,6 +38,8 @@ public class HelpMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Help Menu");
 
+        jDesktopPane1.setBackground(new java.awt.Color(156, 73, 65));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

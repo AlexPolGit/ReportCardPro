@@ -131,7 +131,7 @@ public class MainFrame extends javax.swing.JFrame
         lblTeacherName.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblTeacherName.setText(this.selectedTeacher.name);
         jDesktopPane1.add(lblTeacherName);
-        lblTeacherName.setBounds(10, 60, 170, 30);
+        lblTeacherName.setBounds(60, 60, 170, 30);
 
         lblSubjectText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSubjectText.setText("Subject:");
@@ -140,7 +140,7 @@ public class MainFrame extends javax.swing.JFrame
 
         lblSubject.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(lblSubject);
-        lblSubject.setBounds(540, 50, 160, 20);
+        lblSubject.setBounds(600, 50, 90, 20);
 
         lblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSubjectAverageText.setText("Subject Average:");
@@ -149,7 +149,7 @@ public class MainFrame extends javax.swing.JFrame
 
         lblSubjectAverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(lblSubjectAverage);
-        lblSubjectAverage.setBounds(570, 110, 100, 20);
+        lblSubjectAverage.setBounds(600, 110, 80, 20);
 
         LblSelectedMark.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(LblSelectedMark);
