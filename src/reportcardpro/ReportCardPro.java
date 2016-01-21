@@ -52,7 +52,17 @@ public class ReportCardPro
         }
         System.out.println("Opening teacher profile of: " + loginScreen.foundTeacher.name);
 
-        MainFrame main = new MainFrame();
+        MainFrame main = new MainFrame(loginScreen.foundTeacher);
+        
+        try
+        {
+            main.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
     }
