@@ -57,7 +57,7 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setRowHeight (50);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         tblStudentInfo.setDefaultRenderer(String.class, centerRenderer);
         tblStudentInfo.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblStudentInfo);
@@ -73,24 +73,26 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setValueAt (toCopy.name, 0, 0);
         tblStudentInfo.setValueAt (Integer.toString(toCopy.getAge()), 0, 1);
         tblStudentInfo.setValueAt (toCopy.gender, 0, 2);
-        tblStudentInfo.setValueAt (df.format(toCopy.getOverallMeanAverage()), 0, 3);
-        tblStudentInfo.setValueAt (df.format(toCopy.getOverallMedianAverage()), 0, 4);
+        tblStudentInfo.setValueAt (df.format(toCopy.getOverallMeanAverage()) + "%", 0, 3);
+        tblStudentInfo.setValueAt (df.format(toCopy.getOverallMedianAverage()) + "%", 0, 4);
+        tblStudentInfo.setRowSelectionAllowed(false);
+        tblStudentInfo.setEnabled(false);
 
         String[] subStrings = new String[toCopy.subjects.size()];
-        String[][] markStrings = new String[toCopy.subjects.size()][15];
+        String[][] markStrings = new String[toCopy.subjects.size()][25];
 
         int n = 0;
 
         for (Subject sub: toCopy.subjects)
         {
-            subStrings[n] = sub.subjectName;
+            subStrings[n] = sub.subjectName + ", Avg: " + df.format(sub.getMeanAverage()) + "%";
 
             System.out.println("Added subject: " + subStrings[n]);
 
             int m = 0;
             for (Mark mar: sub.marks)
             {
-                markStrings[n][m] = df.format(mar.mark);
+                markStrings[n][m] = mar.getMarkType() + ": " + df.format(mar.mark) + "%, " + mar.markDescription;
 
                 System.out.println("Added mark: " + markStrings[n][m]);
 
@@ -98,7 +100,7 @@ public class PrintableReport extends javax.swing.JFrame
                 {
                     m++;
                 }
-                else if (m == (sub.marks.size() - 1) || m == 14)
+                else if (m == (sub.marks.size() - 1) || m == 24)
                 {
                     break;
                 }
@@ -108,21 +110,15 @@ public class PrintableReport extends javax.swing.JFrame
             {
                 n++;
             }
-            else if(n == (toCopy.subjects.size() - 1) || n == 14)
+            else if(n == (toCopy.subjects.size() - 1) || n == 24)
             {
                 break;
             }
-
         }
 
         System.out.println("Total subjects: " + subStrings.length);
         tblMarkTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
+            new Object[markStrings[0].length][markStrings[1].length],
             subStrings
         ) {
             boolean[] canEdit = new boolean [] {
@@ -139,7 +135,7 @@ public class PrintableReport extends javax.swing.JFrame
         for (int x = 0; x < subStrings.length; x++)
         {
             System.out.println("x: " + x);
-            System.out.println(Arrays.toString(markStrings[x]));
+            System.out.println("MAR: " + Arrays.toString(markStrings[x]));
             for (int y = 0; y < 15; y++)
             {
 
@@ -147,9 +143,9 @@ public class PrintableReport extends javax.swing.JFrame
 
                 if (markStrings[x][y] != null)
                 {
-                    tblMarkTable.setValueAt(markStrings[x][y], x, y);
+                    tblMarkTable.setValueAt(markStrings[x][y], y, x);
                 }
-                else //INVERT ORDER, DATA IS IN WRONG COLUMNS
+                else
                 {
                     break;
                 }
@@ -160,6 +156,12 @@ public class PrintableReport extends javax.swing.JFrame
                 break;
             }
         }
+
+        tblMarkTable.setRowHeight(25);
+        tblMarkTable.setDefaultRenderer(String.class, centerRenderer);
+        tblMarkTable.getTableHeader().setReorderingAllowed(false);
+        tblMarkTable.setRowSelectionAllowed(false);
+        tblMarkTable.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,8 +180,8 @@ public class PrintableReport extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         pack();

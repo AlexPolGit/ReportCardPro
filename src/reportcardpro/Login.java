@@ -43,7 +43,6 @@ public class Login extends javax.swing.JFrame
         lblErrorMsgLogin = new javax.swing.JLabel();
         lblErrorLogin = new javax.swing.JLabel();
         lblErrorReg = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Report Card Pro: Login");
@@ -127,20 +126,6 @@ public class Login extends javax.swing.JFrame
         lblErrorReg.setText(" ");
         frmLogin.add(lblErrorReg);
         lblErrorReg.setBounds(340, 420, 230, 30);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        frmLogin.add(jPanel1);
-        jPanel1.setBounds(0, 0, 100, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,38 +216,53 @@ public class Login extends javax.swing.JFrame
         Subject temp1 = new Subject("Art", "Arts and crafts.");
         Subject temp2 = new Subject("Business", "$$$.");
         Subject temp3 = new Subject("Geology", "Rocks and minerals.");
-        Subject temp4 = new Subject("Philosophy", "But why.");
+        Subject temp4 = new Subject("Philosophy", "But why?");
+        Subject temp5 = new Subject("Math", "y=mx+b");
+        Subject temp6 = new Subject("Physics", "Ek=1/2mv^2");
 
-        temp1.addMark(new Mark(100.0, 1.0, "A"));
-        temp1.addMark(new Mark(90.0, 1.0, "B"));
+        temp1.addMark(new Mark(100.0, 1.0, "Some description"));
+        temp1.addMark(new Mark(92.0, 1.0, "thing"));
         
-        temp2.addMark(new Mark(75.0, 1.0, "A"));
-        temp2.addMark(new Mark(90.0, 1.0, "B"));
-        temp2.addMark(new Mark(60.0, 1.0, "C"));/*
-        temp2.addMark(new Mark(75.0, 1.0, "D"));
-        temp2.addMark(new Mark(90.0, 1.0, "E"));
-        temp2.addMark(new Mark(60.0, 1.0, "F"));
-        temp2.addMark(new Mark(75.0, 1.0, "G"));
-        temp2.addMark(new Mark(90.0, 1.0, "H"));
-        temp2.addMark(new Mark(60.0, 1.0, "I"));
-        temp2.addMark(new Mark(75.0, 1.0, "J"));
-        temp2.addMark(new Mark(90.0, 1.0, "K"));
-        temp2.addMark(new Mark(60.0, 1.0, "L"));
-        temp2.addMark(new Mark(75.0, 1.0, "M"));
-        temp2.addMark(new Mark(90.0, 1.0, "N"));
-        temp2.addMark(new Mark(60.0, 1.0, "O"));*/
+        temp2.addMark(new Mark(75.0, 1.0, "etcetcetc"));
+        temp2.addMark(new Mark(90.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(67.0, 1.0, "description"));
+        temp2.addMark(new Mark(75.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(32.0, 1.0, "...."));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(75.0, 1.0, "abcedrgg"));
+        temp2.addMark(new Mark(90.0, 1.0, "abcdef"));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(63.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(90.0, 1.0, "abcd"));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(99.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(90.0, 1.0, "blah blah"));
+        temp2.addMark(new Mark(60.0, 1.0, "description"));
 
-        temp3.addMark(new Mark(80.0, 1.0, "A"));
+        temp3.addMark(new Mark(81.0, 1.0, "Some description or other"));
         
-        temp4.addMark(new Mark(80.0, 1.0, "A"));
-        temp4.addMark(new Mark(65.0, 1.0, "A"));
-        temp4.addMark(new Mark(70.0, 1.0, "A"));
-        temp4.addMark(new Mark(90.0, 1.0, "A"));
+        temp4.addMark(new Mark(83.0, 1.0, "etcetcetc"));
+        temp4.addMark(new Mark(65.0, 1.0, "Some description"));
+        temp4.addMark(new Mark(73.0, 1.0, "yeah"));
+        temp4.addMark(new Mark(90.0, 1.0, "description"));
+        
+        temp5.addMark(new Mark(83.0, 1.0, "etcetcetc"));
+        temp5.addMark(new Mark(99.0, 1.0, "Some description"));
+        temp5.addMark(new Mark(93.0, 1.0, "yeah"));
+        temp5.addMark(new Mark(90.0, 1.0, "description"));
+        temp5.addMark(new Mark(93.0, 1.0, "yeah"));
+        temp5.addMark(new Mark(99.0, 1.0, "description"));
+        
+        temp6.addMark(new Mark(23.0, 1.0, "etcetcetc"));
+        temp6.addMark(new Mark(35.0, 1.0, "Some description"));
+        temp6.addMark(new Mark(40.0, 1.0, "description"));
 
         testStu.addSubject(temp1);
         testStu.addSubject(temp2);
         testStu.addSubject(temp3);
         testStu.addSubject(temp4);
+        testStu.addSubject(temp5);
+        testStu.addSubject(temp6);
 
         System.out.println(testStu.name + ": " + testStu.subjects.get(0).subjectName + ", " + testStu.subjects.get(1).subjectName + ", " + testStu.subjects.get(2).subjectName);
         testStu.listSubjects();
@@ -327,7 +327,6 @@ public class Login extends javax.swing.JFrame
     private javax.swing.JPasswordField fldPassword;
     private javax.swing.JTextField fldUsername;
     private javax.swing.JDesktopPane frmLogin;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblErrorLogin;
     private javax.swing.JLabel lblErrorMsgLogin;
     private javax.swing.JLabel lblErrorMsgReg;

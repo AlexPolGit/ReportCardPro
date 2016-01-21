@@ -45,8 +45,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="350" max="-2" attributes="0"/>
-              <EmptySpace pref="396" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="648" max="-2" attributes="0"/>
+              <EmptySpace pref="281" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,7 +71,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="0"/>
             </Property>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="tblStudentInfo.setRowHeight (50);&#xa;&#xa;DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xa;centerRenderer.setHorizontalAlignment( JLabel.CENTER );&#xa;tblStudentInfo.setDefaultRenderer(String.class, centerRenderer);">
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="tblStudentInfo.setRowHeight (50);&#xa;&#xa;DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xa;centerRenderer.setHorizontalAlignment(JLabel.CENTER);&#xa;tblStudentInfo.setDefaultRenderer(String.class, centerRenderer);">
               <Table columnCount="5" rowCount="1">
                 <Column editable="false" title="Student" type="java.lang.String"/>
                 <Column editable="false" title="Age" type="java.lang.String"/>
@@ -80,7 +80,7 @@
                 <Column editable="false" title="Median Average" type="java.lang.String"/>
               </Table>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="tblStudentInfo.setValueAt (toCopy.name, 0, 0);&#xa;tblStudentInfo.setValueAt (Integer.toString(toCopy.getAge()), 0, 1);&#xa;tblStudentInfo.setValueAt (toCopy.gender, 0, 2);&#xa;tblStudentInfo.setValueAt (df.format(toCopy.getOverallMeanAverage()), 0, 3);&#xa;tblStudentInfo.setValueAt (df.format(toCopy.getOverallMedianAverage()), 0, 4);">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="tblStudentInfo.setValueAt (toCopy.name, 0, 0);&#xa;tblStudentInfo.setValueAt (Integer.toString(toCopy.getAge()), 0, 1);&#xa;tblStudentInfo.setValueAt (toCopy.gender, 0, 2);&#xa;tblStudentInfo.setValueAt (df.format(toCopy.getOverallMeanAverage()) + &quot;%&quot;, 0, 3);&#xa;tblStudentInfo.setValueAt (df.format(toCopy.getOverallMedianAverage()) + &quot;%&quot;, 0, 4);&#xa;tblStudentInfo.setRowSelectionAllowed(false);&#xa;tblStudentInfo.setEnabled(false);">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title value="Student"/>
@@ -126,9 +126,9 @@
         <Component class="javax.swing.JTable" name="tblMarkTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null},&#xa;        {null, null, null, null, null}&#xa;    },&#xa;    subStrings&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object[markStrings[0].length][markStrings[1].length],&#xa;    subStrings&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="System.out.println(&quot;Sub Size: &quot; + subStrings.length);&#xa;&#xa;for (int x = 0; x &lt; subStrings.length; x++)&#xa;{&#xa;System.out.println(&quot;x: &quot; + x);&#xa;System.out.println(Arrays.toString(markStrings[x]));&#xa;    for (int y = 0; y &lt; 15; y++)&#xa;    {&#xa;&#xa;System.out.println(markStrings[x][y]);&#xa;&#xa;        if (markStrings[x][y] != null)&#xa;        {&#xa;            tblMarkTable.setValueAt(markStrings[x][y], x, y);&#xa;        }&#xa;else //INVERT ORDER, DATA IS IN WRONG COLUMNS&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (x &gt;= subStrings.length)&#xa;    {&#xa;        break;&#xa;    }&#xa;}">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="System.out.println(&quot;Sub Size: &quot; + subStrings.length);&#xa;&#xa;for (int x = 0; x &lt; subStrings.length; x++)&#xa;{&#xa;System.out.println(&quot;x: &quot; + x);&#xa;System.out.println(&quot;MAR: &quot; + Arrays.toString(markStrings[x]));&#xa;    for (int y = 0; y &lt; 15; y++)&#xa;    {&#xa;&#xa;System.out.println(markStrings[x][y]);&#xa;&#xa;        if (markStrings[x][y] != null)&#xa;        {&#xa;            tblMarkTable.setValueAt(markStrings[x][y], y, x);&#xa;        }&#xa;        else&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (x &gt;= subStrings.length)&#xa;    {&#xa;        break;&#xa;    }&#xa;}&#xa;&#xa;tblMarkTable.setRowHeight(25);&#xa;tblMarkTable.setDefaultRenderer(String.class, centerRenderer);&#xa;tblMarkTable.getTableHeader().setReorderingAllowed(false);&#xa;tblMarkTable.setRowSelectionAllowed(false);&#xa;tblMarkTable.setEnabled(false);">
               <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -136,7 +136,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] subStrings = new String[toCopy.subjects.size()];&#xa;String[][] markStrings = new String[toCopy.subjects.size()][15];&#xa;&#xa;int n = 0;&#xa;&#xa;for (Subject sub: toCopy.subjects)&#xa;{&#xa;    subStrings[n] = sub.subjectName;&#xa;    &#xa;System.out.println(&quot;Added subject: &quot; + subStrings[n]);&#xa;    &#xa;    int m = 0;&#xa;    for (Mark mar: sub.marks)&#xa;    {   &#xa;        markStrings[n][m] = df.format(mar.mark);&#xa;&#xa;System.out.println(&quot;Added mark: &quot; + markStrings[n][m]);&#xa;&#xa;        if (m != (sub.marks.size() - 1))&#xa;        {&#xa;            m++;&#xa;        }&#xa;        else if (m == (sub.marks.size() - 1) || m == 14)&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (n != (toCopy.subjects.size() - 1))&#xa;    {&#xa;        n++;&#xa;    }&#xa;    else if(n == (toCopy.subjects.size() - 1) || n == 14)&#xa;    {&#xa;        break;&#xa;    }&#xa;&#xa;}&#xa;&#xa;System.out.println(&quot;Total subjects: &quot; + subStrings.length);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] subStrings = new String[toCopy.subjects.size()];&#xa;String[][] markStrings = new String[toCopy.subjects.size()][25];&#xa;&#xa;int n = 0;&#xa;&#xa;for (Subject sub: toCopy.subjects)&#xa;{&#xa;    subStrings[n] = sub.subjectName + &quot;, Avg: &quot; + df.format(sub.getMeanAverage()) + &quot;%&quot;;&#xa;    &#xa;System.out.println(&quot;Added subject: &quot; + subStrings[n]);&#xa;    &#xa;    int m = 0;&#xa;    for (Mark mar: sub.marks)&#xa;    {&#xa;        markStrings[n][m] = mar.getMarkType() + &quot;: &quot; + df.format(mar.mark) + &quot;%, &quot; + mar.markDescription;&#xa;&#xa;System.out.println(&quot;Added mark: &quot; + markStrings[n][m]);&#xa;&#xa;        if (m != (sub.marks.size() - 1))&#xa;        {&#xa;            m++;&#xa;        }&#xa;        else if (m == (sub.marks.size() - 1) || m == 24)&#xa;        {&#xa;            break;&#xa;        }&#xa;    }&#xa;&#xa;    if (n != (toCopy.subjects.size() - 1))&#xa;    {&#xa;        n++;&#xa;    }&#xa;    else if(n == (toCopy.subjects.size() - 1) || n == 24)&#xa;    {&#xa;        break;&#xa;    }&#xa;}&#xa;&#xa;System.out.println(&quot;Total subjects: &quot; + subStrings.length);"/>
           </AuxValues>
         </Component>
       </SubComponents>
