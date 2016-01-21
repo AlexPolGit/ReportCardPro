@@ -48,6 +48,9 @@ public class Login extends javax.swing.JFrame
         setTitle("Report Card Pro: Login");
 
         frmLogin.setBackground(new java.awt.Color(240, 240, 240));
+        frmLogin.setMaximumSize(new java.awt.Dimension(640, 480));
+        frmLogin.setMinimumSize(new java.awt.Dimension(640, 480));
+        frmLogin.setName(""); // NOI18N
         frmLogin.add(fldPassword);
         fldPassword.setBounds(210, 270, 330, 30);
 
@@ -135,7 +138,7 @@ public class Login extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frmLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(frmLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -222,6 +225,7 @@ public class Login extends javax.swing.JFrame
 
         temp1.addMark(new Mark(100.0, 1.0, "Some description"));
         temp1.addMark(new Mark(92.0, 1.0, "thing"));
+        temp1.setComment("GOOD STUFF");
         
         temp2.addMark(new Mark(75.0, 1.0, "etcetcetc"));
         temp2.addMark(new Mark(90.0, 1.0, "Some description"));
@@ -238,13 +242,16 @@ public class Login extends javax.swing.JFrame
         temp2.addMark(new Mark(99.0, 1.0, "Some description"));
         temp2.addMark(new Mark(90.0, 1.0, "blah blah"));
         temp2.addMark(new Mark(60.0, 1.0, "description"));
+        temp2.setComment("GREAT STUFF");
 
         temp3.addMark(new Mark(81.0, 1.0, "Some description or other"));
+        temp3.setComment("WICKED STUFF");
         
         temp4.addMark(new Mark(83.0, 1.0, "etcetcetc"));
         temp4.addMark(new Mark(65.0, 1.0, "Some description"));
         temp4.addMark(new Mark(73.0, 1.0, "yeah"));
         temp4.addMark(new Mark(90.0, 1.0, "description"));
+        temp4.setComment("SWEET STUFF");
         
         temp5.addMark(new Mark(83.0, 1.0, "etcetcetc"));
         temp5.addMark(new Mark(99.0, 1.0, "Some description"));
@@ -252,10 +259,12 @@ public class Login extends javax.swing.JFrame
         temp5.addMark(new Mark(90.0, 1.0, "description"));
         temp5.addMark(new Mark(93.0, 1.0, "yeah"));
         temp5.addMark(new Mark(99.0, 1.0, "description"));
+        temp5.setComment("NICE STUFF");
         
         temp6.addMark(new Mark(23.0, 1.0, "etcetcetc"));
         temp6.addMark(new Mark(35.0, 1.0, "Some description"));
         temp6.addMark(new Mark(40.0, 1.0, "description"));
+        temp6.setComment("OK STUFF");
 
         testStu.addSubject(temp1);
         testStu.addSubject(temp2);

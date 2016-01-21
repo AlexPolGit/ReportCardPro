@@ -24,10 +24,15 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMarkTable = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblCommentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1100, 850));
+        setMinimumSize(new java.awt.Dimension(1100, 850));
+        setName("printFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1100, 850));
 
         tblStudentInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         tblStudentInfo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -79,7 +84,7 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setEnabled(false);
 
         String[] subStrings = new String[toCopy.subjects.size()];
-        String[][] markStrings = new String[toCopy.subjects.size()][25];
+        String[][] markStrings = new String[toCopy.subjects.size()][20];
 
         int n = 0;
 
@@ -92,7 +97,7 @@ public class PrintableReport extends javax.swing.JFrame
             int m = 0;
             for (Mark mar: sub.marks)
             {
-                markStrings[n][m] = mar.getMarkType() + ": " + df.format(mar.mark) + "%, " + mar.markDescription;
+                markStrings[n][m] = mar.getMarkType() + ": " + df.format(mar.mark) + "% (" + mar.markDescription + ")";
 
                 System.out.println("Added mark: " + markStrings[n][m]);
 
@@ -100,7 +105,7 @@ public class PrintableReport extends javax.swing.JFrame
                 {
                     m++;
                 }
-                else if (m == (sub.marks.size() - 1) || m == 24)
+                else if (m == (sub.marks.size() - 1) || m == 19)
                 {
                     break;
                 }
@@ -110,7 +115,7 @@ public class PrintableReport extends javax.swing.JFrame
             {
                 n++;
             }
-            else if(n == (toCopy.subjects.size() - 1) || n == 24)
+            else if(n == (toCopy.subjects.size() - 1) || n == 19)
             {
                 break;
             }
@@ -136,7 +141,7 @@ public class PrintableReport extends javax.swing.JFrame
         {
             System.out.println("x: " + x);
             System.out.println("MAR: " + Arrays.toString(markStrings[x]));
-            for (int y = 0; y < 15; y++)
+            for (int y = 0; y < 20; y++)
             {
 
                 System.out.println(markStrings[x][y]);
@@ -163,6 +168,52 @@ public class PrintableReport extends javax.swing.JFrame
         tblMarkTable.setRowSelectionAllowed(false);
         tblMarkTable.setEnabled(false);
 
+        String[] commStrings = new String[toCopy.subjects.size()];
+
+        n = 0;
+
+        for (Subject sub: toCopy.subjects)
+        {
+            subStrings[n] = sub.subjectDescription;
+            commStrings[n] = sub.comment;
+            if (n != (toCopy.subjects.size() - 1))
+            {
+                n++;
+            }
+            else if(n == (toCopy.subjects.size() - 1) || n == 19)
+            {
+                break;
+            }
+        }
+        tblCommentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object[][]
+            {
+                {null, null}
+            },
+            subStrings
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblCommentTable);
+        for (int x = 0; x < subStrings.length; x++)
+        {
+            tblCommentTable.setValueAt(commStrings[x], 0, x);
+        }
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(JLabel.LEFT);
+        tblCommentTable.setDefaultRenderer(String.class, leftRenderer);
+
+        tblCommentTable.setRowHeight(140);
+        tblCommentTable.getTableHeader().setReorderingAllowed(false);
+        tblCommentTable.setRowSelectionAllowed(false);
+        tblCommentTable.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +222,8 @@ public class PrintableReport extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,8 +232,10 @@ public class PrintableReport extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -190,6 +244,8 @@ public class PrintableReport extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblCommentTable;
     private javax.swing.JTable tblMarkTable;
     private javax.swing.JTable tblStudentInfo;
     // End of variables declaration//GEN-END:variables
