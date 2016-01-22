@@ -31,6 +31,16 @@ public class MainFrame extends javax.swing.JFrame
     {
         this.selectedTeacher = t;   
         makeDefListOfStudents();
+        
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         initComponents();
     }
 
@@ -345,15 +355,6 @@ public class MainFrame extends javax.swing.JFrame
         if (selectedStudent != null)
         {
             EditStudent es = new EditStudent(selectedTeacher, selectedStudent);
-            
-            try
-            {
-                es.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-            }
-            catch(IOException ex)
-            {
-                System.err.println(ex.toString());
-            }
 
             es.setVisible(true);
             this.setVisible(false);
@@ -389,16 +390,6 @@ public class MainFrame extends javax.swing.JFrame
     private void menReportMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menReportMouseClicked
     {//GEN-HEADEREND:event_menReportMouseClicked
         PrintableReport pr = new PrintableReport(selectedStudent);
-
-        try
-        {
-            pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-        }
-        catch(IOException ex)
-        {
-            System.err.println(ex.toString());
-        }
-
         pr.setVisible(true);
     }//GEN-LAST:event_menReportMouseClicked
 
@@ -688,15 +679,6 @@ class AddStudent extends javax.swing.JFrame
             selectedTeacher.writeStudentList();
             
             MainFrame mf = new MainFrame(selectedTeacher);
-            
-            try
-            {
-                mf.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-            }
-            catch(IOException ex)
-            {
-                System.err.println(ex.toString());
-            }
             
             mf.setVisible(true);
             

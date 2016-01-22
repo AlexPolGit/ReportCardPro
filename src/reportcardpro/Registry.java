@@ -1,7 +1,9 @@
 package reportcardpro;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import javax.imageio.ImageIO;
 
 public class Registry extends javax.swing.JFrame
 {
@@ -22,6 +24,15 @@ public class Registry extends javax.swing.JFrame
     
     public Registry()
     {
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         initComponents();
     }
     

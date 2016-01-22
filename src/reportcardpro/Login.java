@@ -1,6 +1,8 @@
 package reportcardpro;
 
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class Login extends javax.swing.JFrame
@@ -11,10 +13,19 @@ public class Login extends javax.swing.JFrame
     
     public Login()
     {
+        
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         initComponents();
         rep.readTeacherList();
         rep.listTeachers();
-        //setIconImage(new ImageIcon("src\\reportcardpro\\img\\bgPaper.png").getImage());
     }
 
     @SuppressWarnings("unchecked")

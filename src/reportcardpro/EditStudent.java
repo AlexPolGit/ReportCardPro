@@ -23,6 +23,15 @@ public class EditStudent extends javax.swing.JFrame
 
     public EditStudent(Teacher t, Student s)
     {
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         this.currentTeacher = t;
         this.currentStudent = s;
         this.currentTeacher.removeStudent(currentStudent);
@@ -92,11 +101,6 @@ public class EditStudent extends javax.swing.JFrame
         lblName.setText("Name: ");
 
         lstMarks.setModel(dmTempMarksList);
-        lstMarks.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstMarksMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(lstMarks);
 
         btnAddMark.setText("Add Mark");
@@ -446,10 +450,6 @@ public class EditStudent extends javax.swing.JFrame
         selectedSubject = currentStudent.getSubjectByName(temp);
         makeDefListOfMarks();
     }//GEN-LAST:event_lstSubjectsMouseClicked
-
-    private void lstMarksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstMarksMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstMarksMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMark;
