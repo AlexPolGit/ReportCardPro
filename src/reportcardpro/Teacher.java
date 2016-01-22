@@ -347,8 +347,9 @@ public class Teacher
         System.out.println();
     } 
      /**
-     * Finds the name of the student by first name.
+     * Finds a student by their name.
      * @param name first name of student.
+     * @return 
      */
     public Student getStudentByName(String name)
     {
@@ -363,8 +364,9 @@ public class Teacher
         return null;
     }
     /**
-     * Finds the id number of a student.
+     * Finds a student by their ID, as a string.
      * @param id The id number of a student.
+     * @return 
      */
     public Student getStudentByID(String id)
     {
@@ -380,8 +382,9 @@ public class Teacher
         return null;
     }
     /**
-     * Finds the student by searching using their id number.
+     * Finds a student by their ID, as a UUID.
      * @param id The id number of a student.
+     * @return 
      */
     public Student getStudentByID(UUID id)
     {
@@ -393,6 +396,19 @@ public class Teacher
             }
         }
         System.err.println("Student (" + id + ") not found!");
+        return null;
+    }
+    
+    public Student getStudent(String name, String gender, int age)
+    {
+        for (Student s: students)
+        {
+            if (name.equals(s.name) && gender.equals(s.gender) && age == s.getAge())
+            {
+                return s;
+            }
+        }
+        System.err.println("Student (" + name + ") not found!");
         return null;
     }
 }

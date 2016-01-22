@@ -12,6 +12,7 @@ public class PrintableReport extends javax.swing.JFrame
     
     public PrintableReport(Student s)
     {
+        System.out.println("OPENED REPORT OF " + s.name);
         this.toCopy = s;
         initComponents();
     }
