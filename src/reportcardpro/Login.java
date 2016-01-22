@@ -1,9 +1,6 @@
 package reportcardpro;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class Login extends javax.swing.JFrame

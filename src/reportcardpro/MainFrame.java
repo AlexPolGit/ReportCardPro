@@ -433,7 +433,7 @@ public class MainFrame extends javax.swing.JFrame
         }
     }
     
-    public void addStudentToTeacher(Student s)
+    public void addStudentToTeacher(Student s) throws IOException
     {
         selectedTeacher.addStudent(s);
     }
@@ -615,7 +615,7 @@ class AddStudent extends javax.swing.JFrame
             int y = Integer.parseInt(fldAgeYear.getText());
             Student temp = new Student(UUID.randomUUID(), n, g, d, m, y);
             
-            System.out.println("Created: " + temp.name + ", " + temp.gender + ", " + temp.getAge());
+            System.out.println("Adding: " + temp.name + ", " + temp.gender + ", " + temp.getAge());
             
             selectedTeacher.addStudent(temp);
             selectedTeacher.sortStudents();

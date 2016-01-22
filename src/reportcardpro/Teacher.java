@@ -117,10 +117,27 @@ public class Teacher
         Collections.sort(students, new StudentComparator());
     }
     
-    public void addStudent(Student s)
+    public void addStudent(Student s) throws IOException
     {
+        System.out.println("Try to add student to " + name + ": " + s.name + ", " + s.id);
         students.add(s);
         sortStudents();
+        
+        listStudents();
+        
+        File studentPath = new File("teachers\\" + id.toString() + "\\students\\");
+        studentPath.mkdirs();
+        
+        System.out.println(studentPath.getCanonicalPath());
+        
+        File outFile = new File(studentPath.getCanonicalPath() + "\\" + s.id + ".properties");
+        
+        System.out.println(outFile.getCanonicalPath());
+        
+        if (!outFile.createNewFile())
+        {
+            System.out.println("This student does not yet exist, creating: " + outFile.getName());
+        }
     }
     
      /**
@@ -268,12 +285,6 @@ public class Teacher
         for (Student s: this.students)
         {
             File outFile = new File(id.toString() + "\\students\\" + s.id + ".properties");
-            
-            if (!outFile.exists())
-            {
-                System.out.println(s.id + ", " + s.name + " DOESNT HAVE A FILE, CREATING.");
-                outFile.createNewFile();
-            }
             
             try (OutputStream fileOS = new FileOutputStream(outFile))
             {
