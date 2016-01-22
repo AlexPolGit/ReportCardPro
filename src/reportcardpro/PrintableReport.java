@@ -59,15 +59,13 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setDefaultRenderer(String.class, centerRenderer);
         tblStudentInfo.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblStudentInfo);
-        if (tblStudentInfo.getColumnModel().getColumnCount() > 0) {
-            tblStudentInfo.getColumnModel().getColumn(0).setResizable(false);
-            tblStudentInfo.getColumnModel().getColumn(0).setHeaderValue("Student");
-            tblStudentInfo.getColumnModel().getColumn(1).setResizable(false);
-            tblStudentInfo.getColumnModel().getColumn(1).setHeaderValue("Age");
-            tblStudentInfo.getColumnModel().getColumn(2).setHeaderValue("Gender");
-            tblStudentInfo.getColumnModel().getColumn(3).setHeaderValue("Mean Average");
-            tblStudentInfo.getColumnModel().getColumn(4).setHeaderValue("Median Average");
-        }
+        tblStudentInfo.getColumnModel().getColumn(0).setResizable(false);
+        tblStudentInfo.getColumnModel().getColumn(0).setHeaderValue("Student");
+        tblStudentInfo.getColumnModel().getColumn(1).setResizable(false);
+        tblStudentInfo.getColumnModel().getColumn(1).setHeaderValue("Age");
+        tblStudentInfo.getColumnModel().getColumn(2).setHeaderValue("Gender");
+        tblStudentInfo.getColumnModel().getColumn(3).setHeaderValue("Mean Average");
+        tblStudentInfo.getColumnModel().getColumn(4).setHeaderValue("Median Average");
         tblStudentInfo.setValueAt (toCopy.name, 0, 0);
         tblStudentInfo.setValueAt (Integer.toString(toCopy.getAge()), 0, 1);
         tblStudentInfo.setValueAt (toCopy.gender, 0, 2);

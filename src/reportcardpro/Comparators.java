@@ -3,7 +3,7 @@ package reportcardpro;
 import java.util.Comparator;
 
 /**
- * Compares two students name and sorts them alphabetically.
+ * Compares two teachers names and sorts them alphabetically.
  */
 
 class TeacherComparator implements Comparator<Teacher>
@@ -15,7 +15,7 @@ class TeacherComparator implements Comparator<Teacher>
     }
 }
 /**
- * Compares the marks of a student to another's.
+ * Compares two students name and sorts them alphabetically.
  */
 class StudentComparator implements Comparator<Student>
 {
@@ -27,7 +27,7 @@ class StudentComparator implements Comparator<Student>
 }
 
 /**
- * Compares the subject of the students 
+ * Compares the subject's of the students 
  */
 class SubjectComparator implements Comparator<Subject>
 {
@@ -49,7 +49,9 @@ class SubjectComparatorByMark implements Comparator<Subject>
         return s1.getMeanAverage().compareTo(s2.getMeanAverage());
     }
 }
-
+/*
+ * Compares two marks of a student and sorts them from lowest to highest.
+ */
 class MarkComparator implements Comparator<Mark>
 {
     @Override
@@ -59,8 +61,5 @@ class MarkComparator implements Comparator<Mark>
     }
 }
 
-/**
- * The class that compares two students information.
- */
 public class Comparators
 {}

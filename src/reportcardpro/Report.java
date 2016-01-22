@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The main class for Report Card Pro that organizes the data collected from: 
+ * The class for Report Card Pro that organizes the data collected from: 
  * <br>
  * @param Student The class that finds the information of a student.
  * <br>
@@ -45,6 +45,7 @@ public class Report
     }
     /**
      * Removes a teacher from the list of teachers and the list from the subject list they were in.
+     * <br>
      * @param id the id number of the teacher.
      * <br>
      * @param name the name of the teacher.
