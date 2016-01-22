@@ -1,16 +1,9 @@
 package reportcardpro;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 public class Login extends javax.swing.JFrame
@@ -214,6 +207,7 @@ public class Login extends javax.swing.JFrame
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void lblTempTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTempTitleMouseClicked
+        /*
         Student testStu = new Student(UUID.randomUUID(), "Jimbo", "Male", 2003, 7, 19);
 
         Subject temp1 = new Subject("Art", "Arts and crafts.");
@@ -288,6 +282,7 @@ public class Login extends javax.swing.JFrame
         }
 
         pr.setVisible(true);
+                */
     }//GEN-LAST:event_lblTempTitleMouseClicked
 
     public void tryLogin(String u, String p) throws IOException

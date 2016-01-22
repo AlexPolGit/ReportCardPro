@@ -257,57 +257,63 @@ public class Teacher
      /**
      * Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
      * <br>
-     * @param input The input file the teacher has selected.
-     * <br>
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
      */
-    public void writeStudentList(ArrayList<Student> input) throws FileNotFoundException, IOException
+    public void writeStudentList() throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
-        
-        for (Student s: input)
+
+        for (Student s: this.students)
         {
             File outFile = new File(id.toString() + "\\students\\" + s.id + ".properties");
-            FileOutputStream fileOS = new FileOutputStream(outFile);
-            prop.setProperty("id", s.id.toString());
-            prop.setProperty("name", s.name);
-            prop.setProperty("gender", s.gender);
-            prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear() + 1900));
-            prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth() + 1));
-            prop.setProperty("birthDate", Integer.toString(s.birthDate.getTime().getDate()));
             
-            String subjectsString = "";
-            int n = 0;
-            
-            for (Subject sub: s.subjects)
+            if (!outFile.exists())
             {
-                n++;
-                subjectsString += ("(" + sub.subjectName + "," + sub.subjectDescription + ",[");
-                
-                int m = 0;
-                
-                for (Mark mar : sub.marks)
-                {
-                    m++;
-                    subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
-                    if (m != sub.marks.size())
-                    {
-                        subjectsString += "-";
-                    }
-                }
-                subjectsString += "]" + sub.comment + ")";
-                if (n != s.subjects.size())
-                {
-                    subjectsString += "&";
-                }
+                System.out.println(s.id + ", " + s.name + " DOESNT HAVE A FILE, CREATING.");
+                outFile.createNewFile();
             }
             
-            prop.setProperty("subjects", subjectsString);
-
-            prop.store(fileOS, s.name + "'s Saved Properties File");
-            fileOS.close();
+            try (OutputStream fileOS = new FileOutputStream(outFile))
+            {
+                prop.setProperty("id", s.id.toString());
+                prop.setProperty("name", s.name);
+                prop.setProperty("gender", s.gender);
+                prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear() + 1900));
+                prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth() + 1));
+                prop.setProperty("birthDate", Integer.toString(s.birthDate.getTime().getDate()));
+                
+                String subjectsString = "";
+                int n = 0;
+                
+                for (Subject sub: s.subjects)
+                {
+                    n++;
+                    subjectsString += ("(" + sub.subjectName + "," + sub.subjectDescription + ",[");
+                    
+                    int m = 0;
+                    
+                    for (Mark mar : sub.marks)
+                    {
+                        m++;
+                        subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
+                        if (m != sub.marks.size())
+                        {
+                            subjectsString += "-";
+                        }
+                    }
+                    subjectsString += "]" + sub.comment + ")";
+                    if (n != s.subjects.size())
+                    {
+                        subjectsString += "&";
+                    }
+                }
+                
+                prop.setProperty("subjects", subjectsString);
+                
+                prop.store(fileOS, s.name + "'s Saved Properties File");
+            }
         }
     }
     /**

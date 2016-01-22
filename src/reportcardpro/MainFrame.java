@@ -1,10 +1,13 @@
 package reportcardpro;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
@@ -25,12 +28,11 @@ public class MainFrame extends javax.swing.JFrame
     
     public DebugConsole debug = new DebugConsole();
     
-    public MainFrame(Teacher t)
+    public MainFrame(Teacher t) throws IOException
     {
-        this.selectedTeacher = t;
+        this.selectedTeacher = t;   
         makeDefListOfStudents();
         initComponents();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -346,9 +348,7 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_EditStudentMouse
 
     private void AddStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddStudentMouse
-        System.out.println("TESTESTEST");
-        AddStudent as = new AddStudent();
-        as.setVisible(true);
+
     }//GEN-LAST:event_AddStudentMouse
 
     private void lstStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstStudentsMouseClicked
@@ -399,8 +399,11 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_menReportMouseClicked
 
     private void menStudentsAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsAddActionPerformed
-        AddStudent as = new AddStudent();
+        AddStudent as = new AddStudent(selectedTeacher);
         as.setVisible(true);
+        
+        this.setVisible(false);
+        this.setEnabled(false);
     }//GEN-LAST:event_menStudentsAddActionPerformed
 
     public void makeDefListOfStudents()
@@ -474,13 +477,16 @@ public class MainFrame extends javax.swing.JFrame
 
 class AddStudent extends javax.swing.JFrame
 {
-    public AddStudent()
+    
+    public Teacher selectedTeacher;
+    
+    public AddStudent(Teacher t)
     {
         initComponents();
+        this.selectedTeacher = t;
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    @SuppressWarnings("unchecked")                      
     private void initComponents()
     {
         pnlBG = new javax.swing.JPanel();
@@ -517,7 +523,13 @@ class AddStudent extends javax.swing.JFrame
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                btnAddStudentMouseClicked(evt);
+                try
+                {
+                    btnAddStudentMouseClicked(evt);
+                } catch (IOException ex)
+                {
+                    System.err.println(ex.toString());
+                }
             }
         });
 
@@ -590,30 +602,80 @@ class AddStudent extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>                        
+    }                        
 
-    private void btnAddStudentMouseClicked(java.awt.event.MouseEvent evt)                                           
+    private void btnAddStudentMouseClicked(java.awt.event.MouseEvent evt) throws IOException                                           
     {      
-        //if (fldName.getText())
-        String n = fldName.getText();
-        String g = fldGender.getText();
-        int d = Integer.parseInt(fldAgeDay.getText());
-        int m = Integer.parseInt(fldAgeMonth.getText());
-        int y = Integer.parseInt(fldAgeYear.getText());
-        Student temp = new Student(UUID.randomUUID(), n, g, d, m, y);
-    }                                          
-
-    public static void main(String args[])
-    {
-        java.awt.EventQueue.invokeLater(new Runnable()
+        if (!fldName.getText().isEmpty() && !fldGender.getText().isEmpty() && !fldAgeDay.getText().isEmpty() && !fldAgeMonth.getText().isEmpty() && !fldAgeYear.getText().isEmpty())
         {
-            public void run()
+            String n = fldName.getText();
+            String g = fldGender.getText();
+            int d = Integer.parseInt(fldAgeDay.getText());
+            int m = Integer.parseInt(fldAgeMonth.getText());
+            int y = Integer.parseInt(fldAgeYear.getText());
+            Student temp = new Student(UUID.randomUUID(), n, g, d, m, y);
+            
+            System.out.println("Created: " + temp.name + ", " + temp.gender + ", " + temp.getAge());
+            
+            selectedTeacher.addStudent(temp);
+            selectedTeacher.sortStudents();
+            selectedTeacher.writeStudentList();
+            
+            MainFrame mf = new MainFrame(selectedTeacher);
+            
+            try
             {
-                new AddStudent().setVisible(true);
+                mf.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
             }
-        });
+            catch(IOException ex)
+            {
+                System.err.println(ex.toString());
+            }
+            
+            mf.setVisible(true);
+            
+            this.setVisible(false);
+            this.setEnabled(false);
+        }
+        
+        if (fldName.getText().isEmpty())
+        {
+            lblName.setForeground(new Color(255, 0, 0));
+        }
+        
+        if (fldGender.getText().isEmpty())
+        {
+            lblGender.setForeground(new Color(255, 0, 0));
+        }
+        
+        if (fldAgeDay.getText().isEmpty())
+        {
+            lblAge.setForeground(new Color(255, 0, 0));
+        }
+        
+        if (fldAgeMonth.getText().isEmpty())
+        {
+            lblAge.setForeground(new Color(255, 0, 0));
+        }
+        
+        if (fldAgeYear.getText().isEmpty())
+        {
+            lblAge.setForeground(new Color(255, 0, 0));
+        }
     }
-                   
+    
+    public void sleep(long ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            System.err.println(ex.toString());
+        }
+    }
+     
     private javax.swing.JButton btnAddStudent;
     private javax.swing.JTextField fldAgeDay;
     private javax.swing.JTextField fldAgeMonth;
