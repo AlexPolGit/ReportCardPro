@@ -116,6 +116,13 @@ public class Teacher
     {
         Collections.sort(students, new StudentComparator());
     }
+    
+    public void addStudent(Student s)
+    {
+        students.add(s);
+        sortStudents();
+    }
+    
      /**
      *creates a random student given the following params:
      * <br>

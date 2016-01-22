@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
@@ -68,8 +69,6 @@ public class MainFrame extends javax.swing.JFrame
         menStudentsRemove = new javax.swing.JMenuItem();
         menStudentsEdit = new javax.swing.JMenuItem();
         menReport = new javax.swing.JMenu();
-        menReportView = new javax.swing.JMenuItem();
-        menReportPrint = new javax.swing.JMenuItem();
         menHelp = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,7 +134,7 @@ public class MainFrame extends javax.swing.JFrame
         lblTeacherName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTeacherName.setText(this.selectedTeacher.name);
         jDesktopPane1.add(lblTeacherName);
-        lblTeacherName.setBounds(30, 60, 190, 30);
+        lblTeacherName.setBounds(20, 60, 200, 30);
 
         lblSubjectText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSubjectText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -237,6 +236,11 @@ public class MainFrame extends javax.swing.JFrame
                 AddStudentMouse(evt);
             }
         });
+        menStudentsAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menStudentsAddActionPerformed(evt);
+            }
+        });
         menStudents.add(menStudentsAdd);
 
         menStudentsRemove.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
@@ -265,28 +269,11 @@ public class MainFrame extends javax.swing.JFrame
         jMenuBar1.add(menStudents);
 
         menReport.setText("Report");
-
-        menReportView.setText("View Report");
-        menReportView.addMouseListener(new java.awt.event.MouseAdapter() {
+        menReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ViewReportMosue(evt);
+                menReportMouseClicked(evt);
             }
         });
-        menReport.add(menReportView);
-
-        menReportPrint.setText("Print Report");
-        menReportPrint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PrintReportMouse(evt);
-            }
-        });
-        menReportPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menReportPrintActionPerformed(evt);
-            }
-        });
-        menReport.add(menReportPrint);
-
         jMenuBar1.add(menReport);
 
         menHelp.setText("Help");
@@ -308,11 +295,11 @@ public class MainFrame extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -325,10 +312,6 @@ public class MainFrame extends javax.swing.JFrame
     private void menSettingsChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangeUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menSettingsChangeUserActionPerformed
-
-    private void menReportPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menReportPrintActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menReportPrintActionPerformed
 
     private void menHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menHelpActionPerformed
         // TODO add your handling code here:
@@ -363,29 +346,10 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_EditStudentMouse
 
     private void AddStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddStudentMouse
-        // TODO add your handling code here:
+        System.out.println("TESTESTEST");
+        AddStudent as = new AddStudent();
+        as.setVisible(true);
     }//GEN-LAST:event_AddStudentMouse
-
-    private void ViewReportMosue(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewReportMosue
-        if (selectedStudent != null)
-        {
-            PrintableReport pr = new PrintableReport(selectedStudent);
-            try
-            {
-                pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-            }
-            catch(IOException ex)
-            {
-                System.err.println(ex.toString());
-            }
-
-            pr.setVisible(true);
-        }
-    }//GEN-LAST:event_ViewReportMosue
-
-    private void PrintReportMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrintReportMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrintReportMouse
 
     private void lstStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstStudentsMouseClicked
         lblStudentName.setText("");
@@ -418,6 +382,27 @@ public class MainFrame extends javax.swing.JFrame
         lblSubjectAverage.setText(df.format(selectedSubject.getMeanAverage()) + "%");
     }//GEN-LAST:event_lstSubjectsMouseClicked
 
+    private void menReportMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menReportMouseClicked
+    {//GEN-HEADEREND:event_menReportMouseClicked
+        PrintableReport pr = new PrintableReport(selectedStudent);
+
+        try
+        {
+            pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+
+        pr.setVisible(true);
+    }//GEN-LAST:event_menReportMouseClicked
+
+    private void menStudentsAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsAddActionPerformed
+        AddStudent as = new AddStudent();
+        as.setVisible(true);
+    }//GEN-LAST:event_menStudentsAddActionPerformed
+
     public void makeDefListOfStudents()
     {
         dmTempStudentsList.clear();
@@ -430,7 +415,7 @@ public class MainFrame extends javax.swing.JFrame
     public void makeDefListOfSubjects(Student student)
     {
         dmTempSubjectList.clear();
-        for (Subject s: student.subjects)
+        for (Subject s: selectedStudent.subjects)
         {
             dmTempSubjectList.addElement(" • " + s.subjectName + ": " + s.subjectDescription);
         }
@@ -439,10 +424,15 @@ public class MainFrame extends javax.swing.JFrame
     public void makeDefListOfMarks(Subject subject)
     {
         dmTempMarksList.clear();
-        for (Mark m: subject.marks)
+        for (Mark m: selectedSubject.marks)
         {
             dmTempMarksList.addElement(" • " + m.getMarkType() + ": " + m.mark + "% [" + m.markDescription + "]");
         }
+    }
+    
+    public void addStudentToTeacher(Student s)
+    {
+        selectedTeacher.addStudent(s);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -470,8 +460,6 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JList lstSubjects;
     private javax.swing.JMenu menHelp;
     private javax.swing.JMenu menReport;
-    private javax.swing.JMenuItem menReportPrint;
-    private javax.swing.JMenuItem menReportView;
     private javax.swing.JMenu menSettings;
     private javax.swing.JMenuItem menSettingsChangePassword;
     private javax.swing.JMenuItem menSettingsChangeUser;
@@ -482,4 +470,159 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JMenuItem menStudentsRemove;
     private javax.swing.JLabel picStudentPicture;
     // End of variables declaration//GEN-END:variables
+}
+
+class AddStudent extends javax.swing.JFrame
+{
+    public AddStudent()
+    {
+        initComponents();
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents()
+    {
+        pnlBG = new javax.swing.JPanel();
+        fldName = new javax.swing.JTextField();
+        fldGender = new javax.swing.JTextField();
+        fldAgeDay = new javax.swing.JTextField();
+        fldAgeMonth = new javax.swing.JTextField();
+        fldAgeYear = new javax.swing.JTextField();
+        lblGender = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblAge = new javax.swing.JLabel();
+        btnAddStudent = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlBG.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblGender.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGender.setText("Gender:");
+
+        lblName.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblName.setText("Name:");
+
+        lblAge.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        lblAge.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAge.setText("Age (D/M/Y):");
+
+        btnAddStudent.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnAddStudent.setText("Add Student");
+        btnAddStudent.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                btnAddStudentMouseClicked(evt);
+            }
+        });
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitle.setText("Enter Student Info Below");
+
+        javax.swing.GroupLayout pnlBGLayout = new javax.swing.GroupLayout(pnlBG);
+        pnlBG.setLayout(pnlBGLayout);
+        pnlBGLayout.setHorizontalGroup(
+            pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBGLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(fldGender)
+                    .addComponent(fldName)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBGLayout.createSequentialGroup()
+                        .addComponent(fldAgeDay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fldAgeMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fldAgeYear, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
+                .addGap(31, 31, 31))
+            .addGroup(pnlBGLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(btnAddStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBGLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(76, 76, 76))
+        );
+        pnlBGLayout.setVerticalGroup(
+            pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBGLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lblTitle)
+                .addGap(31, 31, 31)
+                .addGroup(pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldGender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlBGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldAgeDay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldAgeMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldAgeYear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAddStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void btnAddStudentMouseClicked(java.awt.event.MouseEvent evt)                                           
+    {      
+        //if (fldName.getText())
+        String n = fldName.getText();
+        String g = fldGender.getText();
+        int d = Integer.parseInt(fldAgeDay.getText());
+        int m = Integer.parseInt(fldAgeMonth.getText());
+        int y = Integer.parseInt(fldAgeYear.getText());
+        Student temp = new Student(UUID.randomUUID(), n, g, d, m, y);
+    }                                          
+
+    public static void main(String args[])
+    {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                new AddStudent().setVisible(true);
+            }
+        });
+    }
+                   
+    private javax.swing.JButton btnAddStudent;
+    private javax.swing.JTextField fldAgeDay;
+    private javax.swing.JTextField fldAgeMonth;
+    private javax.swing.JTextField fldAgeYear;
+    private javax.swing.JTextField fldGender;
+    private javax.swing.JTextField fldName;
+    private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlBG;                  
 }
