@@ -217,7 +217,8 @@ public class Student
     }
     
     /**
-     *Removes a subject from a student's time table. 
+     *Removes a subject from a student's time table.
+     * @param toRemove
      */
     public void removeSubject(Subject toRemove)
     {

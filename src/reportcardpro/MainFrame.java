@@ -81,16 +81,18 @@ public class MainFrame extends javax.swing.JFrame
 
         lblSignedInAs.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSignedInAs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSignedInAs.setText("Signed in as:");
+        lblSignedInAs.setText("Currently Signed in as:");
         jDesktopPane1.add(lblSignedInAs);
-        lblSignedInAs.setBounds(60, 20, 110, 40);
+        lblSignedInAs.setBounds(60, 10, 220, 40);
 
+        lstMarks.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lstMarks.setModel(dmTempMarksList);
         jScrollPane3.setViewportView(lstMarks);
 
         jDesktopPane1.add(jScrollPane3);
-        jScrollPane3.setBounds(920, 210, 350, 740);
+        jScrollPane3.setBounds(820, 210, 450, 740);
 
+        lstSubjects.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lstSubjects.setModel(dmTempSubjectList);
         lstSubjects.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,8 +102,9 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane4.setViewportView(lstSubjects);
 
         jDesktopPane1.add(jScrollPane4);
-        jScrollPane4.setBounds(350, 210, 540, 740);
+        jScrollPane4.setBounds(350, 210, 440, 740);
 
+        lstStudents.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lstStudents.setModel(dmTempStudentsList);
         lstStudents.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,55 +117,58 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane5.setBounds(20, 210, 300, 740);
 
         lblStudentNameText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblStudentNameText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStudentNameText.setText("Student Name:");
         jDesktopPane1.add(lblStudentNameText);
-        lblStudentNameText.setBounds(290, 40, 120, 30);
+        lblStudentNameText.setBounds(370, 20, 120, 30);
 
         lblAgeText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblAgeText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAgeText.setText("Age:");
         jDesktopPane1.add(lblAgeText);
-        lblAgeText.setBounds(290, 120, 40, 30);
+        lblAgeText.setBounds(450, 100, 40, 30);
 
         lblGenderText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblGenderText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblGenderText.setText("Gender:");
         jDesktopPane1.add(lblGenderText);
-        lblGenderText.setBounds(290, 80, 57, 30);
+        lblGenderText.setBounds(430, 60, 57, 30);
 
-        lblStudents.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblStudents.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         lblStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStudents.setText("Students");
+        lblStudents.setText("Students:");
         jDesktopPane1.add(lblStudents);
-        lblStudents.setBounds(90, 170, 70, 30);
+        lblStudents.setBounds(110, 170, 120, 30);
 
         lblTeacherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTeacherName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTeacherName.setText(this.selectedTeacher.name);
         jDesktopPane1.add(lblTeacherName);
-        lblTeacherName.setBounds(20, 60, 200, 30);
+        lblTeacherName.setBounds(70, 50, 200, 30);
 
-        lblSubjectText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblSubjectText.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblSubjectText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectText.setText("Subject:");
         jDesktopPane1.add(lblSubjectText);
-        lblSubjectText.setBounds(1060, 90, 70, 20);
+        lblSubjectText.setBounds(980, 70, 150, 30);
 
         lblSubject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubject.setText("[none]");
         jDesktopPane1.add(lblSubject);
-        lblSubject.setBounds(1010, 120, 160, 20);
+        lblSubject.setBounds(910, 100, 290, 30);
 
-        lblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblSubjectAverageText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverageText.setText("Subject Average:");
         jDesktopPane1.add(lblSubjectAverageText);
-        lblSubjectAverageText.setBounds(1030, 150, 130, 20);
+        lblSubjectAverageText.setBounds(950, 130, 210, 30);
 
         lblSubjectAverage.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubjectAverage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverage.setText("[none]");
         jDesktopPane1.add(lblSubjectAverage);
-        lblSubjectAverage.setBounds(1010, 180, 160, 20);
+        lblSubjectAverage.setBounds(950, 160, 220, 30);
 
         LblSelectedMark.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(LblSelectedMark);
@@ -172,31 +178,33 @@ public class MainFrame extends javax.swing.JFrame
         lblAge.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAge.setText("[none]");
         jDesktopPane1.add(lblAge);
-        lblAge.setBounds(330, 120, 100, 30);
+        lblAge.setBounds(500, 100, 200, 30);
 
         lblStudentName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblStudentName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblStudentName.setText("[none]");
         jDesktopPane1.add(lblStudentName);
-        lblStudentName.setBounds(400, 40, 120, 30);
+        lblStudentName.setBounds(500, 20, 300, 30);
 
         lblGender.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGender.setText("[none]");
         jDesktopPane1.add(lblGender);
-        lblGender.setBounds(350, 80, 130, 30);
+        lblGender.setBounds(500, 60, 200, 30);
 
         picStudentPicture.setText("pic");
         picStudentPicture.setToolTipText("");
         jDesktopPane1.add(picStudentPicture);
-        picStudentPicture.setBounds(230, 50, 20, 14);
+        picStudentPicture.setBounds(360, 160, 20, 20);
 
-        lblSubjects.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblSubjects.setText("Subjects");
+        lblSubjects.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        lblSubjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubjects.setText("Subjects:");
         jDesktopPane1.add(lblSubjects);
-        lblSubjects.setBounds(620, 170, 70, 30);
+        lblSubjects.setBounds(550, 170, 120, 30);
 
         icoGlass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/mGlass.png"))); // NOI18N
+        icoGlass.setToolTipText("Search for Student by Name");
         icoGlass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         icoGlass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,11 +231,6 @@ public class MainFrame extends javax.swing.JFrame
 
         menSettingsChangeUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         menSettingsChangeUser.setText("Change Username");
-        menSettingsChangeUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChangeUsernameMouse(evt);
-            }
-        });
         menSettingsChangeUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menSettingsChangeUserActionPerformed(evt);
@@ -237,19 +240,14 @@ public class MainFrame extends javax.swing.JFrame
 
         menSettingsChangePassword.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         menSettingsChangePassword.setText("Change Password");
-        menSettingsChangePassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChangePasswordMouse(evt);
+        menSettingsChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menSettingsChangePasswordActionPerformed(evt);
             }
         });
         menSettings.add(menSettingsChangePassword);
 
         menSettingsLogOut.setText("Log Out");
-        menSettingsLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutMouse(evt);
-            }
-        });
         menSettingsLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menSettingsLogOutActionPerformed(evt);
@@ -263,11 +261,6 @@ public class MainFrame extends javax.swing.JFrame
 
         menStudentsAdd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         menStudentsAdd.setText("Add Student");
-        menStudentsAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddStudentMouse(evt);
-            }
-        });
         menStudentsAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menStudentsAddActionPerformed(evt);
@@ -277,20 +270,15 @@ public class MainFrame extends javax.swing.JFrame
 
         menStudentsRemove.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         menStudentsRemove.setText("Remove Student");
-        menStudentsRemove.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RemoveStudentMouse(evt);
+        menStudentsRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menStudentsRemoveActionPerformed(evt);
             }
         });
         menStudents.add(menStudentsRemove);
 
         menStudentsEdit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         menStudentsEdit.setText("Edit Student");
-        menStudentsEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditStudentMouse(evt);
-            }
-        });
         menStudentsEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menStudentsEditActionPerformed(evt);
@@ -353,33 +341,25 @@ public class MainFrame extends javax.swing.JFrame
         new HelpMenu().setVisible(true);
     }//GEN-LAST:event_menHelpMouseClicked
 
-    private void ChangeUsernameMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeUsernameMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangeUsernameMouse
-
-    private void ChangePasswordMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePasswordMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangePasswordMouse
-
-    private void LogOutMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogOutMouse
-
     private void menStudentsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsEditActionPerformed
-        // TODO add your handling code here:
+        if (selectedStudent != null)
+        {
+            EditStudent es = new EditStudent(selectedTeacher, selectedStudent);
+            
+            try
+            {
+                es.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+            }
+            catch(IOException ex)
+            {
+                System.err.println(ex.toString());
+            }
+
+            es.setVisible(true);
+            this.setVisible(false);
+            this.setEnabled(false);
+        }
     }//GEN-LAST:event_menStudentsEditActionPerformed
-
-    private void RemoveStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveStudentMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveStudentMouse
-
-    private void EditStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditStudentMouse
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditStudentMouse
-
-    private void AddStudentMouse(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddStudentMouse
-
-    }//GEN-LAST:event_AddStudentMouse
 
     private void lstStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstStudentsMouseClicked
         clearLabels();
@@ -448,6 +428,14 @@ public class MainFrame extends javax.swing.JFrame
     private void fldStudentSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldStudentSearchActionPerformed
         
     }//GEN-LAST:event_fldStudentSearchActionPerformed
+
+    private void menStudentsRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menStudentsRemoveActionPerformed
+
+    private void menSettingsChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangePasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menSettingsChangePasswordActionPerformed
 
     public void makeDefListOfStudents()
     {

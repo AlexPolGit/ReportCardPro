@@ -182,6 +182,13 @@ public class Teacher
         students.remove(student);
         sortStudents();
     }
+    
+    public void removeStudent(Student s)
+    {
+        Student student = s;
+        students.remove(student);
+        sortStudents();
+    }
     /**
      * The teacher sets username they want to use for the program.
      */

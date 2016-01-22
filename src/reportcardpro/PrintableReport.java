@@ -19,8 +19,7 @@ public class PrintableReport extends javax.swing.JFrame
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudentInfo = new javax.swing.JTable();
@@ -39,32 +38,25 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         tblStudentInfo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblStudentInfo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Student", "Age", "Gender", "Mean Average", "Median Average"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean []
-            {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -75,8 +67,7 @@ public class PrintableReport extends javax.swing.JFrame
         tblStudentInfo.setDefaultRenderer(String.class, centerRenderer);
         tblStudentInfo.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblStudentInfo);
-        if (tblStudentInfo.getColumnModel().getColumnCount() > 0)
-        {
+        if (tblStudentInfo.getColumnModel().getColumnCount() > 0) {
             tblStudentInfo.getColumnModel().getColumn(0).setResizable(false);
             tblStudentInfo.getColumnModel().getColumn(0).setHeaderValue("Student");
             tblStudentInfo.getColumnModel().getColumn(1).setResizable(false);
@@ -135,15 +126,12 @@ public class PrintableReport extends javax.swing.JFrame
         tblMarkTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object[markStrings[0].length][markStrings[1].length],
             subStrings
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -204,15 +192,12 @@ public class PrintableReport extends javax.swing.JFrame
                 {null, null}
             },
             subStrings
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
