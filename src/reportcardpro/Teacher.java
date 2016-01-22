@@ -122,22 +122,17 @@ public class Teacher
         System.out.println("Try to add student to " + name + ": " + s.name + ", " + s.id);
         students.add(s);
         sortStudents();
-        
-        listStudents();
-        
+
         File studentPath = new File("teachers\\" + id.toString() + "\\students\\");
         studentPath.mkdirs();
-        
-        System.out.println(studentPath.getCanonicalPath());
-        
         File outFile = new File(studentPath.getCanonicalPath() + "\\" + s.id + ".properties");
         
-        System.out.println(outFile.getCanonicalPath());
-        
-        if (!outFile.createNewFile())
+        if (outFile.createNewFile())
         {
             System.out.println("This student does not yet exist, creating: " + outFile.getName());
         }
+        
+        writeStudentList();
     }
     
      /**
@@ -216,7 +211,7 @@ public class Teacher
         {
             ArrayList<File> list = new ArrayList<>(Arrays.asList(new File("teachers\\" + id.toString() + "\\students\\").listFiles()));
             Properties prop = new Properties();
-
+            
             for (int i = 0; i < list.size(); i++)
             {
                 InputStream toStream = new FileInputStream(list.get(i));
@@ -231,37 +226,40 @@ public class Teacher
                 String subjectString = prop.getProperty("subjects");
                 String[] toParse = subjectString.split("&");
                 int n = 0;
-                
-                while (true)
-                {
-                    String name = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[0];
-                    String desc = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
-                    String comm = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
-                    String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
 
-                    Subject tempSub = new Subject(name, desc);
-                    
-                    tempSub.setComment(comm);
-                    
-                    for (String m : marksList)
+                if (!subjectString.isEmpty())
+                {
+                    while (true)
                     {
-                        Double value = Double.parseDouble(m.split(":")[0]);
-                        Double weight = Double.parseDouble(m.split(":")[1]);
-                        String mdesc = m.split(":")[2];
-                        tempSub.addMark(new Mark(value, weight, mdesc));
-                    }
-                    
-                    tempStu.addSubject(tempSub);
-                    if (n == toParse.length - 1)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        n++;
+                        String nameS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[0];
+                        String descS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
+                        String commS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
+                        String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
+
+                        Subject tempSub = new Subject(nameS, descS);
+
+                        tempSub.setComment(commS);
+
+                        for (String m : marksList)
+                        {
+                            Double value = Double.parseDouble(m.split(":")[0]);
+                            Double weight = Double.parseDouble(m.split(":")[1]);
+                            String mdesc = m.split(":")[2];
+                            tempSub.addMark(new Mark(value, weight, mdesc));
+                        }
+
+                        tempStu.addSubject(tempSub);
+                        if (n == toParse.length - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            n++;
+                        }
                     }
                 }
-                
+
                 students.add(tempStu);
             }
         }
@@ -284,7 +282,7 @@ public class Teacher
 
         for (Student s: this.students)
         {
-            File outFile = new File(id.toString() + "\\students\\" + s.id + ".properties");
+            File outFile = new File("teachers\\" + id.toString() + "\\students\\" + s.id + ".properties");
             
             try (OutputStream fileOS = new FileOutputStream(outFile))
             {
@@ -314,7 +312,7 @@ public class Teacher
                             subjectsString += "-";
                         }
                     }
-                    subjectsString += "]" + sub.comment + ")";
+                    subjectsString += "]," + sub.comment + ")";
                     if (n != s.subjects.size())
                     {
                         subjectsString += "&";

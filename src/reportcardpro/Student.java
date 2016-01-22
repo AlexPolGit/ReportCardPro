@@ -269,25 +269,32 @@ public class Student
      */
     public void listSubjects()
     {
-        System.out.println(this.name + "'s Subjects:");
-        for (Subject s: subjects)
+        if (!subjects.isEmpty())
         {
-            System.out.println(" - " + s.subjectName);
-            for (Mark m: s.marks)
+            System.out.println(this.name + "'s Subjects:");
+            for (Subject s: subjects)
             {
-                String mark = Double.toString(m.mark);
-                if (m.mark <= 0.0)
+                System.out.println(" - " + s.subjectName);
+                for (Mark m: s.marks)
                 {
-                    mark = "Zero!";
+                    String mark = Double.toString(m.mark);
+                    if (m.mark <= 0.0)
+                    {
+                        mark = "Zero!";
+                    }
+                    System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + ", " + m.markDescription + "), ");
                 }
-                System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + ", " + m.markDescription + "), ");
+                System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
+                System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
+                System.out.println("Comment: " + s.comment);
             }
-            System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
-            System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
-            System.out.println("Comment: " + s.comment);
+            System.out.println("Overall Mean Average: " + df.format(this.getOverallMeanAverage()));
+            System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
         }
-        System.out.println("Overall Mean Average: " + df.format(this.getOverallMeanAverage()));
-        System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
+        else
+        {
+            System.out.println(this.name + " has no subjects.");
+        }
     }
     
     /**

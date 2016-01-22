@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +60,9 @@ public class MainFrame extends javax.swing.JFrame
         lblStudentName = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
         picStudentPicture = new javax.swing.JLabel();
+        lblSubjects = new javax.swing.JLabel();
+        icoGlass = new javax.swing.JLabel();
+        fldStudentSearch = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menSettings = new javax.swing.JMenu();
         menSettingsChangeUser = new javax.swing.JMenuItem();
@@ -87,7 +89,7 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane3.setViewportView(lstMarks);
 
         jDesktopPane1.add(jScrollPane3);
-        jScrollPane3.setBounds(510, 140, 200, 300);
+        jScrollPane3.setBounds(920, 210, 350, 740);
 
         lstSubjects.setModel(dmTempSubjectList);
         lstSubjects.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +100,7 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane4.setViewportView(lstSubjects);
 
         jDesktopPane1.add(jScrollPane4);
-        jScrollPane4.setBounds(240, 280, 260, 160);
+        jScrollPane4.setBounds(350, 210, 540, 740);
 
         lstStudents.setModel(dmTempStudentsList);
         lstStudents.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,28 +111,28 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane5.setViewportView(lstStudents);
 
         jDesktopPane1.add(jScrollPane5);
-        jScrollPane5.setBounds(10, 190, 220, 250);
+        jScrollPane5.setBounds(20, 210, 300, 740);
 
         lblStudentNameText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblStudentNameText.setText("Student Name:");
         jDesktopPane1.add(lblStudentNameText);
-        lblStudentNameText.setBounds(320, 20, 120, 30);
+        lblStudentNameText.setBounds(290, 40, 120, 30);
 
         lblAgeText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblAgeText.setText("Age:");
         jDesktopPane1.add(lblAgeText);
-        lblAgeText.setBounds(320, 100, 40, 30);
+        lblAgeText.setBounds(290, 120, 40, 30);
 
         lblGenderText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblGenderText.setText("Gender:");
         jDesktopPane1.add(lblGenderText);
-        lblGenderText.setBounds(320, 60, 57, 30);
+        lblGenderText.setBounds(290, 80, 57, 30);
 
         lblStudents.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStudents.setText("Students");
         jDesktopPane1.add(lblStudents);
-        lblStudents.setBounds(80, 160, 70, 30);
+        lblStudents.setBounds(90, 170, 70, 30);
 
         lblTeacherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTeacherName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,25 +144,25 @@ public class MainFrame extends javax.swing.JFrame
         lblSubjectText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectText.setText("Subject:");
         jDesktopPane1.add(lblSubjectText);
-        lblSubjectText.setBounds(580, 20, 70, 20);
+        lblSubjectText.setBounds(1060, 90, 70, 20);
 
         lblSubject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubject.setText("[none]");
         jDesktopPane1.add(lblSubject);
-        lblSubject.setBounds(530, 50, 160, 20);
+        lblSubject.setBounds(1010, 120, 160, 20);
 
         lblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSubjectAverageText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverageText.setText("Subject Average:");
         jDesktopPane1.add(lblSubjectAverageText);
-        lblSubjectAverageText.setBounds(550, 80, 130, 20);
+        lblSubjectAverageText.setBounds(1030, 150, 130, 20);
 
         lblSubjectAverage.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubjectAverage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverage.setText("[none]");
         jDesktopPane1.add(lblSubjectAverage);
-        lblSubjectAverage.setBounds(530, 110, 160, 20);
+        lblSubjectAverage.setBounds(1010, 180, 160, 20);
 
         LblSelectedMark.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(LblSelectedMark);
@@ -170,24 +172,52 @@ public class MainFrame extends javax.swing.JFrame
         lblAge.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAge.setText("[none]");
         jDesktopPane1.add(lblAge);
-        lblAge.setBounds(360, 100, 100, 30);
+        lblAge.setBounds(330, 120, 100, 30);
 
         lblStudentName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblStudentName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblStudentName.setText("[none]");
         jDesktopPane1.add(lblStudentName);
-        lblStudentName.setBounds(430, 14, 120, 40);
+        lblStudentName.setBounds(400, 40, 120, 30);
 
         lblGender.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGender.setText("[none]");
         jDesktopPane1.add(lblGender);
-        lblGender.setBounds(380, 60, 130, 30);
+        lblGender.setBounds(350, 80, 130, 30);
 
         picStudentPicture.setText("pic");
         picStudentPicture.setToolTipText("");
         jDesktopPane1.add(picStudentPicture);
-        picStudentPicture.setBounds(250, 80, 20, 14);
+        picStudentPicture.setBounds(230, 50, 20, 14);
+
+        lblSubjects.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblSubjects.setText("Subjects");
+        jDesktopPane1.add(lblSubjects);
+        lblSubjects.setBounds(620, 170, 70, 30);
+
+        icoGlass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/mGlass.png"))); // NOI18N
+        icoGlass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoGlass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icoGlassMouseClicked(evt);
+            }
+        });
+        icoGlass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                icoGlassKeyPressed(evt);
+            }
+        });
+        jDesktopPane1.add(icoGlass);
+        icoGlass.setBounds(900, 10, 32, 40);
+
+        fldStudentSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldStudentSearchActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(fldStudentSearch);
+        fldStudentSearch.setBounds(930, 10, 340, 30);
 
         menSettings.setText("Settings");
 
@@ -297,11 +327,11 @@ public class MainFrame extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -352,11 +382,7 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_AddStudentMouse
 
     private void lstStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstStudentsMouseClicked
-        lblStudentName.setText("");
-        lblGender.setText("");
-        lblAge.setText("");
-        lblSubject.setText("[none]");
-        lblSubjectAverage.setText("[none]");
+        clearLabels();
         
         dmTempMarksList.clear();
         
@@ -368,9 +394,7 @@ public class MainFrame extends javax.swing.JFrame
         selectedStudent = selectedTeacher.getStudent(n, g, a);
         makeDefListOfSubjects(selectedStudent);
         
-        lblStudentName.setText(selectedStudent.name);
-        lblGender.setText(selectedStudent.gender);
-        lblAge.setText(Integer.toString(selectedStudent.getAge()));
+        setStudentLabels();
     }//GEN-LAST:event_lstStudentsMouseClicked
 
     private void lstSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstSubjectsMouseClicked
@@ -378,8 +402,8 @@ public class MainFrame extends javax.swing.JFrame
         temp = temp.substring(0, temp.length() - 1);
         selectedSubject = selectedStudent.getSubjectByName(temp);
         makeDefListOfMarks(selectedSubject);
-        lblSubject.setText(selectedSubject.subjectName);
-        lblSubjectAverage.setText(df.format(selectedSubject.getMeanAverage()) + "%");
+        
+        setMarkLabels();
     }//GEN-LAST:event_lstSubjectsMouseClicked
 
     private void menReportMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menReportMouseClicked
@@ -405,6 +429,25 @@ public class MainFrame extends javax.swing.JFrame
         this.setVisible(false);
         this.setEnabled(false);
     }//GEN-LAST:event_menStudentsAddActionPerformed
+
+    private void icoGlassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoGlassMouseClicked
+        if (!fldStudentSearch.getText().isEmpty())
+        {
+            searchForStudent();
+        }
+    }//GEN-LAST:event_icoGlassMouseClicked
+
+    private void icoGlassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_icoGlassKeyPressed
+        evt.setKeyChar((char)13);
+        if (!fldStudentSearch.getText().isEmpty())
+        {
+            searchForStudent();
+        }
+    }//GEN-LAST:event_icoGlassKeyPressed
+
+    private void fldStudentSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldStudentSearchActionPerformed
+        
+    }//GEN-LAST:event_fldStudentSearchActionPerformed
 
     public void makeDefListOfStudents()
     {
@@ -438,8 +481,42 @@ public class MainFrame extends javax.swing.JFrame
         selectedTeacher.addStudent(s);
     }
     
+    public void searchForStudent()
+    {
+        String input = fldStudentSearch.getText();
+        fldStudentSearch.setText(""); 
+        clearLabels();
+        selectedStudent = selectedTeacher.getStudentByName(input);
+        setStudentLabels();
+        makeDefListOfSubjects(selectedStudent);
+    }
+    
+    public void clearLabels()
+    {
+        lblStudentName.setText("");
+        lblGender.setText("");
+        lblAge.setText("");
+        lblSubject.setText("[none]");
+        lblSubjectAverage.setText("[none]");
+    }
+    
+    public void setStudentLabels()
+    {
+        lblStudentName.setText(selectedStudent.name);
+        lblGender.setText(selectedStudent.gender);
+        lblAge.setText(Integer.toString(selectedStudent.getAge()));
+    }
+    
+    public void setMarkLabels()
+    {
+        lblSubject.setText(selectedSubject.subjectName);
+        lblSubjectAverage.setText(df.format(selectedSubject.getMeanAverage()) + "%");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblSelectedMark;
+    private javax.swing.JTextField fldStudentSearch;
+    private javax.swing.JLabel icoGlass;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -457,6 +534,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JLabel lblSubjectAverage;
     private javax.swing.JLabel lblSubjectAverageText;
     private javax.swing.JLabel lblSubjectText;
+    private javax.swing.JLabel lblSubjects;
     private javax.swing.JLabel lblTeacherName;
     private javax.swing.JList lstMarks;
     private javax.swing.JList lstStudents;
