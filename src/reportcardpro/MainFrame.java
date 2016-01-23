@@ -238,6 +238,7 @@ public class MainFrame extends javax.swing.JFrame
         fldStudentSearch.setBounds(930, 10, 340, 30);
 
         menSettings.setText("Settings");
+        menSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menSettingsChangeUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         menSettingsChangeUser.setText("Change Username");
@@ -268,6 +269,7 @@ public class MainFrame extends javax.swing.JFrame
         jMenuBar1.add(menSettings);
 
         menStudents.setText("Students");
+        menStudents.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menStudentsAdd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         menStudentsAdd.setText("Add Student");
@@ -299,6 +301,7 @@ public class MainFrame extends javax.swing.JFrame
         jMenuBar1.add(menStudents);
 
         menReport.setText("Report");
+        menReport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menReportMouseClicked(evt);
@@ -307,6 +310,7 @@ public class MainFrame extends javax.swing.JFrame
         jMenuBar1.add(menReport);
 
         menHelp.setText("Help");
+        menHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menHelp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menHelpMouseClicked(evt);

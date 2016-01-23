@@ -114,11 +114,6 @@ public class EditStudent extends javax.swing.JFrame
                 btnAddMarkMouseClicked(evt);
             }
         });
-        btnAddMark.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMarkActionPerformed(evt);
-            }
-        });
 
         btnRemoveMark.setText("Remove Mark");
         btnRemoveMark.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -366,10 +361,6 @@ public class EditStudent extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnRemoveMarkActionPerformed
 
-    private void btnAddMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMarkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddMarkActionPerformed
-
     private void btnEditMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMarkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditMarkActionPerformed
@@ -435,7 +426,10 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnRemoveSubjectMouseClicked
 
     private void btnAddMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMarkMouseClicked
-        // TODO add your handling code here:
+        AddMark am = new AddMark(currentTeacher, currentStudent, selectedSubject);
+        am.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnAddMarkMouseClicked
 
     private void btnEditMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMarkMouseClicked

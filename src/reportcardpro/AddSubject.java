@@ -87,6 +87,7 @@ public class AddSubject extends javax.swing.JFrame
 
         btnAddSubject.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAddSubject.setText("Add Subject");
+        btnAddSubject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddSubject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddSubjectActionPerformed(evt);
