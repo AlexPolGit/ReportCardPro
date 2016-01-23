@@ -305,11 +305,17 @@ public class Student
     {
         int numOfSubs = subjects.size();
         Double sum = 0.0;
-        for (Subject s : subjects)
+        Double avg = 0.0;
+        
+        if (!subjects.isEmpty())
         {
-            sum += s.getMeanAverage();
+            for (Subject s : subjects)
+            {
+                sum += s.getMeanAverage();
+            }
+            avg = (sum / numOfSubs);
         }
-        return (sum / numOfSubs);
+        return avg;
     }
     
     /**
@@ -320,15 +326,19 @@ public class Student
         sortSubjectsByAverages();
         int numOfSubs = subjects.size();
         Double median = 0.0;
-        if (numOfSubs%2 == 1)
+        
+        if (numOfSubs > 0)
         {
-            median = subjects.get((int)Math.floor(numOfSubs / 2)).getMeanAverage();
+            if (numOfSubs%2 == 1)
+            {
+                median = subjects.get((int)Math.floor(numOfSubs / 2)).getMeanAverage();
+            }
+            else if (numOfSubs%2 == 0)
+            {
+                median = ((subjects.get(numOfSubs / 2).getMeanAverage()) + (subjects.get((numOfSubs / 2) - 1).getMeanAverage())) / 2;
+            }
+            sortSubjects();
         }
-        else if (numOfSubs%2 == 0)
-        {
-            median = ((subjects.get(numOfSubs / 2).getMeanAverage()) + (subjects.get((numOfSubs / 2) - 1).getMeanAverage())) / 2;
-        }
-        sortSubjects();
         return median;
     }
       /**

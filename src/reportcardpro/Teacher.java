@@ -82,6 +82,10 @@ public class Teacher
      * Teacher sets the name of the student.
      */
 
+    /**
+     * Teacher sets the name of the student.
+     * @param toName
+     */
     public void setName(String toName)
     {
         this.name = toName;
@@ -90,6 +94,10 @@ public class Teacher
      * Teacher sets the id number of the student.
      */
     
+    /**
+     * Teacher sets the id number of the student.
+     * @param toID
+     */
     public void setID(UUID toID)
     {
         this.id = toID;
@@ -98,6 +106,10 @@ public class Teacher
      * 
      */
    
+    /**
+     *
+     * @param toID
+     */
     public void setID(String toID)
     {
         this.id = UUID.fromString(toID);
@@ -131,8 +143,6 @@ public class Teacher
         {
             System.out.println("This student does not yet exist, creating: " + outFile.getName());
         }
-        
-        writeStudentList();
     }
     
      /**
@@ -193,6 +203,10 @@ public class Teacher
      * The teacher sets username they want to use for the program.
      */
     
+    /**
+     * The teacher sets username they want to use for the program.
+     * @param toUser
+     */
     public void setUsername(String toUser)
     {
         this.username = toUser;
@@ -201,6 +215,10 @@ public class Teacher
      * The teacher sets the password for the username in order to login to the program.
      */
     
+    /**
+     * The teacher sets the password for the username in order to login to the program.
+     * @param toPass
+     */
     public void setPassword(String toPass)
     {
         this.password = toPass;
@@ -242,20 +260,23 @@ public class Teacher
                         String descS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
                         String commS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
                         String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
-
+                        
                         Subject tempSub = new Subject(nameS, descS);
-
                         tempSub.setComment(commS);
 
-                        for (String m : marksList)
+                        if (marksList.length > 0 && !marksList[0].equals(""))
                         {
-                            Double value = Double.parseDouble(m.split(":")[0]);
-                            Double weight = Double.parseDouble(m.split(":")[1]);
-                            String mdesc = m.split(":")[2];
-                            tempSub.addMark(new Mark(value, weight, mdesc));
-                        }
+                            for (String m : marksList)
+                            {
+                                Double value = Double.parseDouble(m.split(":")[0]);
+                                Double weight = Double.parseDouble(m.split(":")[1]);
+                                String mdesc = m.split(":")[2];
+                                tempSub.addMark(new Mark(value, weight, mdesc));
+                            }
 
-                        tempStu.addSubject(tempSub);
+                            tempStu.addSubject(tempSub);
+                        }
+                        
                         if (n == toParse.length - 1)
                         {
                             break;
@@ -265,9 +286,12 @@ public class Teacher
                             n++;
                         }
                     }
+                    students.add(tempStu);
                 }
-
-                students.add(tempStu);
+                else
+                {
+                    students.add(tempStu);
+                }
             }
         }
         catch (IOException ex)
@@ -279,15 +303,16 @@ public class Teacher
      /**
      * Allows the teacher to write the throw a file with their list of students with the information of each student in their class.
      * <br>
+     * @param t
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
      */
-    public void writeStudentList() throws FileNotFoundException, IOException
+    public void writeStudentList(Teacher t) throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
 
-        for (Student s: this.students)
+        for (Student s: t.students)
         {
             File outFile = new File("teachers\\" + id.toString() + "\\students\\" + s.id + ".properties");
             
@@ -310,16 +335,28 @@ public class Teacher
                     
                     int m = 0;
                     
-                    for (Mark mar : sub.marks)
+                    if (!sub.marks.isEmpty())
                     {
-                        m++;
-                        subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
-                        if (m != sub.marks.size())
+                        for (Mark mar : sub.marks)
                         {
-                            subjectsString += "-";
+                            m++;
+                            subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
+                            if (m != sub.marks.size())
+                            {
+                                subjectsString += "-";
+                            }
                         }
                     }
-                    subjectsString += "]," + sub.comment + ")";
+                    
+                    if (!sub.comment.isEmpty())
+                    {
+                        subjectsString += "]," + sub.comment + ")";
+                    }
+                    else
+                    {
+                        subjectsString += "],...)";
+                    }
+                    
                     if (n != s.subjects.size())
                     {
                         subjectsString += "&";
@@ -339,27 +376,38 @@ public class Teacher
     {
         int numOfStudents = 0;
         Double sum = 0.0;
-        for (Student s: students)
+        Double avg = 0.0;
+        
+        if (!students.isEmpty())
         {
-            sum += s.getOverallMeanAverage();
-            numOfStudents++;
+            for (Student s: students)
+            {
+                sum += s.getOverallMeanAverage();
+                numOfStudents++;
+            }
+            avg = (sum / numOfStudents);
         }
-        return (sum / numOfStudents);
+        return avg;
     }
     /**
      * Finds the median average for the class the teacher logged in has.
+     * @return 
      */
     public Double getClassMedianAverage()
     {
         int numOfStudents = students.size();
         Double median = 0.0;
-        if (numOfStudents%2 == 1)
+        
+        if (numOfStudents > 0)
         {
-            median = students.get((int)Math.floor(numOfStudents / 2)).getOverallMeanAverage();
-        }
-        else
-        {
-            median = (Math.ceil(students.get(numOfStudents / 2).getOverallMeanAverage()) + Math.floor(students.get(numOfStudents / 2).getOverallMeanAverage())) / 2;
+            if (numOfStudents%2 == 1)
+            {
+                median = students.get((int)Math.floor(numOfStudents / 2)).getOverallMeanAverage();
+            }
+            else
+            {
+                median = (Math.ceil(students.get(numOfStudents / 2).getOverallMeanAverage()) + Math.floor(students.get(numOfStudents / 2).getOverallMeanAverage())) / 2;
+            }
         }
         return median;
     }

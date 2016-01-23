@@ -21,7 +21,7 @@ public class EditStudent extends javax.swing.JFrame
     
     public Report rep = new Report();
 
-    public EditStudent(Teacher t, Student s)
+    public EditStudent(Teacher t, Student s) throws IOException
     {
         try
         {
@@ -35,6 +35,13 @@ public class EditStudent extends javax.swing.JFrame
         this.currentTeacher = t;
         this.currentStudent = s;
         this.currentTeacher.removeStudent(currentStudent);
+        
+        for (Subject test: currentStudent.subjects)
+        {
+            System.out.println(test.subjectName);
+        }
+        
+        this.currentTeacher.writeStudentList(currentTeacher);
         
         makeDefListOfSubjects();
         initComponents();
@@ -356,7 +363,6 @@ public class EditStudent extends javax.swing.JFrame
             Mark m = selectedSubject.getMarkByDescription(ms);
             
             selectedSubject.removeMark(m);
-            currentStudent.listSubjects();
             lstMarks.removeAll();
             makeDefListOfMarks();
         }
@@ -381,7 +387,6 @@ public class EditStudent extends javax.swing.JFrame
             String subName = temp[2].replaceAll(":", "");
 
             currentStudent.removeSubject(currentStudent.getSubjectByName(subName));
-            currentStudent.listSubjects();
             lstSubjects.removeAll();
             makeDefListOfSubjects();
         }
@@ -421,7 +426,10 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnUpdateInfoMouseClicked
 
     private void btnAddSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddSubjectMouseClicked
-        // TODO add your handling code here:
+        AddSubject as = new AddSubject(currentTeacher, currentStudent);
+        as.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnAddSubjectMouseClicked
 
     private void btnEditSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditSubjectMouseClicked

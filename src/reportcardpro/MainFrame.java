@@ -29,7 +29,9 @@ public class MainFrame extends javax.swing.JFrame
     
     public MainFrame(Teacher t) throws IOException
     {
-        this.selectedTeacher = t;   
+        this.selectedTeacher = t;
+        t.writeStudentList(selectedTeacher);
+
         makeDefListOfStudents();
         
         try
@@ -336,7 +338,12 @@ public class MainFrame extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void menSettingsLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsLogOutActionPerformed
-        // TODO add your handling code here:
+        Login lg = new Login();
+        lg.setVisible(true);
+        lg.revalidate();
+        
+        this.setVisible(false);
+        this.setEnabled(false);
     }//GEN-LAST:event_menSettingsLogOutActionPerformed
 
     private void menSettingsChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangeUserActionPerformed
@@ -354,9 +361,16 @@ public class MainFrame extends javax.swing.JFrame
     private void menStudentsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsEditActionPerformed
         if (selectedStudent != null)
         {
-            EditStudent es = new EditStudent(selectedTeacher, selectedStudent);
-
-            es.setVisible(true);
+            EditStudent es;
+            try
+            {
+                es = new EditStudent(selectedTeacher, selectedStudent);
+                es.setVisible(true);
+            }
+            catch (IOException ex)
+            {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
             this.setEnabled(false);
         }
@@ -373,7 +387,14 @@ public class MainFrame extends javax.swing.JFrame
         int a = Integer.parseInt(temp[5]);
 
         selectedStudent = selectedTeacher.getStudent(n, g, a);
-        makeDefListOfSubjects(selectedStudent);
+        try
+        {
+            makeDefListOfSubjects(selectedStudent);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         setStudentLabels();
     }//GEN-LAST:event_lstStudentsMouseClicked
@@ -404,7 +425,14 @@ public class MainFrame extends javax.swing.JFrame
     private void icoGlassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoGlassMouseClicked
         if (!fldStudentSearch.getText().isEmpty())
         {
-            searchForStudent();
+            try
+            {
+                searchForStudent();
+            }
+            catch (IOException ex)
+            {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_icoGlassMouseClicked
 
@@ -412,7 +440,14 @@ public class MainFrame extends javax.swing.JFrame
         evt.setKeyChar((char)13);
         if (!fldStudentSearch.getText().isEmpty())
         {
-            searchForStudent();
+            try
+            {
+                searchForStudent();
+            }
+            catch (IOException ex)
+            {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_icoGlassKeyPressed
 
@@ -421,29 +456,33 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_fldStudentSearchActionPerformed
 
     private void menStudentsRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsRemoveActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_menStudentsRemoveActionPerformed
 
     private void menSettingsChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangePasswordActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_menSettingsChangePasswordActionPerformed
 
-    public void makeDefListOfStudents()
+    public void makeDefListOfStudents() throws IOException
     {
         dmTempStudentsList.clear();
+        
         for (Student s: selectedTeacher.students)
         {
             dmTempStudentsList.addElement(" • " + s.name + " (" + s.gender + "), Age " + s.getAge());
         }
+        selectedTeacher.writeStudentList(selectedTeacher);
     }
     
-    public void makeDefListOfSubjects(Student student)
+    public void makeDefListOfSubjects(Student student) throws IOException
     {
         dmTempSubjectList.clear();
+
         for (Subject s: selectedStudent.subjects)
         {
             dmTempSubjectList.addElement(" • " + s.subjectName + ": " + s.subjectDescription);
         }
+        selectedTeacher.writeStudentList(selectedTeacher);
     }
     
     public void makeDefListOfMarks(Subject subject)
@@ -460,7 +499,7 @@ public class MainFrame extends javax.swing.JFrame
         selectedTeacher.addStudent(s);
     }
     
-    public void searchForStudent()
+    public void searchForStudent() throws IOException
     {
         String input = fldStudentSearch.getText();
         fldStudentSearch.setText(""); 
@@ -671,12 +710,10 @@ class AddStudent extends javax.swing.JFrame
             int m = Integer.parseInt(fldAgeMonth.getText());
             int y = Integer.parseInt(fldAgeYear.getText());
             Student temp = new Student(UUID.randomUUID(), n, g, d, m, y);
-            
-            System.out.println("Adding: " + temp.name + ", " + temp.gender + ", " + temp.getAge());
-            
+
             selectedTeacher.addStudent(temp);
             selectedTeacher.sortStudents();
-            selectedTeacher.writeStudentList();
+            selectedTeacher.writeStudentList(selectedTeacher);
             
             MainFrame mf = new MainFrame(selectedTeacher);
             

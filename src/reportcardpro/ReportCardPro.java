@@ -36,6 +36,9 @@ public class ReportCardPro
     
     public void newTeacher(Teacher t) throws IOException
     {
+        Report r = new Report();
+        r.addTeacher(t);
+        r.writeTeachersList();
         Login loginScreen = new Login();
         loginScreen.setVisible(true);
     }

@@ -137,12 +137,18 @@ public class Subject
     {
         double numOfMarks = 0.0;
         Double sum = 0.0;
-        for (Mark m : marks)
+        Double avg = 0.0;
+        
+        if (!marks.isEmpty())
         {
-            sum += m.markWeight * m.mark;
-            numOfMarks += m.markWeight;
+            for (Mark m : marks)
+            {
+                sum += m.markWeight * m.mark;
+                numOfMarks += m.markWeight;
+            }
+            avg = (sum / numOfMarks);
         }
-        return (sum / numOfMarks);
+        return avg;
     }
     
     /**
@@ -152,13 +158,17 @@ public class Subject
     {
         int numOfMarks = marks.size();
         Double median = 0.0;
-        if (numOfMarks%2 == 0)
+        
+        if (numOfMarks > 0)
         {
-            median = (marks.get(numOfMarks / 2).mark + marks.get((numOfMarks / 2) - 1).mark) / 2;
-        }
-        else if (numOfMarks %2 == 1)
-        {
-            median = marks.get((int)Math.floor(numOfMarks / 2)).mark;
+            if (numOfMarks%2 == 0)
+            {
+                median = (marks.get(numOfMarks / 2).mark + marks.get((numOfMarks / 2) - 1).mark) / 2;
+            }
+            else if (numOfMarks %2 == 1)
+            {
+                median = marks.get((int)Math.floor(numOfMarks / 2)).mark;
+            }
         }
         return median;
     }
