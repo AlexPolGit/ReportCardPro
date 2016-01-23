@@ -106,6 +106,11 @@ public class EditStudent extends javax.swing.JFrame
         lblName.setText("Name: ");
 
         lstMarks.setModel(dmTempMarksList);
+        lstMarks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstMarksMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstMarks);
 
         btnAddMark.setText("Add Mark");
@@ -382,7 +387,7 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnRemoveSubjectActionPerformed
 
     private void btnEditSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSubjectActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnUpdateInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInfoMouseClicked
@@ -417,7 +422,11 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddSubjectMouseClicked
 
     private void btnEditSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditSubjectMouseClicked
-        // TODO add your handling code here:
+        EditSubject es = new EditSubject(currentTeacher, currentStudent, selectedSubject);
+        es.setVisible(true);
+        
+        this.setVisible(false);
+        this.setEnabled(false);
     }//GEN-LAST:event_btnEditSubjectMouseClicked
 
     private void btnRemoveSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveSubjectMouseClicked
@@ -437,7 +446,7 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnEditMarkMouseClicked
 
     private void btnRemoveMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveMarkMouseClicked
-        // TODO add your handling code here:
+        selectedSubject.removeMark(selectedMark);
     }//GEN-LAST:event_btnRemoveMarkMouseClicked
 
     private void lstSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstSubjectsMouseClicked
@@ -446,6 +455,18 @@ public class EditStudent extends javax.swing.JFrame
         selectedSubject = currentStudent.getSubjectByName(temp);
         makeDefListOfMarks();
     }//GEN-LAST:event_lstSubjectsMouseClicked
+
+    private void lstMarksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstMarksMouseClicked
+        String sub = "";
+        String temp[] = lstMarks.getSelectedValue().toString().split(" ");
+        
+        for (int i = 4; i < lstMarks.getSelectedValue().toString().length(); i++)
+        {
+            sub += temp[i] + " ";
+        }
+        
+        selectedMark = selectedSubject.getMarkByDescription(sub);
+    }//GEN-LAST:event_lstMarksMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMark;

@@ -225,6 +225,9 @@
                   <Connection code="dmTempMarksList" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstMarksMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
