@@ -249,7 +249,13 @@ public class Teacher
                                         Integer.parseInt(prop.getProperty("birthMonth")) - 1,
                                         Integer.parseInt(prop.getProperty("birthDate")));
                 String subjectString = prop.getProperty("subjects");
+                ///
+                System.out.println("Sub String: " + subjectString);
+                ///
                 String[] toParse = subjectString.split("&");
+                ///
+                System.out.println("To Parse: " + Arrays.toString(toParse));
+                ///
                 int n = 0;
 
                 if (!subjectString.isEmpty())
@@ -263,7 +269,11 @@ public class Teacher
                         
                         Subject tempSub = new Subject(nameS, descS);
                         tempSub.setComment(commS);
-
+                        ///
+                        System.out.println(this.name + ": " + tempStu.name + ": " + tempSub.subjectName + " " + tempSub.subjectDescription + " " + tempSub.comment);
+                        System.out.println("Marks Array: " + Arrays.toString(marksList));
+                        ///
+                        
                         if (marksList.length > 0 && !marksList[0].equals(""))
                         {
                             for (String m : marksList)
@@ -273,9 +283,9 @@ public class Teacher
                                 String mdesc = m.split(":")[2];
                                 tempSub.addMark(new Mark(value, weight, mdesc));
                             }
-
-                            tempStu.addSubject(tempSub);
                         }
+                        
+                        tempStu.addSubject(tempSub);
                         
                         if (n == toParse.length - 1)
                         {
@@ -286,12 +296,13 @@ public class Teacher
                             n++;
                         }
                     }
-                    students.add(tempStu);
                 }
                 else
                 {
-                    students.add(tempStu);
+                    System.out.println(this.name + ": " + tempStu.name + ": No subjects.");
                 }
+                students.add(tempStu);
+                System.out.println("Teacher temp stu sent: " + tempStu.name + ", " + tempStu.subjects.toString());
             }
         }
         catch (IOException ex)
@@ -366,6 +377,7 @@ public class Teacher
                 prop.setProperty("subjects", subjectsString);
                 
                 prop.store(fileOS, s.name + "'s Saved Properties File");
+                fileOS.close();
             }
         }
     }

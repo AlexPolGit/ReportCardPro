@@ -23,7 +23,6 @@ public class Login extends javax.swing.JFrame
         }
         
         initComponents();
-        rep.readTeacherList();
     }
 
     @SuppressWarnings("unchecked")
@@ -221,31 +220,31 @@ public class Login extends javax.swing.JFrame
     {
         boolean error = false;
         rep.readTeacherList();
+        rep.listTeachers();
         for (Teacher t: rep.teachers)
         {
-            System.out.println("Current login candidate: " + t.name);
-            
             if (t.username.equals(u) && t.password.equals(p))
             {
                 error = false;
-                btnLogin.setText("Login");
                 this.foundTeacher = t;
-                System.out.println("Logging in as " + this.foundTeacher.name);
+                System.out.println("Logging in as: " + this.foundTeacher.name);
+                
+                MainFrame mf = new MainFrame(foundTeacher);
+                mf.setVisible(true);
+                
                 this.setVisible(false);
                 this.setEnabled(false);
-                
-                rep.writeTeachersList();
+
                 break;
             }
             else
             {
                 error = true;
-                System.out.println("Credentials do not match those of: " + t.name);
             }
         }
         if (error)
         {
-            lblErrorLogin.setText("Could not find user.");
+            lblErrorLogin.setText("Could not find a user.");
         }
     }
 

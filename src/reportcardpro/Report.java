@@ -144,6 +144,8 @@ public class Report
             
             prop.store(fileOS, t.name + "'s (Teacher) Saved Properties File");
             fileOS.close();
+            
+            t.writeStudentList(t);
         }
     }
     /**

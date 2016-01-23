@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
@@ -29,11 +27,9 @@ public class MainFrame extends javax.swing.JFrame
     
     public MainFrame(Teacher t) throws IOException
     {
-        this.selectedTeacher = t;
+        selectedTeacher = t;
         t.writeStudentList(selectedTeacher);
 
-        makeDefListOfStudents();
-        
         try
         {
             this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
@@ -42,6 +38,8 @@ public class MainFrame extends javax.swing.JFrame
         {
             System.err.println(ex.toString());
         }
+        
+        this.makeDefListOfStudents();
         
         initComponents();
     }
@@ -150,7 +148,7 @@ public class MainFrame extends javax.swing.JFrame
         lblStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStudents.setText("Students:");
         jDesktopPane1.add(lblStudents);
-        lblStudents.setBounds(110, 170, 120, 30);
+        lblStudents.setBounds(100, 170, 120, 30);
 
         lblTeacherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTeacherName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -190,7 +188,7 @@ public class MainFrame extends javax.swing.JFrame
         lblAge.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAge.setText("[none]");
         jDesktopPane1.add(lblAge);
-        lblAge.setBounds(500, 100, 200, 30);
+        lblAge.setBounds(500, 100, 290, 30);
 
         lblStudentName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblStudentName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -202,7 +200,7 @@ public class MainFrame extends javax.swing.JFrame
         lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGender.setText("[none]");
         jDesktopPane1.add(lblGender);
-        lblGender.setBounds(500, 60, 200, 30);
+        lblGender.setBounds(500, 60, 290, 30);
 
         picStudentPicture.setText("pic");
         picStudentPicture.setToolTipText("");
@@ -213,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame
         lblSubjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjects.setText("Subjects:");
         jDesktopPane1.add(lblSubjects);
-        lblSubjects.setBounds(550, 170, 120, 30);
+        lblSubjects.setBounds(520, 170, 120, 30);
 
         icoGlass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/mGlass.png"))); // NOI18N
         icoGlass.setToolTipText("Search for Student by Name");
@@ -361,15 +359,14 @@ public class MainFrame extends javax.swing.JFrame
     private void menStudentsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsEditActionPerformed
         if (selectedStudent != null)
         {
-            EditStudent es;
             try
             {
-                es = new EditStudent(selectedTeacher, selectedStudent);
+                EditStudent es = new EditStudent(selectedTeacher, selectedStudent);
                 es.setVisible(true);
             }
             catch (IOException ex)
             {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex.toString());
             }
             this.setVisible(false);
             this.setEnabled(false);
@@ -393,7 +390,7 @@ public class MainFrame extends javax.swing.JFrame
         }
         catch (IOException ex)
         {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.toString());
         }
         
         setStudentLabels();
@@ -431,7 +428,7 @@ public class MainFrame extends javax.swing.JFrame
             }
             catch (IOException ex)
             {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex.toString());
             }
         }
     }//GEN-LAST:event_icoGlassMouseClicked
@@ -446,7 +443,7 @@ public class MainFrame extends javax.swing.JFrame
             }
             catch (IOException ex)
             {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex.toString());
             }
         }
     }//GEN-LAST:event_icoGlassKeyPressed

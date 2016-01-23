@@ -2,9 +2,6 @@ package reportcardpro;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
@@ -13,6 +10,7 @@ public class EditStudent extends javax.swing.JFrame
     
     public Teacher currentTeacher;
     public Student currentStudent;
+    public Student originalStudent;
     public Subject selectedSubject;
     public Mark selectedMark;
 
@@ -34,7 +32,7 @@ public class EditStudent extends javax.swing.JFrame
         
         this.currentTeacher = t;
         this.currentStudent = s;
-        this.currentTeacher.removeStudent(currentStudent);
+        this.originalStudent = s;
         
         for (Subject test: currentStudent.subjects)
         {
@@ -291,8 +289,8 @@ public class EditStudent extends javax.swing.JFrame
                         .addGap(0, 4, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMarkList)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMarkList, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblSubList))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,6 +395,7 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnUpdateInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInfoMouseClicked
+        currentTeacher.removeStudent(originalStudent);
         currentStudent.setName(fldName.getText());
         currentStudent.setGender(fldGender.getText());
         currentStudent.setBirthday(Integer.parseInt(fldBDD.getText()), Integer.parseInt(fldBDM.getText()) - 1, Integer.parseInt(fldBDY.getText()));
@@ -404,25 +403,19 @@ public class EditStudent extends javax.swing.JFrame
         try
         {
             currentTeacher.addStudent(currentStudent);
-        }
-        catch (IOException ex)
-        {
-            System.err.println(ex.toString());
-        }
-        
-        try
-        {
+            currentTeacher.writeStudentList(currentTeacher);
+
             MainFrame mf = new MainFrame(currentTeacher);
             mf.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
             mf.setVisible(true);
+            
+            this.setVisible(false);
+            this.setEnabled(false);
         }
         catch(IOException ex)
         {
             System.err.println(ex.toString());
         }
-
-        this.setVisible(false);
-        this.setEnabled(false);
     }//GEN-LAST:event_btnUpdateInfoMouseClicked
 
     private void btnAddSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddSubjectMouseClicked
@@ -437,7 +430,8 @@ public class EditStudent extends javax.swing.JFrame
     }//GEN-LAST:event_btnEditSubjectMouseClicked
 
     private void btnRemoveSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveSubjectMouseClicked
-        // TODO add your handling code here:
+        selectedSubject = currentStudent.getSubjectByName(lstSubjects.getSelectedValue().toString().split("")[2]);
+        currentStudent.removeSubject(selectedSubject);
     }//GEN-LAST:event_btnRemoveSubjectMouseClicked
 
     private void btnAddMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMarkMouseClicked
