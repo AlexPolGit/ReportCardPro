@@ -24,7 +24,7 @@ public class PrintableReport extends javax.swing.JFrame
             System.err.println(ex.toString());
         }
         
-        System.out.println("OPENED REPORT OF " + s.name);
+        System.out.println("OPENED REPORT OF: " + s.name);
         this.toCopy = s;
         initComponents();
     }

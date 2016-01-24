@@ -10,7 +10,6 @@ import javax.swing.DefaultListModel;
 
 public class MainFrame extends javax.swing.JFrame
 {
-
     public DefaultListModel dmTempStudentsList = new DefaultListModel();
     public DefaultListModel dmTempSubjectList = new DefaultListModel();
     public DefaultListModel dmTempMarksList = new DefaultListModel();
@@ -76,7 +75,6 @@ public class MainFrame extends javax.swing.JFrame
         jMenuBar1 = new javax.swing.JMenuBar();
         menSettings = new javax.swing.JMenu();
         menSettingsChangeUser = new javax.swing.JMenuItem();
-        menSettingsChangePassword = new javax.swing.JMenuItem();
         menSettingsLogOut = new javax.swing.JMenuItem();
         menStudents = new javax.swing.JMenu();
         menStudentsAdd = new javax.swing.JMenuItem();
@@ -148,37 +146,37 @@ public class MainFrame extends javax.swing.JFrame
         lblStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStudents.setText("Students:");
         jDesktopPane1.add(lblStudents);
-        lblStudents.setBounds(100, 170, 120, 30);
+        lblStudents.setBounds(20, 170, 300, 30);
 
         lblTeacherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTeacherName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTeacherName.setText(this.selectedTeacher.name);
         jDesktopPane1.add(lblTeacherName);
-        lblTeacherName.setBounds(70, 50, 200, 30);
+        lblTeacherName.setBounds(30, 50, 280, 30);
 
         lblSubjectText.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblSubjectText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectText.setText("Subject:");
         jDesktopPane1.add(lblSubjectText);
-        lblSubjectText.setBounds(980, 70, 150, 30);
+        lblSubjectText.setBounds(830, 70, 440, 30);
 
         lblSubject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubject.setText("[none]");
         jDesktopPane1.add(lblSubject);
-        lblSubject.setBounds(910, 100, 290, 30);
+        lblSubject.setBounds(820, 100, 450, 30);
 
         lblSubjectAverageText.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblSubjectAverageText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverageText.setText("Subject Average:");
         jDesktopPane1.add(lblSubjectAverageText);
-        lblSubjectAverageText.setBounds(950, 130, 210, 30);
+        lblSubjectAverageText.setBounds(830, 130, 440, 30);
 
         lblSubjectAverage.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSubjectAverage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjectAverage.setText("[none]");
         jDesktopPane1.add(lblSubjectAverage);
-        lblSubjectAverage.setBounds(950, 160, 220, 30);
+        lblSubjectAverage.setBounds(820, 160, 450, 30);
 
         LblSelectedMark.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jDesktopPane1.add(LblSelectedMark);
@@ -205,13 +203,13 @@ public class MainFrame extends javax.swing.JFrame
         picStudentPicture.setText("pic");
         picStudentPicture.setToolTipText("");
         jDesktopPane1.add(picStudentPicture);
-        picStudentPicture.setBounds(360, 160, 20, 20);
+        picStudentPicture.setBounds(360, 120, 20, 20);
 
         lblSubjects.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         lblSubjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSubjects.setText("Subjects:");
         jDesktopPane1.add(lblSubjects);
-        lblSubjects.setBounds(520, 170, 120, 30);
+        lblSubjects.setBounds(350, 170, 440, 30);
 
         icoGlass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/mGlass.png"))); // NOI18N
         icoGlass.setToolTipText("Search for Student by Name");
@@ -229,6 +227,7 @@ public class MainFrame extends javax.swing.JFrame
         jDesktopPane1.add(icoGlass);
         icoGlass.setBounds(900, 10, 32, 40);
 
+        fldStudentSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         fldStudentSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fldStudentSearchActionPerformed(evt);
@@ -241,7 +240,7 @@ public class MainFrame extends javax.swing.JFrame
         menSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menSettingsChangeUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        menSettingsChangeUser.setText("Change Username");
+        menSettingsChangeUser.setText("Change Username/Password");
         menSettingsChangeUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menSettingsChangeUserActionPerformed(evt);
@@ -249,15 +248,7 @@ public class MainFrame extends javax.swing.JFrame
         });
         menSettings.add(menSettingsChangeUser);
 
-        menSettingsChangePassword.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        menSettingsChangePassword.setText("Change Password");
-        menSettingsChangePassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menSettingsChangePasswordActionPerformed(evt);
-            }
-        });
-        menSettings.add(menSettingsChangePassword);
-
+        menSettingsLogOut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         menSettingsLogOut.setText("Log Out");
         menSettingsLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,11 +340,15 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_menSettingsLogOutActionPerformed
 
     private void menSettingsChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangeUserActionPerformed
-        // TODO add your handling code here:
+        EditUserInfo eui = new EditUserInfo(selectedTeacher);
+        eui.setVisible(true);
+        
+        this.setVisible(false);
+        this.setEnabled(false);
     }//GEN-LAST:event_menSettingsChangeUserActionPerformed
 
     private void menHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menHelpActionPerformed
-        // TODO add your handling code here:
+        //TODO
     }//GEN-LAST:event_menHelpActionPerformed
 
     private void menHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menHelpMouseClicked
@@ -411,8 +406,11 @@ public class MainFrame extends javax.swing.JFrame
 
     private void menReportMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menReportMouseClicked
     {//GEN-HEADEREND:event_menReportMouseClicked
-        PrintableReport pr = new PrintableReport(selectedStudent);
-        pr.setVisible(true);
+        if (!selectedStudent.subjects.isEmpty())
+        {
+            PrintableReport pr = new PrintableReport(selectedStudent);
+            pr.setVisible(true);
+        }
     }//GEN-LAST:event_menReportMouseClicked
 
     private void menStudentsAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsAddActionPerformed
@@ -459,10 +457,6 @@ public class MainFrame extends javax.swing.JFrame
     private void menStudentsRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsRemoveActionPerformed
         
     }//GEN-LAST:event_menStudentsRemoveActionPerformed
-
-    private void menSettingsChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menSettingsChangePasswordActionPerformed
-        
-    }//GEN-LAST:event_menSettingsChangePasswordActionPerformed
 
     public void makeDefListOfStudents() throws IOException
     {
@@ -561,7 +555,6 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JMenu menHelp;
     private javax.swing.JMenu menReport;
     private javax.swing.JMenu menSettings;
-    private javax.swing.JMenuItem menSettingsChangePassword;
     private javax.swing.JMenuItem menSettingsChangeUser;
     private javax.swing.JMenuItem menSettingsLogOut;
     private javax.swing.JMenu menStudents;

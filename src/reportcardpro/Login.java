@@ -49,6 +49,8 @@ public class Login extends javax.swing.JFrame
         frmLogin.setMaximumSize(new java.awt.Dimension(640, 480));
         frmLogin.setMinimumSize(new java.awt.Dimension(640, 480));
         frmLogin.setName(""); // NOI18N
+
+        fldPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         frmLogin.add(fldPassword);
         fldPassword.setBounds(210, 270, 330, 30);
 
@@ -63,6 +65,8 @@ public class Login extends javax.swing.JFrame
         lblPassword.setText("Password:");
         frmLogin.add(lblPassword);
         lblPassword.setBounds(70, 270, 110, 20);
+
+        fldUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         frmLogin.add(fldUsername);
         fldUsername.setBounds(210, 210, 330, 30);
 
