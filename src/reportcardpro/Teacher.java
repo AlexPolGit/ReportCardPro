@@ -1,6 +1,7 @@
 package reportcardpro;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.*;
 /**
@@ -45,13 +46,13 @@ public class Teacher
     public int classSize = students.size();
     /**
      * Gives the final value of each param:
-     * @param sID 
+     * @param sID Teacher ID number.
      * <br>
-     * @param sName
+     * @param sName Teacher's name.
      * <br>
-     * @param sUser
+     * @param sUser Teacher's username.
      * <br>
-     * @param sPass
+     * @param sPass Teacher's password.
      */
     public Teacher(String sID, String sName, String sUser, String sPass)
     {
@@ -60,16 +61,6 @@ public class Teacher
         this.username = sUser;
         this.password = sPass;
     }
-    /**
-     *
-     * @param sID
-     * <br>
-     * @param sName
-     * <br>
-     * @param sUser
-     * <br>
-     * @param sPass
-     */
     
     public Teacher(UUID sID, String sName, String sUser, String sPass)
     {
@@ -82,6 +73,11 @@ public class Teacher
      * Teacher sets the name of the student.
      */
 
+    /**
+     * Teacher sets the name of the student.
+     * <br>
+     * @param toName
+     */
     public void setName(String toName)
     {
         this.name = toName;
@@ -90,14 +86,15 @@ public class Teacher
      * Teacher sets the id number of the student.
      */
     
+    /**
+     * Teacher sets the id number of the student.
+     * <br>
+     */
     public void setID(UUID toID)
     {
         this.id = toID;
     }
-    /**
-     * 
-     */
-   
+  
     public void setID(String toID)
     {
         this.id = UUID.fromString(toID);
@@ -116,6 +113,26 @@ public class Teacher
     {
         Collections.sort(students, new StudentComparator());
     }
+
+    /**
+     * Creates a random student given the following params:
+     */
+    
+    public void addStudent(Student s) throws IOException
+    {
+        students.add(s);
+        sortStudents();
+
+        File studentPath = new File("teachers\\" + id.toString() + "\\students\\");
+        studentPath.mkdirs();
+        File outFile = new File(studentPath.getCanonicalPath() + "\\" + s.id + ".properties");
+        
+        if (outFile.createNewFile())
+        {
+            System.out.println("This student does not yet exist, creating: " + outFile.getName());
+        }
+    }
+    
     /**
      * Creates a random student given the following params:
      * <br>
@@ -163,22 +180,33 @@ public class Teacher
         students.remove(student);
         sortStudents();
     }
+    
+    public void removeStudent(Student s)
+    {
+        students.remove(s);
+        sortStudents();
+    }
     /**
      * The teacher sets username they want to use for the program.
      */
     
+    /**
+     * The teacher sets username they want to use for the program.
+     * @param toUser
+     */
     public void setUsername(String toUser)
     {
         this.username = toUser;
     }
+    
     /**
      * The teacher sets the password for the username in order to login to the program.
      */
-    
     public void setPassword(String toPass)
     {
         this.password = toPass;
     }
+    
     /**
      * Reads the list of students in the teacher's class from a file. (file io)
      */
@@ -192,7 +220,7 @@ public class Teacher
         {
             ArrayList<File> list = new ArrayList<>(Arrays.asList(new File("teachers\\" + id.toString() + "\\students\\").listFiles()));
             Properties prop = new Properties();
-
+            
             for (int i = 0; i < list.size(); i++)
             {
                 InputStream toStream = new FileInputStream(list.get(i));
@@ -201,44 +229,54 @@ public class Teacher
                 tempStu.setID(UUID.fromString(prop.getProperty("id")));
                 tempStu.setName(prop.getProperty("name"));
                 tempStu.setGender(prop.getProperty("gender"));
-                tempStu.setBirthday(    Integer.parseInt(prop.getProperty("birthYear")),
-                                        Integer.parseInt(prop.getProperty("birthMonth")) - 1,
-                                        Integer.parseInt(prop.getProperty("birthDate")));
+                tempStu.setBirthday(    Integer.parseInt(prop.getProperty("birthDate")),
+                                        Integer.parseInt(prop.getProperty("birthMonth")),
+                                        Integer.parseInt(prop.getProperty("birthYear")) + 1900);
                 String subjectString = prop.getProperty("subjects");
                 String[] toParse = subjectString.split("&");
                 int n = 0;
-                
-                while (true)
-                {
-                    String name = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[0];
-                    String desc = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
-                    String comm = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
-                    String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
 
-                    Subject tempSub = new Subject(name, desc);
-                    
-                    tempSub.setComment(comm);
-                    
-                    for (String m : marksList)
+                if (!subjectString.isEmpty())
+                {
+                    while (true)
                     {
-                        Double value = Double.parseDouble(m.split(":")[0]);
-                        Double weight = Double.parseDouble(m.split(":")[1]);
-                        String mdesc = m.split(":")[2];
-                        tempSub.addMark(new Mark(value, weight, mdesc));
-                    }
-                    
-                    tempStu.addSubject(tempSub);
-                    if (n == toParse.length - 1)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        n++;
+                        String nameS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[0];
+                        String descS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[1];
+                        String commS = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[3];
+                        String marksList[] = toParse[n].replaceAll("\\(", "").replaceAll("\\)", "").split(",")[2].replaceAll("\\[", "").replaceAll("\\]", "").split("-");
+                        
+                        Subject tempSub = new Subject(nameS, descS);
+                        tempSub.setComment(commS);
+                        
+                        if (marksList.length > 0 && !marksList[0].equals(""))
+                        {
+                            for (String m : marksList)
+                            {
+                                Double value = Double.parseDouble(m.split(":")[0]);
+                                Double weight = Double.parseDouble(m.split(":")[1]);
+                                String mdesc = m.split(":")[2];
+                                tempSub.addMark(new Mark(value, weight, mdesc));
+                            }
+                        }
+                        
+                        tempStu.addSubject(tempSub);
+                        
+                        if (n == toParse.length - 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            n++;
+                        }
                     }
                 }
-                
+                else
+                {
+                    System.out.println(this.name + ": " + tempStu.name + ": No subjects.");
+                }
                 students.add(tempStu);
+                System.out.println("Teacher temp stu sent: " + tempStu.name + ", " + tempStu.subjects.toString());
             }
         }
         catch (IOException ex)
@@ -250,57 +288,70 @@ public class Teacher
     /**
      * Allows The teacher to write the throw a file with their list of students with the information of each student in their class.
      * <br>
-     * @param input The input file the teacher has selected.
-     * <br>
      * @throws FileNotFoundException
      * <br>
      * @throws IOException
      */
-    public void writeStudentList(ArrayList<Student> input) throws FileNotFoundException, IOException
+    public void writeStudentList(Teacher t) throws FileNotFoundException, IOException
     {
         Properties prop = new Properties();
-        
-        for (Student s: input)
+
+        for (Student s: t.students)
         {
-            File outFile = new File(id.toString() + "\\students\\" + s.id + ".properties");
-            FileOutputStream fileOS = new FileOutputStream(outFile);
-            prop.setProperty("id", s.id.toString());
-            prop.setProperty("name", s.name);
-            prop.setProperty("gender", s.gender);
-            prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear() + 1900));
-            prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth() + 1));
-            prop.setProperty("birthDate", Integer.toString(s.birthDate.getTime().getDate()));
+            File outFile = new File("teachers\\" + id.toString() + "\\students\\" + s.id + ".properties");
             
-            String subjectsString = "";
-            int n = 0;
-            
-            for (Subject sub: s.subjects)
+            try (OutputStream fileOS = new FileOutputStream(outFile))
             {
-                n++;
-                subjectsString += ("(" + sub.subjectName + "," + sub.subjectDescription + ",[");
+                prop.setProperty("id", s.id.toString());
+                prop.setProperty("name", s.name);
+                prop.setProperty("gender", s.gender);
+                prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear()));
+                prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth()));
+                prop.setProperty("birthDate", Integer.toString(s.birthDate.getTime().getDate()));
                 
-                int m = 0;
+                String subjectsString = "";
+                int n = 0;
                 
-                for (Mark mar : sub.marks)
+                for (Subject sub: s.subjects)
                 {
-                    m++;
-                    subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
-                    if (m != sub.marks.size())
+                    n++;
+                    subjectsString += ("(" + sub.subjectName + "," + sub.subjectDescription + ",[");
+                    
+                    int m = 0;
+                    
+                    if (!sub.marks.isEmpty())
                     {
-                        subjectsString += "-";
+                        for (Mark mar : sub.marks)
+                        {
+                            m++;
+                            subjectsString += mar.mark + ":" + mar.markWeight + ":" + mar.markDescription;
+                            if (m != sub.marks.size())
+                            {
+                                subjectsString += "-";
+                            }
+                        }
+                    }
+                    
+                    if (!sub.comment.isEmpty())
+                    {
+                        subjectsString += "]," + sub.comment + ")";
+                    }
+                    else
+                    {
+                        subjectsString += "],...)";
+                    }
+                    
+                    if (n != s.subjects.size())
+                    {
+                        subjectsString += "&";
                     }
                 }
-                subjectsString += "]" + sub.comment + ")";
-                if (n != s.subjects.size())
-                {
-                    subjectsString += "&";
-                }
+                
+                prop.setProperty("subjects", subjectsString);
+                
+                prop.store(fileOS, s.name + "'s Saved Properties File");
+                fileOS.close();
             }
-            
-            prop.setProperty("subjects", subjectsString);
-
-            prop.store(fileOS, s.name + "'s Saved Properties File");
-            fileOS.close();
         }
     }
     /**
@@ -310,12 +361,18 @@ public class Teacher
     {
         int numOfStudents = 0;
         Double sum = 0.0;
-        for (Student s: students)
+        Double avg = 0.0;
+        
+        if (!students.isEmpty())
         {
-            sum += s.getOverallMeanAverage();
-            numOfStudents++;
+            for (Student s: students)
+            {
+                sum += s.getOverallMeanAverage();
+                numOfStudents++;
+            }
+            avg = (sum / numOfStudents);
         }
-        return (sum / numOfStudents);
+        return avg;
     }
     /**
      * Finds the median average for the class the teacher logged in has.
@@ -324,13 +381,17 @@ public class Teacher
     {
         int numOfStudents = students.size();
         Double median = 0.0;
-        if (numOfStudents%2 == 1)
+        
+        if (numOfStudents > 0)
         {
-            median = students.get((int)Math.floor(numOfStudents / 2)).getOverallMeanAverage();
-        }
-        else
-        {
-            median = (Math.ceil(students.get(numOfStudents / 2).getOverallMeanAverage()) + Math.floor(students.get(numOfStudents / 2).getOverallMeanAverage())) / 2;
+            if (numOfStudents%2 == 1)
+            {
+                median = students.get((int)Math.floor(numOfStudents / 2)).getOverallMeanAverage();
+            }
+            else
+            {
+                median = (Math.ceil(students.get(numOfStudents / 2).getOverallMeanAverage()) + Math.floor(students.get(numOfStudents / 2).getOverallMeanAverage())) / 2;
+            }
         }
         return median;
     }

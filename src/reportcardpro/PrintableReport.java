@@ -1,7 +1,10 @@
 package reportcardpro;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 /**
@@ -14,7 +17,16 @@ public class PrintableReport extends javax.swing.JFrame
     
     public PrintableReport(Student s)
     {
-        System.out.println("OPENED REPORT OF " + s.name);
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
+        System.out.println("OPENED REPORT OF: " + s.name);
         this.toCopy = s;
         initComponents();
     }

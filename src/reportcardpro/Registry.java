@@ -1,7 +1,9 @@
 package reportcardpro;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
 /**
  * The class allows the user to register an account on the Report Card Pro Program.
  * <br>
@@ -9,6 +11,10 @@ import java.util.UUID;
  * <br>
  * @param setPassword 
  */
+
+import javax.imageio.ImageIO;
+
+
 public class Registry extends javax.swing.JFrame
 {
     public String toCreateUser;
@@ -33,12 +39,22 @@ public class Registry extends javax.swing.JFrame
     
     public Registry()
     {
+        try
+        {
+            this.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         initComponents();
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jDesktopPane2 = new javax.swing.JDesktopPane();
         fldName = new javax.swing.JTextField();
@@ -56,8 +72,10 @@ public class Registry extends javax.swing.JFrame
         btnCreateAcc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCreateAcc.setText("Create Account");
         btnCreateAcc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCreateAcc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnCreateAcc.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 btnCreateAccMouseClicked(evt);
             }
         });
@@ -81,7 +99,7 @@ public class Registry extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +114,7 @@ public class Registry extends javax.swing.JFrame
         {
             toCreateName = fldName.getText();
             Teacher t = new Teacher(UUID.randomUUID(), toCreateName, toCreateUser, toCreatePassword);
-            System.out.println("New Teacher Created:");
+            System.out.println("New Teacher Created...");
             System.out.println("Name: " + t.name);
             System.out.println("Username: " + t.username);
             System.out.println("Password: " + t.password);

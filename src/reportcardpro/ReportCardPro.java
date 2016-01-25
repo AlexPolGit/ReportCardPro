@@ -1,17 +1,16 @@
 package reportcardpro;
 
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 /**
  * The main class of report card pro.
  */
-
-public class ReportCardPro
+public class ReportCardPro//subjects=(ABC,abc,[],nice)&(DEF,def,[],nice)&(GHI,ghi,[],nice)
 {
     /**
-     * Creates a blank canvas for the teacher to add in the information they need.
+     * Creates a blank canvas for the teacher to add in the information they need to create a report card.
      */
     public Report rep = new Report();
     /**
@@ -62,44 +61,11 @@ public class ReportCardPro
      */
     public void tryLogin() throws IOException
     {
+        
+    public void startProgram() throws IOException
+    {
         Login loginScreen = new Login();
         loginScreen.setVisible(true);
-        
-        try
-        {
-            loginScreen.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-        }
-        catch(IOException ex)
-        {
-            System.err.println(ex.toString());
-        }
-        
-        while(loginScreen.isEnabled())
-        {
-            try
-            {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException ex)
-            {
-                System.err.println(ex.toString());
-            }
-        }
-        System.out.println("Opening teacher profile of: " + loginScreen.foundTeacher.name);
-
-        MainFrame main = new MainFrame(loginScreen.foundTeacher);
-        
-        try
-        {
-            main.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
-        }
-        catch(IOException ex)
-        {
-            System.err.println(ex.toString());
-        }
-        
-        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main.setVisible(true);
     }
     /**
      * At the login screen it allows for the teacher to create a new account for the program.
@@ -110,12 +76,12 @@ public class ReportCardPro
      */
     public void newTeacher(Teacher t) throws IOException
     {
-        this.selectedTeacher = t;
-        rep.addTeacher(t);
-        
+        Report r = new Report();
+        r.addTeacher(t);
+        r.writeTeachersList();
         Login loginScreen = new Login();
         loginScreen.setVisible(true);
-        
+    
         try
         {
             loginScreen.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
@@ -178,6 +144,9 @@ public class ReportCardPro
      * <br>
      * @throws IOException  
      */
+
+    }
+
     public static void main(String[] args) throws IOException
     {
         ReportCardPro rcp = new ReportCardPro();

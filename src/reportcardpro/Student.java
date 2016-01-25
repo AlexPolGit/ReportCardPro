@@ -1,9 +1,15 @@
 package reportcardpro;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  * The class that finds the information of a student.
@@ -49,6 +55,7 @@ public class Student
    
     public DecimalFormat df = new DecimalFormat("#.##");
     /**
+<<<<<<< HEAD
      * The picture of the student.
      */
     public File studentPicture;
@@ -58,22 +65,19 @@ public class Student
     public BufferedImage pic;
     /**
      * The student's id number.
+=======
+     *The picture of the student
+     */
+    public ImageIcon pic;
+    
+    /**
+     *The student's id number.
      */
     public UUID id;
     
    /**
      * The information that is found from the id of the student.
-     * @param sID
-     * <br>
-     * @param sName
-     * <br>
-     * @param sGender
-     * <br>
-     * @param sYear
-     * <br>
-     * @param sMonth
-     * <br>
-     * @param sDay
+     * @throws java.io.IOException
      */
     public Student(String sID, String sName, String sGender, int sYear, int sMonth, int sDay)
     {
@@ -81,34 +85,45 @@ public class Student
         this.name = sName;
         this.gender = sGender;
         this.birthDate = new GregorianCalendar(sYear, sMonth++, sDay);
-        this.studentPicture = new File("pictures//" + sID + ".png");
+        this.pic = new ImageIcon();
+        
+        try
+        {
+            File img = new File("teachers\\pics\\" + id.toString() + ".png");
+            BufferedImage in = ImageIO.read(img);
+            pic.setImage(in);
+            pic.setImage(pic.getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH));
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex.toString() + " HERE");
+        }
     }
-    
-     /**
-     *
-     * @param sID
-     * <br>
-     * @param sName
-     * <br>
-     * @param sGender
-     * <br>
-     * @param sYear
-     * <br>
-     * @param sMonth
-     * <br>
-     * @param sDay
-     */
+  
     public Student(UUID sID, String sName, String sGender, int sYear, int sMonth, int sDay)
     {
         this.id = sID;
         this.name = sName;
         this.gender = sGender;
         this.birthDate = new GregorianCalendar(sYear, sMonth++, sDay);
-        this.studentPicture = new File("pictures//" + sID + ".png");
+        this.pic = new ImageIcon();
+        
+        File img = new File("teachers\\pics\\" + id.toString() + ".png");
+        try
+        {
+            BufferedImage in = ImageIO.read(img);
+            pic.setImage(in);
+            pic.setImage(pic.getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH));
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex.toString() + img.getName());
+        }
     }
     
     /**
      * Sets the Id number given to the student.
+     * <br>
      * @param toID
      */
     public void setID(UUID toID)
@@ -118,6 +133,7 @@ public class Student
     
     /**
      * Sets the Id number given to the student.
+     * <br>
      * @param toID
      */
     public void setID(String toID)
@@ -134,6 +150,7 @@ public class Student
 
     /**
      * Sets a name of the student.
+     * <br>
      * @param toName
      */
     public void setName(String toName)
@@ -143,6 +160,7 @@ public class Student
     
     /**
      * Sets the gender of the student.
+     * <br>
      * @param toGender
      */
     public void setGender(String toGender)
@@ -150,7 +168,7 @@ public class Student
         this.gender = toGender;
     }
     
-   /**
+    /**
      * Sets the birth date of a student.
      * <br>
      * @param year The year the student was born in,
@@ -159,7 +177,7 @@ public class Student
      * <br>
      * @param day The day the student was born in.
      */
-    public void setBirthday(int year, int month, int day)
+    public void setBirthday(int day, int month, int year)
     {
         this.birthDate = new GregorianCalendar(year, month++, day);
     }
@@ -182,10 +200,11 @@ public class Student
     
     /**
      * Sets the picture of the student once it has been rendered.
+     * <br>
      */
     public void setPicture(BufferedImage toPicture)
     {
-        this.pic = new BufferedImage(0, 0, 0);
+        
     }
    
     /**
@@ -211,7 +230,8 @@ public class Student
     }
     
     /**
-     * Removes a subject from a student's time table. 
+     * Removes a subject from a student's time table.
+     * Removes a subject from a student's time table.
      */
     public void removeSubject(Subject toRemove)
     {
@@ -224,20 +244,23 @@ public class Student
      */
     public int getAge()
     {
-        int age = (today.getTime().getYear() - birthDate.getTime().getYear());
-        int birthMonth = birthDate.getTime().getMonth() + 1;
+        int age = ((today.getTime().getYear() + 1900) - (birthDate.getTime().getYear()));
+        
+        int birthMonth = birthDate.getTime().getMonth();
         int todayMonth = today.getTime().getMonth() + 1;
+        
         int birthDay = birthDate.getTime().getDate();
         int todayDay = today.getTime().getDate();
+
         if (birthMonth > todayMonth)
         {
-            age--;
+            return age - 1;
         }
         else if (birthMonth == todayMonth)
         {
            if (birthDay > todayDay)
            {
-               age--;
+               return age - 1;
            }
         }
         return age;
@@ -264,25 +287,32 @@ public class Student
      */
     public void listSubjects()
     {
-        System.out.println(this.name + "'s Subjects:");
-        for (Subject s: subjects)
+        if (!subjects.isEmpty())
         {
-            System.out.println(" - " + s.subjectName);
-            for (Mark m: s.marks)
+            System.out.println(this.name + "'s Subjects:");
+            for (Subject s: subjects)
             {
-                String mark = Double.toString(m.mark);
-                if (m.mark <= 0.0)
+                System.out.println(" - " + s.subjectName);
+                for (Mark m: s.marks)
                 {
-                    mark = "Zero!";
+                    String mark = Double.toString(m.mark);
+                    if (m.mark <= 0.0)
+                    {
+                        mark = "Zero!";
+                    }
+                    System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + ", " + m.markDescription + "), ");
                 }
-                System.out.print("Mark: "+ m.mark + " (Weight: " + m.markWeight + ", " + m.getMarkType() + ", " + m.markDescription + "), ");
+                System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
+                System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
+                System.out.println("Comment: " + s.comment);
             }
-            System.out.print("MEAN AVG: " + df.format(s.getMeanAverage()) + ", ");
-            System.out.println("MEDIAN AVG: " + df.format(s.getMedianAverage()));
-            System.out.println("Comment: " + s.comment);
+            System.out.println("Overall Mean Average: " + df.format(this.getOverallMeanAverage()));
+            System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
         }
-        System.out.println("Overall Mean Average: " + df.format(this.getOverallMeanAverage()));
-        System.out.println("Overall Median Average: " + df.format(this.getOverallMedianAverage()));
+        else
+        {
+            System.out.println(this.name + " has no subjects.");
+        }
     }
     
     /**
@@ -292,11 +322,17 @@ public class Student
     {
         int numOfSubs = subjects.size();
         Double sum = 0.0;
-        for (Subject s : subjects)
+        Double avg = 0.0;
+        
+        if (!subjects.isEmpty())
         {
-            sum += s.getMeanAverage();
+            for (Subject s : subjects)
+            {
+                sum += s.getMeanAverage();
+            }
+            avg = (sum / numOfSubs);
         }
-        return (sum / numOfSubs);
+        return avg;
     }
     
     /**
@@ -307,15 +343,19 @@ public class Student
         sortSubjectsByAverages();
         int numOfSubs = subjects.size();
         Double median = 0.0;
-        if (numOfSubs%2 == 1)
+        
+        if (numOfSubs > 0)
         {
-            median = subjects.get((int)Math.floor(numOfSubs / 2)).getMeanAverage();
+            if (numOfSubs%2 == 1)
+            {
+                median = subjects.get((int)Math.floor(numOfSubs / 2)).getMeanAverage();
+            }
+            else if (numOfSubs%2 == 0)
+            {
+                median = ((subjects.get(numOfSubs / 2).getMeanAverage()) + (subjects.get((numOfSubs / 2) - 1).getMeanAverage())) / 2;
+            }
+            sortSubjects();
         }
-        else if (numOfSubs%2 == 0)
-        {
-            median = ((subjects.get(numOfSubs / 2).getMeanAverage()) + (subjects.get((numOfSubs / 2) - 1).getMeanAverage())) / 2;
-        }
-        sortSubjects();
         return median;
     }
     /**

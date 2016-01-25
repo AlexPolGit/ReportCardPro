@@ -44,8 +44,12 @@ public class Report
         writeTeachersList();
     }
     /**
+<<<<<<< HEAD
      * Removes a teacher from the list of teachers and the list from the subject list they were in.
      * <br>
+=======
+     *Removes a teacher from the list of teachers.
+>>>>>>> origin/master
      * @param id the id number of the teacher.
      * <br>
      * @param name the name of the teacher.
@@ -55,10 +59,16 @@ public class Report
      * @param pass the password of the user name.
      */
     public void removeTeacher(String id, String name, String user, String pass) throws IOException
-
     {
         Teacher temp = new Teacher(UUID.fromString(id), name, user, pass);
         teachers.remove(temp);
+        sortTeachers();
+        writeTeachersList();
+    }
+    
+    public void removeTeacher(Teacher t) throws IOException
+    {
+        teachers.remove(t);
         sortTeachers();
         writeTeachersList();
     }
@@ -147,6 +157,8 @@ public class Report
             
             prop.store(fileOS, t.name + "'s (Teacher) Saved Properties File");
             fileOS.close();
+            
+            t.writeStudentList(t);
         }
     }
     /**
