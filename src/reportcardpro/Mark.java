@@ -24,19 +24,19 @@ public class Mark
      */
     public String markDescription; 
     /**
-     * Quiz assessment with a mark weight of 
+     * Quiz assessment with a mark weight of  1.0% of the final mark for each subject.
      */
     public final String QUIZ = "Quiz";
     /**
-     * Test assessment with a mark weight of 1.0% of the final mark for each subject.
+     * Test assessment with a mark weight of 2.0% of the final mark for each subject.
      */
     public final String TEST = "Test";
     /**
-     * Quest assessment with a mark weight of 2.0% of the final mark for each subject.
+     * Quest assessment with a mark weight of 1.5% of the final mark for each subject.
      */
     public final String QUEST = "Quest";
     /**
-     * Project assessment with s mark weight of 1.5% of the final mark for each subject.
+     * Project assessment with s mark weight of 3.0% of the final mark for each subject.
      */
     public final String PROJECT = "Project";
     /**
