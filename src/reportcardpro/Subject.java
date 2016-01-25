@@ -4,7 +4,8 @@ import java.util.*;
 /**
  * The class finds the subjects of the student. 
  * <br>
- * The class finds the marks of the students for each subject
+ * @see Subject
+ * The class finds the marks of the students for each subject.
  * <br>
  * The class finds the median for each subject.
  */

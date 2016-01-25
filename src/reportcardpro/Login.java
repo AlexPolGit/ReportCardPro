@@ -1,12 +1,20 @@
 package reportcardpro;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-
+/**
+ * The class opens the main frame where the user can login into their account for the program.
+ */
 public class Login extends javax.swing.JFrame
 {
     public ReportCardPro rcp = new ReportCardPro();
@@ -42,6 +50,9 @@ public class Login extends javax.swing.JFrame
         setTitle("Report Card Pro: Login");
 
         frmLogin.setBackground(new java.awt.Color(240, 240, 240));
+        frmLogin.setMaximumSize(new java.awt.Dimension(640, 480));
+        frmLogin.setMinimumSize(new java.awt.Dimension(640, 480));
+        frmLogin.setName(""); // NOI18N
         frmLogin.add(fldPassword);
         fldPassword.setBounds(210, 270, 330, 30);
 
@@ -80,7 +91,7 @@ public class Login extends javax.swing.JFrame
             }
         });
         frmLogin.add(btnRegister);
-        btnRegister.setBounds(330, 320, 190, 80);
+        btnRegister.setBounds(360, 320, 190, 80);
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setText("Login");
@@ -119,7 +130,7 @@ public class Login extends javax.swing.JFrame
         lblErrorReg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblErrorReg.setText(" ");
         frmLogin.add(lblErrorReg);
-        lblErrorReg.setBounds(310, 420, 230, 30);
+        lblErrorReg.setBounds(340, 420, 230, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,51 +140,11 @@ public class Login extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frmLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(frmLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        boolean isUsed = false;
-        for (Teacher t: rep.teachers)
-        {
-            if (t.username.equals(fldUsername.getText()))
-            {
-                isUsed = true;
-                break;
-            }
-        }
-        
-        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
-        {
-            fldUsername.setText("");
-            fldPassword.setText("");
-            lblErrorReg.setText("Fields cannot be blank.");
-        }
-        else if (isUsed)
-        {
-            lblErrorReg.setText(fldUsername.getText() + " already exists.");
-            fldUsername.setText("");
-            fldPassword.setText("");
-        }
-        else
-        {
-            lblErrorReg.setText("");
-            Registry reg = new Registry();
-            reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-            reg.setUsername(fldUsername.getText());
-            reg.setPassword(fldPassword.getText());
-
-            fldUsername.setText("");
-            fldPassword.setText("");
-
-            reg.setVisible(true);
-            this.setVisible(false);
-        }       
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
@@ -185,7 +156,7 @@ public class Login extends javax.swing.JFrame
         else
         {
             lblErrorLogin.setText("");
-            
+
             String eUser = fldUsername.getText();
             String ePass = fldPassword.getText();
 
@@ -204,34 +175,111 @@ public class Login extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        boolean isUsed = false;
+        for (Teacher t: rep.teachers)
+        {
+            if (t.username.equals(fldUsername.getText()))
+            {
+                isUsed = true;
+                break;
+            }
+        }
+
+        if (fldUsername.getText().isEmpty() || fldPassword.getText().isEmpty())
+        {
+            fldUsername.setText("");
+            fldPassword.setText("");
+            lblErrorReg.setText("Fields cannot be blank.");
+        }
+        else if (isUsed)
+        {
+            lblErrorReg.setText(fldUsername.getText() + " already exists.");
+            fldUsername.setText("");
+            fldPassword.setText("");
+        }
+        else
+        {
+            lblErrorReg.setText("");
+            Registry reg = new Registry();
+            reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            reg.setUsername(fldUsername.getText());
+            reg.setPassword(fldPassword.getText());
+
+            fldUsername.setText("");
+            fldPassword.setText("");
+
+            reg.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
     private void lblTempTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTempTitleMouseClicked
         Student testStu = new Student(UUID.randomUUID(), "Jimbo", "Male", 2003, 7, 19);
-        
+
         Subject temp1 = new Subject("Art", "Arts and crafts.");
         Subject temp2 = new Subject("Business", "$$$.");
         Subject temp3 = new Subject("Geology", "Rocks and minerals.");
+        Subject temp4 = new Subject("Philosophy", "But why?");
+        Subject temp5 = new Subject("Math", "y=mx+b");
+        Subject temp6 = new Subject("Physics", "Ek=1/2mv^2");
+
+        temp1.addMark(new Mark(100.0, 1.0, "Some description"));
+        temp1.addMark(new Mark(92.0, 1.0, "thing"));
+        temp1.setComment("GOOD STUFF");
         
-        temp1.addMark(new Mark(100.0, 1.0, ""));
-        temp1.addMark(new Mark(90.0, 1.0, ""));
-        temp1.addMark(new Mark(90.0, 1.0, ""));
+        temp2.addMark(new Mark(75.0, 1.0, "etcetcetc"));
+        temp2.addMark(new Mark(90.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(67.0, 1.0, "description"));
+        temp2.addMark(new Mark(75.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(32.0, 1.0, "...."));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(75.0, 1.0, "abcedrgg"));
+        temp2.addMark(new Mark(90.0, 1.0, "abcdef"));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(63.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(90.0, 1.0, "abcd"));
+        temp2.addMark(new Mark(60.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(99.0, 1.0, "Some description"));
+        temp2.addMark(new Mark(90.0, 1.0, "blah blah"));
+        temp2.addMark(new Mark(60.0, 1.0, "description"));
+        temp2.setComment("GREAT STUFF");
+
+        temp3.addMark(new Mark(81.0, 1.0, "Some description or other"));
+        temp3.setComment("WICKED STUFF");
         
-        temp2.addMark(new Mark(75.0, 1.0, ""));
-        temp2.addMark(new Mark(90.0, 1.0, ""));
-        temp2.addMark(new Mark(60.0, 1.0, ""));
+        temp4.addMark(new Mark(83.0, 1.0, "etcetcetc"));
+        temp4.addMark(new Mark(65.0, 1.0, "Some description"));
+        temp4.addMark(new Mark(73.0, 1.0, "yeah"));
+        temp4.addMark(new Mark(90.0, 1.0, "description"));
+        temp4.setComment("SWEET STUFF");
         
-        temp3.addMark(new Mark(80.0, 1.0, ""));
-        temp3.addMark(new Mark(95.0, 1.0, ""));
-        temp3.addMark(new Mark(70.0, 1.0, ""));
+        temp5.addMark(new Mark(83.0, 1.0, "etcetcetc"));
+        temp5.addMark(new Mark(99.0, 1.0, "Some description"));
+        temp5.addMark(new Mark(93.0, 1.0, "yeah"));
+        temp5.addMark(new Mark(90.0, 1.0, "description"));
+        temp5.addMark(new Mark(93.0, 1.0, "yeah"));
+        temp5.addMark(new Mark(99.0, 1.0, "description"));
+        temp5.setComment("NICE STUFF");
         
+        temp6.addMark(new Mark(23.0, 1.0, "etcetcetc"));
+        temp6.addMark(new Mark(35.0, 1.0, "Some description"));
+        temp6.addMark(new Mark(40.0, 1.0, "description"));
+        temp6.setComment("OK STUFF");
+
         testStu.addSubject(temp1);
         testStu.addSubject(temp2);
         testStu.addSubject(temp3);
-        
+        testStu.addSubject(temp4);
+        testStu.addSubject(temp5);
+        testStu.addSubject(temp6);
+
         System.out.println(testStu.name + ": " + testStu.subjects.get(0).subjectName + ", " + testStu.subjects.get(1).subjectName + ", " + testStu.subjects.get(2).subjectName);
         testStu.listSubjects();
-        
+
         PrintableReport pr = new PrintableReport(testStu);
-        
+
         try
         {
             pr.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
@@ -240,7 +288,7 @@ public class Login extends javax.swing.JFrame
         {
             System.err.println(ex.toString());
         }
-        
+
         pr.setVisible(true);
     }//GEN-LAST:event_lblTempTitleMouseClicked
 

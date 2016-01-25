@@ -2,19 +2,30 @@ package reportcardpro;
 
 import java.io.IOException;
 import java.util.UUID;
-
+/**
+ * The class allows the user to register an account on the Report Card Pro Program.
+ * <br>
+ * @param setUsername 
+ * <br>
+ * @param setPassword 
+ */
 public class Registry extends javax.swing.JFrame
 {
     public String toCreateUser;
     public String toCreatePassword;
     public String toCreateName;
     public ReportCardPro rcp = new ReportCardPro();
+    /**
+     * Allows the username to set a non-existing username for the program as well as a password associated for the username. 
+     */    
     
     public void setUsername(String u)
     {
         this.toCreateUser = u;
     }
-    
+    /**
+     * Allows the user to set a password for the username they have created.
+     */
     public void setPassword(String p)
     {
         this.toCreatePassword = p;

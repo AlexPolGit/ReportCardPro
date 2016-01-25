@@ -1,6 +1,5 @@
 package reportcardpro;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -49,6 +48,7 @@ public class ReportCardPro
     {}
     /**
      * Starts the program once the teacher has wrote the correct credentials to login.
+     * <br>
      * @throws IOException 
      */
     public void startProgram() throws IOException
@@ -56,7 +56,8 @@ public class ReportCardPro
         tryLogin();
     }
     /**
-     * Sets up the login screen for the teacher to either create an account or login into the program
+     * Sets up the login screen for the teacher to either create an account or login into the program.
+     * <br>
      * @throws IOException 
      */
     public void tryLogin() throws IOException
@@ -86,13 +87,25 @@ public class ReportCardPro
         }
         System.out.println("Opening teacher profile of: " + loginScreen.foundTeacher.name);
 
-        MainFrame main = new MainFrame();
+        MainFrame main = new MainFrame(loginScreen.foundTeacher);
+        
+        try
+        {
+            main.setIconImage(ImageIO.read(new File("src\\reportcardpro\\img\\rcpA.png")));
+        }
+        catch(IOException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
     }
     /**
      * At the login screen it allows for the teacher to create a new account for the program.
-     * @param t
+     * <br>
+     * @param t The teacher's credentials.
+     * <br>
      * @throws IOException 
      */
     public void newTeacher(Teacher t) throws IOException
@@ -126,6 +139,7 @@ public class ReportCardPro
     }
     /**
      * Makes a default list of subjects with their descriptions for each student.
+     * <br>
      * @param student 
      */
     public void makeDefListOfSubjects(Student student)
@@ -138,6 +152,7 @@ public class ReportCardPro
     }
     /**
      * Makes a default list of marks with a final mark and a description of each evaluation.
+     * <br>
      * @param subject 
      */
     public void makeDefListOfMarks(Subject subject)
@@ -150,7 +165,8 @@ public class ReportCardPro
     }
     /**
      * Sets a teacher for the default list of students.
-     * @param t 
+     * <br>
+     * @param t The teacher's credentials.
      */
     public void setCurrentTeacher(Teacher t)
     {
@@ -159,6 +175,7 @@ public class ReportCardPro
     }
     /**
      * Main method for Report Card Pro. 
+     * <br>
      * @throws IOException  
      */
     public static void main(String[] args) throws IOException

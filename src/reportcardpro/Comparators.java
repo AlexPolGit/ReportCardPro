@@ -2,9 +2,17 @@ package reportcardpro;
 
 import java.util.Comparator;
 
+
 /**
- * Compares two teachers names and sorts them alphabetically.
+ * Compares specific details of teachers and students.
+ * @param TeacherComparator Compares two teacher's information by name (alphabetically)
+ * @param StudentComparator Compares two student's information by name (alphabetically)
+ * @param SubjectComparator Compares two subject's information by name (alphabetically)
+ * @param SubjectComparatorByMark Compares the marks of two students and sorts them from lowest to highest
+ * @param MarkComparator  Compares two marks of a student and sorts them from lowest to highest
  */
+public class Comparators
+{}
 
 class TeacherComparator implements Comparator<Teacher>
 {
@@ -61,5 +69,4 @@ class MarkComparator implements Comparator<Mark>
     }
 }
 
-public class Comparators
-{}
+
