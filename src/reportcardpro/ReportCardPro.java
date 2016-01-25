@@ -2,7 +2,7 @@ package reportcardpro;
 
 import java.io.IOException;
 
-public class ReportCardPro//subjects=(ABC,abc,[],nice)&(DEF,def,[],nice)&(GHI,ghi,[],nice)
+public class ReportCardPro
 {
     public void startProgram() throws IOException
     {

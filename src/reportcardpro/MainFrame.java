@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 
 public class MainFrame extends javax.swing.JFrame
 {
@@ -42,14 +41,7 @@ public class MainFrame extends javax.swing.JFrame
         this.makeDefListOfStudents();
         
         initComponents();
-
-        /*
-        System.out.println(selectedStudent.pic.getIconHeight());
-        System.out.println(selectedStudent.pic.getIconWidth());
-        if (selectedStudent.pic != null)
         {
-            picStudentPicture.setIcon(new ImageIcon(selectedStudent.pic.getImage()));
-        }*/
     }
 
     @SuppressWarnings("unchecked")
