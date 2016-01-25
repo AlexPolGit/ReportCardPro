@@ -279,14 +279,14 @@
         <Component class="javax.swing.JTextField" name="fldBDM">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Integer.toString(currentStudent.birthDate.getTime().getMonth() + 1)" type="code"/>
+              <Connection code="Integer.toString(currentStudent.birthDate.getTime().getMonth())" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="fldBDY">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Integer.toString(currentStudent.birthDate.getTime().getYear() + 1900)" type="code"/>
+              <Connection code="Integer.toString(currentStudent.birthDate.getTime().getYear())" type="code"/>
             </Property>
           </Properties>
         </Component>

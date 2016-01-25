@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 
 public class MainFrame extends javax.swing.JFrame
 {
@@ -41,6 +42,14 @@ public class MainFrame extends javax.swing.JFrame
         this.makeDefListOfStudents();
         
         initComponents();
+
+        /*
+        System.out.println(selectedStudent.pic.getIconHeight());
+        System.out.println(selectedStudent.pic.getIconWidth());
+        if (selectedStudent.pic != null)
+        {
+            picStudentPicture.setIcon(new ImageIcon(selectedStudent.pic.getImage()));
+        }*/
     }
 
     @SuppressWarnings("unchecked")
@@ -56,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane5 = new javax.swing.JScrollPane();
         lstStudents = new javax.swing.JList();
         lblStudentNameText = new javax.swing.JLabel();
-        lblAgeText = new javax.swing.JLabel();
+        lblIDText = new javax.swing.JLabel();
         lblGenderText = new javax.swing.JLabel();
         lblStudents = new javax.swing.JLabel();
         lblTeacherName = new javax.swing.JLabel();
@@ -72,6 +81,9 @@ public class MainFrame extends javax.swing.JFrame
         lblSubjects = new javax.swing.JLabel();
         icoGlass = new javax.swing.JLabel();
         fldStudentSearch = new javax.swing.JTextField();
+        lblAgeText = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        picTeacherPicture = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menSettings = new javax.swing.JMenu();
         menSettingsChangeUser = new javax.swing.JMenuItem();
@@ -130,11 +142,11 @@ public class MainFrame extends javax.swing.JFrame
         jDesktopPane1.add(lblStudentNameText);
         lblStudentNameText.setBounds(370, 20, 120, 30);
 
-        lblAgeText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblAgeText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAgeText.setText("Age:");
-        jDesktopPane1.add(lblAgeText);
-        lblAgeText.setBounds(450, 100, 40, 30);
+        lblIDText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblIDText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblIDText.setText("ID:");
+        jDesktopPane1.add(lblIDText);
+        lblIDText.setBounds(450, 140, 40, 30);
 
         lblGenderText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblGenderText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -200,10 +212,11 @@ public class MainFrame extends javax.swing.JFrame
         jDesktopPane1.add(lblGender);
         lblGender.setBounds(500, 60, 290, 30);
 
-        picStudentPicture.setText("pic");
+        picStudentPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        picStudentPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/profilePic.png"))); // NOI18N
         picStudentPicture.setToolTipText("");
         jDesktopPane1.add(picStudentPicture);
-        picStudentPicture.setBounds(360, 120, 20, 20);
+        picStudentPicture.setBounds(340, 50, 80, 80);
 
         lblSubjects.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         lblSubjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -228,13 +241,26 @@ public class MainFrame extends javax.swing.JFrame
         icoGlass.setBounds(900, 10, 32, 40);
 
         fldStudentSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fldStudentSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fldStudentSearchActionPerformed(evt);
-            }
-        });
         jDesktopPane1.add(fldStudentSearch);
         fldStudentSearch.setBounds(930, 10, 340, 30);
+
+        lblAgeText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblAgeText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAgeText.setText("Age:");
+        jDesktopPane1.add(lblAgeText);
+        lblAgeText.setBounds(450, 100, 40, 30);
+
+        lblID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblID.setText("[none]");
+        jDesktopPane1.add(lblID);
+        lblID.setBounds(500, 140, 290, 30);
+
+        picTeacherPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        picTeacherPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportcardpro/img/teacherPic.png"))); // NOI18N
+        picTeacherPicture.setToolTipText("");
+        jDesktopPane1.add(picTeacherPicture);
+        picTeacherPicture.setBounds(130, 80, 80, 80);
 
         menSettings.setText("Settings");
         menSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -352,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_menHelpActionPerformed
 
     private void menHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menHelpMouseClicked
-        new HelpMenu().setVisible(true);
+        
     }//GEN-LAST:event_menHelpMouseClicked
 
     private void menStudentsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsEditActionPerformed
@@ -450,12 +476,20 @@ public class MainFrame extends javax.swing.JFrame
         }
     }//GEN-LAST:event_icoGlassKeyPressed
 
-    private void fldStudentSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldStudentSearchActionPerformed
-        
-    }//GEN-LAST:event_fldStudentSearchActionPerformed
-
     private void menStudentsRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsRemoveActionPerformed
-        
+        if (selectedStudent != null)
+        {
+            try
+            {
+                selectedTeacher.removeStudent(selectedStudent);
+                selectedTeacher.writeStudentList(selectedTeacher);
+                makeDefListOfStudents();
+            }
+            catch (IOException ex)
+            {
+                System.err.println(ex.toString());
+            }
+        }
     }//GEN-LAST:event_menStudentsRemoveActionPerformed
 
     public void makeDefListOfStudents() throws IOException
@@ -506,9 +540,10 @@ public class MainFrame extends javax.swing.JFrame
     
     public void clearLabels()
     {
-        lblStudentName.setText("");
-        lblGender.setText("");
-        lblAge.setText("");
+        lblStudentName.setText("[none]");
+        lblGender.setText("[none]");
+        lblAge.setText("[none]");
+        lblID.setText("[none]");
         lblSubject.setText("[none]");
         lblSubjectAverage.setText("[none]");
     }
@@ -518,6 +553,7 @@ public class MainFrame extends javax.swing.JFrame
         lblStudentName.setText(selectedStudent.name);
         lblGender.setText(selectedStudent.gender);
         lblAge.setText(Integer.toString(selectedStudent.getAge()));
+        lblID.setText(selectedStudent.id.toString());
     }
     
     public void setMarkLabels()
@@ -539,6 +575,8 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JLabel lblAgeText;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblGenderText;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIDText;
     private javax.swing.JLabel lblSignedInAs;
     private javax.swing.JLabel lblStudentName;
     private javax.swing.JLabel lblStudentNameText;
@@ -562,6 +600,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JMenuItem menStudentsEdit;
     private javax.swing.JMenuItem menStudentsRemove;
     private javax.swing.JLabel picStudentPicture;
+    private javax.swing.JLabel picTeacherPicture;
     // End of variables declaration//GEN-END:variables
 }
 

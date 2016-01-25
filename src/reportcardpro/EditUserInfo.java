@@ -176,7 +176,7 @@ public class EditUserInfo extends javax.swing.JFrame
             
             for (Teacher t: rep.teachers)
             {
-                if (t.name.equals(enteredNewUsername))
+                if (t.name.equals(enteredNewUsername) && !t.equals(currentTeacher))
                 {
                     isUsed = true;
                     break;
@@ -189,19 +189,36 @@ public class EditUserInfo extends javax.swing.JFrame
             }
             else if (fldPass.getText().isEmpty())
             {
-                lblError.setText("Cannot have blank new password.");
+                lblError.setText("Cannot have blank password.");
             }
-            else
+            else if (fldUser.getText().isEmpty())
             {
-                currentTeacher.setName(fldName.getText());
-                if (currentTeacher.name.isEmpty())
-                {
-                    currentTeacher.setName("Name not Set");
-                }
-                currentTeacher.setUsername(enteredNewUsername);
-                currentTeacher.setPassword(enteredNewPassword);
+                lblError.setText("Cannot have blank username.");
+            }
+            else 
+            {
+                System.out.println(fldName.getText());
+                System.out.println(fldUser.getText());
+                System.out.println(fldPass.getText());
+                
                 try
                 {
+                    rep.removeTeacher(currentTeacher);
+                
+                    if (currentTeacher.name.isEmpty())
+                    {
+                        currentTeacher.setName("Name not Set");
+                    }
+                    else
+                    {
+                        currentTeacher.setName(fldName.getText());
+                    }
+
+                    currentTeacher.setUsername(enteredNewUsername);
+                    currentTeacher.setPassword(enteredNewPassword);
+
+                    rep.addTeacher(currentTeacher);
+
                     rep.writeTeachersList();
                     MainFrame mf = new MainFrame(currentTeacher);
                     mf.setVisible(true);

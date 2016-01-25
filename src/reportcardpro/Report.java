@@ -42,7 +42,7 @@ public class Report
         writeTeachersList();
     }
     /**
-     *Removes a teacher from the list of teachers and the list from the subject list they were in.
+     *Removes a teacher from the list of teachers.
      * @param id the id number of the teacher.
      * <br>
      * @param name the name of the teacher.
@@ -52,10 +52,16 @@ public class Report
      * @param pass the password of the user name.
      */
     public void removeTeacher(String id, String name, String user, String pass) throws IOException
-
     {
         Teacher temp = new Teacher(UUID.fromString(id), name, user, pass);
         teachers.remove(temp);
+        sortTeachers();
+        writeTeachersList();
+    }
+    
+    public void removeTeacher(Teacher t) throws IOException
+    {
+        teachers.remove(t);
         sortTeachers();
         writeTeachersList();
     }

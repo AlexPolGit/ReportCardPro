@@ -1,6 +1,7 @@
 package reportcardpro;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.*;
 /**
@@ -131,7 +132,6 @@ public class Teacher
     
     public void addStudent(Student s) throws IOException
     {
-        System.out.println("Try to add student to " + name + ": " + s.name + ", " + s.id);
         students.add(s);
         sortStudents();
 
@@ -195,8 +195,7 @@ public class Teacher
     
     public void removeStudent(Student s)
     {
-        Student student = s;
-        students.remove(student);
+        students.remove(s);
         sortStudents();
     }
     /**
@@ -245,17 +244,11 @@ public class Teacher
                 tempStu.setID(UUID.fromString(prop.getProperty("id")));
                 tempStu.setName(prop.getProperty("name"));
                 tempStu.setGender(prop.getProperty("gender"));
-                tempStu.setBirthday(    Integer.parseInt(prop.getProperty("birthYear")),
-                                        Integer.parseInt(prop.getProperty("birthMonth")) - 1,
-                                        Integer.parseInt(prop.getProperty("birthDate")));
+                tempStu.setBirthday(    Integer.parseInt(prop.getProperty("birthDate")),
+                                        Integer.parseInt(prop.getProperty("birthMonth")),
+                                        Integer.parseInt(prop.getProperty("birthYear")) + 1900);
                 String subjectString = prop.getProperty("subjects");
-                ///
-                System.out.println("Sub String: " + subjectString);
-                ///
                 String[] toParse = subjectString.split("&");
-                ///
-                System.out.println("To Parse: " + Arrays.toString(toParse));
-                ///
                 int n = 0;
 
                 if (!subjectString.isEmpty())
@@ -269,10 +262,6 @@ public class Teacher
                         
                         Subject tempSub = new Subject(nameS, descS);
                         tempSub.setComment(commS);
-                        ///
-                        System.out.println(this.name + ": " + tempStu.name + ": " + tempSub.subjectName + " " + tempSub.subjectDescription + " " + tempSub.comment);
-                        System.out.println("Marks Array: " + Arrays.toString(marksList));
-                        ///
                         
                         if (marksList.length > 0 && !marksList[0].equals(""))
                         {
@@ -332,8 +321,8 @@ public class Teacher
                 prop.setProperty("id", s.id.toString());
                 prop.setProperty("name", s.name);
                 prop.setProperty("gender", s.gender);
-                prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear() + 1900));
-                prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth() + 1));
+                prop.setProperty("birthYear", Integer.toString(s.birthDate.getTime().getYear()));
+                prop.setProperty("birthMonth", Integer.toString(s.birthDate.getTime().getMonth()));
                 prop.setProperty("birthDate", Integer.toString(s.birthDate.getTime().getDate()));
                 
                 String subjectsString = "";

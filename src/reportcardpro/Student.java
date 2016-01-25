@@ -1,9 +1,15 @@
 package reportcardpro;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *The class that finds the information of a student.
@@ -53,13 +59,9 @@ public class Student
      */
     public DecimalFormat df = new DecimalFormat("#.##");
     /**
-     *The picture of the student.
+     *The picture of the student
      */
-    public File studentPicture;
-    /**
-     *The rendered picture of the student
-     */
-    public BufferedImage pic;
+    public ImageIcon pic;
    /**
      *The student's id number.
      */
@@ -78,6 +80,7 @@ public class Student
      * @param sMonth
      * <br>
      * @param sDay
+     * @throws java.io.IOException
      */
     public Student(String sID, String sName, String sGender, int sYear, int sMonth, int sDay)
     {
@@ -85,7 +88,19 @@ public class Student
         this.name = sName;
         this.gender = sGender;
         this.birthDate = new GregorianCalendar(sYear, sMonth++, sDay);
-        this.studentPicture = new File("pictures//" + sID + ".png");
+        this.pic = new ImageIcon();
+        
+        try
+        {
+            File img = new File("teachers\\pics\\" + id.toString() + ".png");
+            BufferedImage in = ImageIO.read(img);
+            pic.setImage(in);
+            pic.setImage(pic.getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH));
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex.toString() + " HERE");
+        }
     }
     
      /**
@@ -108,7 +123,19 @@ public class Student
         this.name = sName;
         this.gender = sGender;
         this.birthDate = new GregorianCalendar(sYear, sMonth++, sDay);
-        this.studentPicture = new File("pictures//" + sID + ".png");
+        this.pic = new ImageIcon();
+        
+        File img = new File("teachers\\pics\\" + id.toString() + ".png");
+        try
+        {
+            BufferedImage in = ImageIO.read(img);
+            pic.setImage(in);
+            pic.setImage(pic.getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH));
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex.toString() + img.getName());
+        }
     }
     
     /**
@@ -162,7 +189,7 @@ public class Student
      * <br>
      * @param day The day the student was born in.
      */
-    public void setBirthday(int year, int month, int day)
+    public void setBirthday(int day, int month, int year)
     {
         this.birthDate = new GregorianCalendar(year, month++, day);
     }
@@ -178,20 +205,11 @@ public class Student
     
     /**
      *
-     * @param picName
-     */
-    public void setPictureFile(String picName)
-    {
-        this.studentPicture = new File(picName + ".png");
-    }
-    
-    /**
-     *
      * @param toPicture
      */
     public void setPicture(BufferedImage toPicture)
     {
-        this.pic = new BufferedImage(0, 0, 0);
+        //
     }
    
     /**
@@ -232,20 +250,23 @@ public class Student
      */
     public int getAge()
     {
-        int age = (today.getTime().getYear() - birthDate.getTime().getYear());
-        int birthMonth = birthDate.getTime().getMonth() + 1;
+        int age = ((today.getTime().getYear() + 1900) - (birthDate.getTime().getYear()));
+        
+        int birthMonth = birthDate.getTime().getMonth();
         int todayMonth = today.getTime().getMonth() + 1;
+        
         int birthDay = birthDate.getTime().getDate();
         int todayDay = today.getTime().getDate();
+
         if (birthMonth > todayMonth)
         {
-            age--;
+            return age - 1;
         }
         else if (birthMonth == todayMonth)
         {
            if (birthDay > todayDay)
            {
-               age--;
+               return age - 1;
            }
         }
         return age;

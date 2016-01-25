@@ -2,6 +2,8 @@ package reportcardpro;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 
@@ -139,9 +141,9 @@ public class EditStudent extends javax.swing.JFrame
 
         fldBDD.setText(Integer.toString(currentStudent.birthDate.getTime().getDate()));
 
-        fldBDM.setText(Integer.toString(currentStudent.birthDate.getTime().getMonth() + 1));
+        fldBDM.setText(Integer.toString(currentStudent.birthDate.getTime().getMonth()));
 
-        fldBDY.setText(Integer.toString(currentStudent.birthDate.getTime().getYear() + 1900));
+        fldBDY.setText(Integer.toString(currentStudent.birthDate.getTime().getYear()));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -322,10 +324,11 @@ public class EditStudent extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInfoMouseClicked
+
         currentTeacher.removeStudent(originalStudent);
         currentStudent.setName(fldName.getText());
         currentStudent.setGender(fldGender.getText());
-        currentStudent.setBirthday(Integer.parseInt(fldBDD.getText()), Integer.parseInt(fldBDM.getText()) - 1, Integer.parseInt(fldBDY.getText()));
+        currentStudent.setBirthday(Integer.parseInt(fldBDD.getText()), Integer.parseInt(fldBDM.getText()), Integer.parseInt(fldBDY.getText()) + 1900);
 
         try
         {
