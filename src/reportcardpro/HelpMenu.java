@@ -18,7 +18,6 @@ public class HelpMenu extends javax.swing.JFrame
         }
         
         initComponents();
-        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
