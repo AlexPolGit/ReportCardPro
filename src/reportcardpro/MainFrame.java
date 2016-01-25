@@ -333,11 +333,6 @@ public class MainFrame extends javax.swing.JFrame
                 menHelpMouseClicked(evt);
             }
         });
-        menHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menHelpActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(menHelp);
 
         setJMenuBar(jMenuBar1);
@@ -373,12 +368,9 @@ public class MainFrame extends javax.swing.JFrame
         this.setEnabled(false);
     }//GEN-LAST:event_menSettingsChangeUserActionPerformed
 
-    private void menHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menHelpActionPerformed
-        //TODO
-    }//GEN-LAST:event_menHelpActionPerformed
-
     private void menHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menHelpMouseClicked
-        
+        HelpMenu hm = new HelpMenu();
+        hm.setVisible(true);
     }//GEN-LAST:event_menHelpMouseClicked
 
     private void menStudentsEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menStudentsEditActionPerformed
